@@ -7,33 +7,20 @@
     "tools": [
       {
         "name": "get_interest_rates",
-        "description": "Get Federal interest rates",
+        "description": "Get comprehensive Federal interest rates including SOFR, EFFR, IORB",
         "input_schema": {
           "type": "object",
           "properties": {
             "rate_type": {
               "type": "string",
               "description": "Type of interest rate",
-              "enum": ["federal_funds", "prime", "discount"],
+              "enum": ["federal_funds", "federal_funds_target", "federal_funds_upper", "federal_funds_lower", "effective_federal_funds", "prime", "discount", "sofr", "obfr", "iorb", "ioer"],
               "default": "federal_funds"
             },
             "limit": {
               "type": "integer",
               "description": "Number of observations",
               "default": 30
-            }
-          }
-        }
-      },
-      {
-        "name": "get_economic_series",
-        "description": "Get any economic series data from FRED",
-        "input_schema": {
-          "type": "object",
-          "properties": {
-            "series_id": {
-              "type": "string",
-              "description": "FRED series ID"
             },
             "start_date": {
               "type": "string",
@@ -43,152 +30,615 @@
               "type": "string",
               "description": "End date (YYYY-MM-DD)"
             }
-          },
-          "required": ["series_id"]
+          }
         }
       },
       {
-        "name": "get_gdp_data",
-        "description": "Get GDP data",
+        "name": "get_real_interest_rates",
+        "description": "Get real (inflation-adjusted) interest rates",
         "input_schema": {
           "type": "object",
           "properties": {
-            "gdp_type": {
+            "rate_type": {
               "type": "string",
-              "description": "Type of GDP",
-              "enum": ["real", "nominal"],
-              "default": "real"
-            },
-            "start_date": {
-              "type": "string",
-              "description": "Start date"
-            },
-            "end_date": {
-              "type": "string",
-              "description": "End date"
+              "description": "Type of real rate",
+              "enum": ["5Y", "10Y", "federal_funds"],
+              "default": "10Y"
             }
           }
         }
       },
       {
-        "name": "get_inflation_data",
-        "description": "Get inflation data (CPI)",
+        "name": "get_term_spreads",
+        "description": "Get term spreads (yield curve indicators)",
         "input_schema": {
           "type": "object",
           "properties": {
-            "inflation_type": {
+            "spread_type": {
               "type": "string",
-              "description": "Type of inflation measure",
-              "enum": ["cpi", "pce", "core_cpi"],
-              "default": "cpi"
-            },
-            "start_date": {
-              "type": "string",
-              "description": "Start date"
-            },
-            "end_date": {
-              "type": "string",
-              "description": "End date"
+              "description": "Type of term spread",
+              "enum": ["10Y2Y", "10Y3M", "5Y2Y", "30Y5Y"],
+              "default": "10Y2Y"
             }
           }
         }
       },
       {
-        "name": "get_unemployment_data",
-        "description": "Get unemployment data",
+        "name": "get_yield_curve",
+        "description": "Get complete yield curve data for all maturities",
         "input_schema": {
           "type": "object",
           "properties": {
-            "start_date": {
+            "date": {
               "type": "string",
-              "description": "Start date"
-            },
-            "end_date": {
-              "type": "string",
-              "description": "End date"
+              "description": "Date for yield curve (YYYY-MM-DD)"
             }
           }
         }
       },
       {
-        "name": "get_money_supply",
-        "description": "Get money supply data",
+        "name": "get_fomc_projections",
+        "description": "Get FOMC economic projections (dot plot)",
         "input_schema": {
           "type": "object",
           "properties": {
-            "supply_type": {
+            "projection_type": {
               "type": "string",
-              "description": "Type of money supply",
-              "enum": ["m1", "m2"],
-              "default": "m2"
-            },
-            "start_date": {
-              "type": "string",
-              "description": "Start date"
-            },
-            "end_date": {
-              "type": "string",
-              "description": "End date"
+              "description": "Type of projection",
+              "enum": ["federal_funds", "gdp", "unemployment", "inflation"],
+              "default": "federal_funds"
             }
           }
         }
       },
       {
-        "name": "get_treasury_yields",
-        "description": "Get Treasury yield curve data",
+        "name": "get_policy_tools",
+        "description": "Get Fed policy tools data (balance sheet, reserves)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "tool_type": {
+              "type": "string",
+              "description": "Type of policy tool",
+              "enum": ["balance_sheet", "reserve_balances", "securities_held"],
+              "default": "balance_sheet"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_reverse_repo",
+        "description": "Get reverse repo operations data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "data_type": {
+              "type": "string",
+              "description": "Type of RRP data",
+              "enum": ["volume", "rate", "counterparties"],
+              "default": "volume"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_gdp_components",
+        "description": "Get GDP components breakdown (C+I+G+NX)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "component_type": {
+              "type": "string",
+              "description": "GDP component",
+              "enum": ["all", "consumption", "investment", "government", "net_exports"],
+              "default": "all"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_inflation_expectations",
+        "description": "Get inflation expectations from market and surveys",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "horizon": {
+              "type": "string",
+              "description": "Expectation horizon",
+              "enum": ["1Y", "5Y", "10Y", "michigan_1Y", "michigan_5Y"],
+              "default": "5Y"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_pce_components",
+        "description": "Get PCE inflation components (core, goods, services)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "component": {
+              "type": "string",
+              "description": "PCE component",
+              "enum": ["headline", "core", "goods", "services", "energy", "food"],
+              "default": "core"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_employment_data",
+        "description": "Get comprehensive employment data by sector",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "employment_type": {
+              "type": "string",
+              "description": "Employment category",
+              "enum": ["nonfarm", "private", "government", "manufacturing", "construction", "retail", "leisure_hospitality", "professional_business", "education_health", "information", "financial"],
+              "default": "nonfarm"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_labor_force_participation",
+        "description": "Get labor force participation rates by demographic",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "demographic": {
+              "type": "string",
+              "description": "Demographic group",
+              "enum": ["total", "prime_age", "women", "men", "teens", "over_55"],
+              "default": "total"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_job_openings",
+        "description": "Get JOLTS job openings and labor turnover data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "data_type": {
+              "type": "string",
+              "description": "JOLTS data type",
+              "enum": ["openings", "hires", "quits", "layoffs"],
+              "default": "openings"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_wage_growth",
+        "description": "Get wage growth data from various measures",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "wage_type": {
+              "type": "string",
+              "description": "Wage measure",
+              "enum": ["average_hourly", "atlanta_fed_tracker", "eci_total", "eci_wages", "production_workers"],
+              "default": "average_hourly"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_initial_claims",
+        "description": "Get initial and continuing unemployment claims",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "claims_type": {
+              "type": "string",
+              "description": "Type of claims",
+              "enum": ["initial", "continuing", "4week_average"],
+              "default": "initial"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_productivity_data",
+        "description": "Get labor productivity and unit labor costs",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "measure": {
+              "type": "string",
+              "description": "Productivity measure",
+              "enum": ["productivity", "unit_labor_costs", "output_per_hour"],
+              "default": "productivity"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_tips_spreads",
+        "description": "Get TIPS breakeven inflation rates",
         "input_schema": {
           "type": "object",
           "properties": {
             "maturity": {
               "type": "string",
-              "description": "Treasury maturity",
-              "enum": ["3M", "2Y", "5Y", "10Y", "30Y"],
+              "description": "TIPS maturity",
+              "enum": ["5Y", "10Y", "30Y"],
               "default": "10Y"
-            },
-            "start_date": {
-              "type": "string",
-              "description": "Start date"
-            },
-            "end_date": {
-              "type": "string",
-              "description": "End date"
             }
           }
         }
       },
       {
-        "name": "search_series",
-        "description": "Search for economic series",
+        "name": "get_corporate_spreads",
+        "description": "Get corporate bond spreads",
         "input_schema": {
           "type": "object",
           "properties": {
-            "search_text": {
+            "grade": {
               "type": "string",
-              "description": "Search text"
+              "description": "Bond grade",
+              "enum": ["investment_grade", "high_yield", "bbb", "ccc"],
+              "default": "investment_grade"
             }
-          },
-          "required": ["search_text"]
+          }
         }
       },
       {
-        "name": "get_banking_statistics",
-        "description": "Get banking statistics",
+        "name": "get_stock_market_indicators",
+        "description": "Get stock market indicators",
         "input_schema": {
           "type": "object",
           "properties": {
-            "stat_type": {
+            "indicator": {
               "type": "string",
-              "description": "Type of banking statistic",
-              "enum": ["reserves", "loans", "deposits"],
-              "default": "reserves"
+              "description": "Market indicator",
+              "enum": ["sp500", "dow", "nasdaq", "russell2000", "wilshire5000"],
+              "default": "sp500"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_volatility_indices",
+        "description": "Get market volatility indices",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "index": {
+              "type": "string",
+              "description": "Volatility index",
+              "enum": ["vix", "vxn", "rvx", "move"],
+              "default": "vix"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_exchange_rates",
+        "description": "Get foreign exchange rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "currency": {
+              "type": "string",
+              "description": "Currency pair",
+              "enum": ["eur", "gbp", "jpy", "cny", "cad", "mxn", "aud"],
+              "default": "eur"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_dollar_index",
+        "description": "Get US Dollar Index data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "index_type": {
+              "type": "string",
+              "description": "Dollar index type",
+              "enum": ["trade_weighted", "major_currencies", "broad"],
+              "default": "trade_weighted"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_bank_lending_standards",
+        "description": "Get bank lending standards from Senior Loan Officer Survey",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "loan_type": {
+              "type": "string",
+              "description": "Type of lending standards",
+              "enum": ["commercial", "consumer", "mortgage", "small_business"],
+              "default": "commercial"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_consumer_credit",
+        "description": "Get consumer credit data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "credit_type": {
+              "type": "string",
+              "description": "Type of consumer credit",
+              "enum": ["total", "revolving", "nonrevolving", "auto", "student"],
+              "default": "total"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_mortgage_rates",
+        "description": "Get mortgage interest rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "mortgage_type": {
+              "type": "string",
+              "description": "Type of mortgage",
+              "enum": ["30Y_fixed", "15Y_fixed", "5Y_arm", "jumbo"],
+              "default": "30Y_fixed"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_housing_starts",
+        "description": "Get housing starts and building permits",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "data_type": {
+              "type": "string",
+              "description": "Housing data type",
+              "enum": ["starts", "permits", "completions", "under_construction"],
+              "default": "starts"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_home_prices",
+        "description": "Get home price indices",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "index_type": {
+              "type": "string",
+              "description": "Price index type",
+              "enum": ["case_shiller", "fhfa", "median_price", "price_rent_ratio"],
+              "default": "case_shiller"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_existing_home_sales",
+        "description": "Get existing home sales data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "metric": {
+              "type": "string",
+              "description": "Sales metric",
+              "enum": ["sales", "inventory", "months_supply", "median_days"],
+              "default": "sales"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_industrial_production",
+        "description": "Get industrial production index",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "sector": {
+              "type": "string",
+              "description": "Industrial sector",
+              "enum": ["total", "manufacturing", "mining", "utilities", "tech"],
+              "default": "total"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_capacity_utilization",
+        "description": "Get capacity utilization rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "sector": {
+              "type": "string",
+              "description": "Sector",
+              "enum": ["total", "manufacturing", "mining"],
+              "default": "total"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_retail_sales",
+        "description": "Get retail sales data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "description": "Retail category",
+              "enum": ["total", "ex_auto", "ex_gas", "core", "online", "restaurants"],
+              "default": "total"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_consumer_sentiment",
+        "description": "Get consumer sentiment indices",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "survey": {
+              "type": "string",
+              "description": "Sentiment survey",
+              "enum": ["michigan", "conference_board", "expectations", "current"],
+              "default": "michigan"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_personal_income",
+        "description": "Get personal income and components",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "component": {
+              "type": "string",
+              "description": "Income component",
+              "enum": ["total", "wages", "disposable", "real_disposable"],
+              "default": "total"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_personal_spending",
+        "description": "Get personal consumption expenditures",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "description": "Spending category",
+              "enum": ["total", "goods", "services", "durable", "nondurable"],
+              "default": "total"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_savings_rate",
+        "description": "Get personal savings rate",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_trade_balance",
+        "description": "Get trade balance data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "measure": {
+              "type": "string",
+              "description": "Trade measure",
+              "enum": ["balance", "deficit", "surplus", "goods", "services"],
+              "default": "balance"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_regional_fed_data",
+        "description": "Get data from regional Federal Reserve banks",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "region": {
+              "type": "string",
+              "description": "Fed district",
+              "enum": ["boston", "new_york", "philadelphia", "cleveland", "richmond", "atlanta", "chicago", "st_louis", "minneapolis", "kansas_city", "dallas", "san_francisco"],
+              "default": "new_york"
             },
+            "data_type": {
+              "type": "string",
+              "description": "Regional data type",
+              "enum": ["activity_index", "manufacturing", "services"],
+              "default": "activity_index"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_financial_stress_index",
+        "description": "Get financial stress indices",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "index_type": {
+              "type": "string",
+              "description": "Stress index",
+              "enum": ["stlfsi", "nfci", "vix", "move"],
+              "default": "stlfsi"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_recession_dates",
+        "description": "Get NBER recession dates and indicators",
+        "input_schema": {
+          "type": "object",
+          "properties": {
             "start_date": {
               "type": "string",
-              "description": "Start date"
-            },
-            "end_date": {
+              "description": "Start date for recession data"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_taylor_rule",
+        "description": "Get Taylor Rule implied federal funds rate",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "version": {
               "type": "string",
-              "description": "End date"
+              "description": "Taylor Rule version",
+              "enum": ["original", "modified", "balanced"],
+              "default": "original"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_financial_conditions",
+        "description": "Get financial conditions indices",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "index": {
+              "type": "string",
+              "description": "Financial conditions index",
+              "enum": ["nfci", "anfci", "goldman", "bloomberg"],
+              "default": "nfci"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_commodity_prices",
+        "description": "Get commodity price indices",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "commodity": {
+              "type": "string",
+              "description": "Commodity type",
+              "enum": ["all", "energy", "metals", "agriculture", "gold", "oil"],
+              "default": "all"
             }
           }
         }

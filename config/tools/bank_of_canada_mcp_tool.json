@@ -1,0 +1,739 @@
+{
+  "name": "bank_of_canada_tool",
+  "module": "tools.bank_of_canada_mcp_tool.BankOfCanadaMCPTool",
+  "max_hits": 1000,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "get_policy_rate",
+        "description": "Get Bank of Canada policy interest rate (target for overnight rate)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "start_date": {
+              "type": "string",
+              "description": "Start date (YYYY-MM-DD)"
+            },
+            "end_date": {
+              "type": "string",
+              "description": "End date (YYYY-MM-DD)"
+            },
+            "recent": {
+              "type": "integer",
+              "description": "Number of recent observations"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_overnight_rate",
+        "description": "Get overnight money market financing rate",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "recent": {
+              "type": "integer",
+              "description": "Number of recent observations",
+              "default": 10
+            }
+          }
+        }
+      },
+      {
+        "name": "get_bank_rate",
+        "description": "Get Bank of Canada bank rate",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "recent": {
+              "type": "integer",
+              "description": "Number of recent observations"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_prime_rate",
+        "description": "Get chartered bank prime business rate",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "recent": {
+              "type": "integer",
+              "description": "Number of recent observations"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_corra",
+        "description": "Get Canadian Overnight Repo Rate Average (CORRA)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "recent": {
+              "type": "integer",
+              "description": "Number of recent observations"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_cdor",
+        "description": "Get Canadian Dollar Offered Rate (CDOR)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "term": {
+              "type": "string",
+              "description": "CDOR term",
+              "enum": ["1M", "2M", "3M", "6M", "12M"],
+              "default": "3M"
+            },
+            "recent": {
+              "type": "integer",
+              "description": "Number of recent observations"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_ba_rates",
+        "description": "Get Bankers' Acceptances rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "term": {
+              "type": "string",
+              "description": "BA term",
+              "enum": ["1M", "3M", "6M"],
+              "default": "3M"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_treasury_bills",
+        "description": "Get Treasury Bill rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "term": {
+              "type": "string",
+              "description": "T-Bill term",
+              "enum": ["1M", "3M", "6M", "12M"],
+              "default": "3M"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_gdp_data",
+        "description": "Get Canadian GDP data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "gdp_type": {
+              "type": "string",
+              "description": "GDP type",
+              "enum": ["monthly", "quarterly", "real", "nominal"],
+              "default": "monthly"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_gdp_by_industry",
+        "description": "Get GDP by industry sector",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "industry": {
+              "type": "string",
+              "description": "Industry sector",
+              "enum": ["all", "manufacturing", "construction", "retail", "finance"],
+              "default": "all"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_cpi_data",
+        "description": "Get Consumer Price Index data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cpi_type": {
+              "type": "string",
+              "description": "CPI type",
+              "enum": ["all_items", "ex_food_energy", "goods", "services"],
+              "default": "all_items"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_core_inflation",
+        "description": "Get Bank of Canada core inflation measures",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "measure": {
+              "type": "string",
+              "description": "Core inflation measure",
+              "enum": ["cpi_trim", "cpi_median", "cpi_common"],
+              "default": "cpi_trim"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_exchange_rates",
+        "description": "Get foreign exchange rates against CAD",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "currency": {
+              "type": "string",
+              "description": "Foreign currency",
+              "enum": ["USD", "EUR", "GBP", "JPY", "CNY", "MXN", "AUD", "INR"],
+              "default": "USD"
+            },
+            "recent": {
+              "type": "integer",
+              "description": "Number of recent observations"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_cad_usd",
+        "description": "Get detailed CAD/USD exchange rate data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "recent": {
+              "type": "integer",
+              "description": "Number of recent observations"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_effective_exchange_rate",
+        "description": "Get Canadian-dollar effective exchange rate index (CERI)",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_government_bonds",
+        "description": "Get Government of Canada bond yields",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "maturity": {
+              "type": "string",
+              "description": "Bond maturity",
+              "enum": ["3M", "6M", "1Y", "2Y", "3Y", "5Y", "7Y", "10Y", "30Y"],
+              "default": "10Y"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_yield_curve",
+        "description": "Get complete Canadian yield curve",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_real_return_bonds",
+        "description": "Get Real Return Bond yields",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_provincial_bonds",
+        "description": "Get provincial bond yields",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "province": {
+              "type": "string",
+              "description": "Province code",
+              "enum": ["ON", "QC", "BC", "AB"],
+              "default": "ON"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_employment_data",
+        "description": "Get Canadian employment data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "recent": {
+              "type": "integer",
+              "description": "Number of recent observations"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_unemployment_rate",
+        "description": "Get Canadian unemployment rate",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_job_vacancies",
+        "description": "Get job vacancy data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_wage_growth",
+        "description": "Get wage growth data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "measure": {
+              "type": "string",
+              "description": "Wage measure",
+              "enum": ["average_hourly", "seph", "wage_common"],
+              "default": "average_hourly"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_employment_by_province",
+        "description": "Get employment data by province",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "province": {
+              "type": "string",
+              "description": "Province code",
+              "enum": ["ON", "QC", "BC", "AB", "MB", "SK", "NS", "NB", "NL", "PE"],
+              "default": "ON"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_employment_by_industry",
+        "description": "Get employment data by industry",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "industry": {
+              "type": "string",
+              "description": "Industry sector",
+              "enum": ["total", "goods", "services", "manufacturing", "construction", "retail", "finance"],
+              "default": "total"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_chartered_bank_assets",
+        "description": "Get chartered bank assets",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_bank_deposits",
+        "description": "Get bank deposit data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "deposit_type": {
+              "type": "string",
+              "description": "Deposit type",
+              "enum": ["total", "personal", "non_personal", "demand", "notice", "fixed_term"],
+              "default": "total"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_bank_loans",
+        "description": "Get bank loan data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "loan_type": {
+              "type": "string",
+              "description": "Loan type",
+              "enum": ["total", "business", "residential_mortgage", "consumer"],
+              "default": "total"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_money_supply",
+        "description": "Get money supply aggregates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "aggregate": {
+              "type": "string",
+              "description": "Money supply aggregate",
+              "enum": ["M1+", "M1++", "M2", "M2+", "M2++", "M3"],
+              "default": "M2"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_housing_starts",
+        "description": "Get housing starts data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_housing_prices",
+        "description": "Get housing price indices",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "index_type": {
+              "type": "string",
+              "description": "Price index type",
+              "enum": ["new_house", "crea_hpi", "teranet"],
+              "default": "new_house"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_mortgage_rates",
+        "description": "Get mortgage interest rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "mortgage_type": {
+              "type": "string",
+              "description": "Mortgage type",
+              "enum": ["1Y_fixed", "3Y_fixed", "5Y_fixed", "variable"],
+              "default": "5Y_fixed"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_trade_balance",
+        "description": "Get trade balance data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_exports",
+        "description": "Get export data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_imports",
+        "description": "Get import data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_current_account",
+        "description": "Get current account balance",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_commodity_prices",
+        "description": "Get Bank of Canada commodity price index",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "commodity": {
+              "type": "string",
+              "description": "Commodity type",
+              "enum": ["total", "energy", "non_energy", "metals", "forestry", "agriculture"],
+              "default": "total"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_energy_prices",
+        "description": "Get energy price data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "energy_type": {
+              "type": "string",
+              "description": "Energy type",
+              "enum": ["oil", "natural_gas", "electricity"],
+              "default": "oil"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_business_outlook_survey",
+        "description": "Get Business Outlook Survey indicators",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "indicator": {
+              "type": "string",
+              "description": "Survey indicator",
+              "enum": ["future_sales", "investment", "employment", "inflation"],
+              "default": "future_sales"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_capacity_utilization",
+        "description": "Get capacity utilization rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_manufacturing_sales",
+        "description": "Get manufacturing sales data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_retail_sales",
+        "description": "Get retail sales data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_household_debt",
+        "description": "Get household debt data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_household_wealth",
+        "description": "Get household net worth data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_savings_rate",
+        "description": "Get household savings rate",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_consumer_spending",
+        "description": "Get consumer spending data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_provincial_gdp",
+        "description": "Get provincial GDP data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "province": {
+              "type": "string",
+              "description": "Province code",
+              "enum": ["ON", "QC", "BC", "AB"],
+              "default": "ON"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_provincial_cpi",
+        "description": "Get provincial CPI data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "province": {
+              "type": "string",
+              "description": "Province code",
+              "enum": ["ON", "QC", "BC", "AB"],
+              "default": "ON"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_major_cities_data",
+        "description": "Get economic data for major Canadian cities",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string",
+              "description": "City name",
+              "enum": ["toronto", "montreal", "vancouver", "calgary"],
+              "default": "toronto"
+            },
+            "data_type": {
+              "type": "string",
+              "description": "Data type",
+              "enum": ["cpi", "employment", "housing"],
+              "default": "cpi"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_tsx_data",
+        "description": "Get TSX index data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_equity_indices",
+        "description": "Get Canadian equity indices",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "index": {
+              "type": "string",
+              "description": "Equity index",
+              "enum": ["tsx_composite", "tsx_60", "tsx_venture"],
+              "default": "tsx_composite"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_financial_system_review",
+        "description": "Get Financial System Review information",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_systemic_risk_indicators",
+        "description": "Get systemic risk indicators",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_monetary_policy_report",
+        "description": "Get Monetary Policy Report information",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_consumer_expectations",
+        "description": "Get Canadian Survey of Consumer Expectations",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "indicator": {
+              "type": "string",
+              "description": "Expectation indicator",
+              "enum": ["inflation_1y", "inflation_2y", "inflation_5y"],
+              "default": "inflation_1y"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_historical_statistics",
+        "description": "Get historical economic statistics",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "statistic": {
+              "type": "string",
+              "description": "Statistical series",
+              "enum": ["policy_rate", "inflation", "gdp"],
+              "default": "policy_rate"
+            },
+            "start_date": {
+              "type": "string",
+              "description": "Start date (YYYY-MM-DD)"
+            }
+          }
+        }
+      },
+      {
+        "name": "search_series",
+        "description": "Search for Bank of Canada data series",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "search_term": {
+              "type": "string",
+              "description": "Search term"
+            }
+          },
+          "required": ["search_term"]
+        }
+      },
+      {
+        "name": "get_series_metadata",
+        "description": "Get metadata for a specific series",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "series_name": {
+              "type": "string",
+              "description": "Series identifier"
+            }
+          },
+          "required": ["series_name"]
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}
