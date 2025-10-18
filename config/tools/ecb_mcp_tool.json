@@ -1,0 +1,693 @@
+{
+  "name": "ecb_tool",
+  "module": "tools.ecb_mcp_tool.ECBMCPTool",
+  "max_hits": 1000,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "get_key_interest_rates",
+        "description": "Get all ECB key interest rates (deposit facility, main refinancing, marginal lending)",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_deposit_facility_rate",
+        "description": "Get ECB deposit facility rate",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "lastNObservations": {
+              "type": "integer",
+              "description": "Number of recent observations",
+              "default": 10
+            }
+          }
+        }
+      },
+      {
+        "name": "get_main_refinancing_rate",
+        "description": "Get ECB main refinancing operations rate",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "lastNObservations": {
+              "type": "integer",
+              "description": "Number of recent observations"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_marginal_lending_rate",
+        "description": "Get ECB marginal lending facility rate",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "lastNObservations": {
+              "type": "integer",
+              "description": "Number of recent observations"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_euribor",
+        "description": "Get EURIBOR rates for various tenors",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "tenor": {
+              "type": "string",
+              "description": "EURIBOR tenor",
+              "enum": ["1W", "1M", "3M", "6M", "12M"],
+              "default": "3M"
+            },
+            "lastNObservations": {
+              "type": "integer",
+              "description": "Number of recent observations"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_ester",
+        "description": "Get €STR (Euro short-term rate)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "lastNObservations": {
+              "type": "integer",
+              "description": "Number of recent observations"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_money_market_rates",
+        "description": "Get various money market rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "rate_type": {
+              "type": "string",
+              "description": "Type of money market rate",
+              "enum": ["overnight", "tom_next", "spot_next", "1_week", "1_month"],
+              "default": "overnight"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_yield_curves",
+        "description": "Get Euro area yield curves",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "curve_type": {
+              "type": "string",
+              "description": "Type of yield curve",
+              "enum": ["spot", "forward", "par"],
+              "default": "spot"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_hicp_inflation",
+        "description": "Get Harmonised Index of Consumer Prices (HICP)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "component": {
+              "type": "string",
+              "description": "HICP component",
+              "enum": ["all_items", "energy", "food", "core", "services"],
+              "default": "all_items"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_core_inflation",
+        "description": "Get core inflation (excluding energy and unprocessed food)",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_gdp_data",
+        "description": "Get Euro area GDP data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "gdp_type": {
+              "type": "string",
+              "description": "Type of GDP measure",
+              "enum": ["growth_rate", "level", "per_capita"],
+              "default": "growth_rate"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_unemployment",
+        "description": "Get Euro area unemployment rate",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "demographic": {
+              "type": "string",
+              "description": "Demographic group",
+              "enum": ["total", "youth", "male", "female"],
+              "default": "total"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_industrial_production",
+        "description": "Get industrial production index",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "sector": {
+              "type": "string",
+              "description": "Industrial sector",
+              "enum": ["total", "manufacturing", "energy", "construction"],
+              "default": "total"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_retail_sales",
+        "description": "Get retail sales data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_confidence_indicators",
+        "description": "Get confidence indicators",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "indicator": {
+              "type": "string",
+              "description": "Type of confidence indicator",
+              "enum": ["consumer", "business", "economic_sentiment"],
+              "default": "consumer"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_economic_sentiment",
+        "description": "Get Economic Sentiment Indicator",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_euro_exchange_rates",
+        "description": "Get EUR exchange rates against major currencies",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "currency": {
+              "type": "string",
+              "description": "Currency code",
+              "enum": ["USD", "GBP", "JPY", "CHF", "CNY", "AUD", "CAD"],
+              "default": "USD"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_effective_exchange_rates",
+        "description": "Get Euro effective exchange rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "eer_type": {
+              "type": "string",
+              "description": "Type of effective exchange rate",
+              "enum": ["nominal", "real_cpi", "real_ppi"],
+              "default": "nominal"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_reference_rates",
+        "description": "Get ECB reference exchange rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_government_bond_yields",
+        "description": "Get government bond yields for Euro area countries",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string",
+              "description": "Country code",
+              "enum": ["DE", "FR", "IT", "ES", "NL", "BE", "AT", "PT", "FI", "IE", "GR"],
+              "default": "DE"
+            },
+            "maturity": {
+              "type": "string",
+              "description": "Bond maturity",
+              "enum": ["1Y", "2Y", "3Y", "5Y", "7Y", "10Y", "20Y", "30Y"],
+              "default": "10Y"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_sovereign_spreads",
+        "description": "Get sovereign spreads vs German Bunds",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string",
+              "description": "Country code",
+              "enum": ["FR", "IT", "ES", "NL", "BE", "AT", "PT", "FI", "IE", "GR"],
+              "default": "IT"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_yield_curve_euro_area",
+        "description": "Get Euro area AAA-rated yield curve",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_aaa_rated_bonds",
+        "description": "Get AAA-rated Euro area government bonds",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "maturity": {
+              "type": "string",
+              "description": "Bond maturity",
+              "enum": ["3M", "6M", "1Y", "2Y", "3Y", "5Y", "7Y", "10Y", "20Y", "30Y"],
+              "default": "10Y"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_corporate_bond_yields",
+        "description": "Get corporate bond yields by rating",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "rating": {
+              "type": "string",
+              "description": "Bond rating",
+              "enum": ["AAA", "AA", "A", "BBB"],
+              "default": "AA"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_bank_balance_sheets",
+        "description": "Get aggregated bank balance sheet data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "item": {
+              "type": "string",
+              "description": "Balance sheet item",
+              "enum": ["total_assets", "loans", "deposits", "equity"],
+              "default": "total_assets"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_bank_lending_rates",
+        "description": "Get bank lending rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "loan_type": {
+              "type": "string",
+              "description": "Type of loan",
+              "enum": ["corporate", "household_mortgage", "consumer"],
+              "default": "corporate"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_bank_deposit_rates",
+        "description": "Get bank deposit rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "deposit_type": {
+              "type": "string",
+              "description": "Type of deposit",
+              "enum": ["household", "corporate", "overnight"],
+              "default": "household"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_bank_lending_survey",
+        "description": "Get Bank Lending Survey results",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "indicator": {
+              "type": "string",
+              "description": "Survey indicator",
+              "enum": ["credit_standards", "demand", "terms_conditions"],
+              "default": "credit_standards"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_monetary_aggregates",
+        "description": "Get monetary aggregates (M1, M2, M3)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "aggregate": {
+              "type": "string",
+              "description": "Monetary aggregate",
+              "enum": ["M1", "M2", "M3"],
+              "default": "M3"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_credit_growth",
+        "description": "Get credit growth to private sector",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "sector": {
+              "type": "string",
+              "description": "Sector",
+              "enum": ["total", "households", "corporations"],
+              "default": "total"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_npl_ratios",
+        "description": "Get non-performing loans ratios",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_bank_profitability",
+        "description": "Get bank profitability indicators",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "indicator": {
+              "type": "string",
+              "description": "Profitability indicator",
+              "enum": ["roe", "roa", "cost_income"],
+              "default": "roe"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_equity_indices",
+        "description": "Get Euro area equity indices",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "index": {
+              "type": "string",
+              "description": "Equity index",
+              "enum": ["eurostoxx50", "eurostoxx600", "dax", "cac40", "ftse_mib"],
+              "default": "eurostoxx50"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_target2_statistics",
+        "description": "Get TARGET2 payment system statistics",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_country_inflation",
+        "description": "Get inflation data for specific Euro area country",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string",
+              "description": "Country code",
+              "enum": ["DE", "FR", "IT", "ES", "NL", "BE", "AT", "PT", "FI", "IE", "GR"],
+              "default": "DE"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_country_gdp",
+        "description": "Get GDP data for specific Euro area country",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string",
+              "description": "Country code",
+              "enum": ["DE", "FR", "IT", "ES", "NL", "BE", "AT", "PT", "FI", "IE", "GR"],
+              "default": "DE"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_country_unemployment",
+        "description": "Get unemployment rate for specific Euro area country",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string",
+              "description": "Country code",
+              "enum": ["DE", "FR", "IT", "ES", "NL", "BE", "AT", "PT", "FI", "IE", "GR"],
+              "default": "DE"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_country_debt",
+        "description": "Get government debt for specific Euro area country",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string",
+              "description": "Country code",
+              "default": "DE"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_employment_data",
+        "description": "Get Euro area employment data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_wage_growth",
+        "description": "Get wage growth data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_unit_labor_costs",
+        "description": "Get unit labor costs",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_trade_balance",
+        "description": "Get trade balance data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_current_account",
+        "description": "Get current account balance",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_house_prices",
+        "description": "Get house price indices",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_government_debt",
+        "description": "Get government debt statistics",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_budget_balance",
+        "description": "Get government budget balance",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_systemic_risk_indicators",
+        "description": "Get systemic risk indicators",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_financial_stress_index",
+        "description": "Get financial stress index",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_survey_of_professional_forecasters",
+        "description": "Get Survey of Professional Forecasters results",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_inflation_expectations",
+        "description": "Get inflation expectations",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_green_bonds",
+        "description": "Get green bond statistics",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_climate_indicators",
+        "description": "Get climate-related financial indicators",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_historical_statistics",
+        "description": "Get historical economic statistics",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "series": {
+              "type": "string",
+              "description": "Statistical series"
+            },
+            "startPeriod": {
+              "type": "string",
+              "description": "Start period (YYYY-MM)"
+            },
+            "endPeriod": {
+              "type": "string",
+              "description": "End period (YYYY-MM)"
+            }
+          }
+        }
+      },
+      {
+        "name": "search_series",
+        "description": "Search for ECB data series",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "search_term": {
+              "type": "string",
+              "description": "Search term"
+            }
+          },
+          "required": ["search_term"]
+        }
+      },
+      {
+        "name": "get_series_metadata",
+        "description": "Get metadata for specific series",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "dataset": {
+              "type": "string",
+              "description": "Dataset identifier"
+            },
+            "series_key": {
+              "type": "string",
+              "description": "Series key"
+            }
+          },
+          "required": ["dataset", "series_key"]
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}

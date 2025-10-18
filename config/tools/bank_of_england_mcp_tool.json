@@ -1,0 +1,777 @@
+{
+  "name": "bank_of_england_tool",
+  "module": "tools.bank_of_england_mcp_tool.BankOfEnglandMCPTool",
+  "max_hits": 1000,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "get_bank_rate",
+        "description": "Get Bank of England Bank Rate (policy rate)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "datefrom": {
+              "type": "string",
+              "description": "Start date (YYYY-MM-DD)"
+            },
+            "dateto": {
+              "type": "string",
+              "description": "End date (YYYY-MM-DD)"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Number of observations to return",
+              "default": 30
+            }
+          }
+        }
+      },
+      {
+        "name": "get_sonia",
+        "description": "Get Sterling Overnight Index Average (SONIA)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "integer",
+              "description": "Number of observations",
+              "default": 10
+            }
+          }
+        }
+      },
+      {
+        "name": "get_repo_rate",
+        "description": "Get repo rate",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_term_sonia",
+        "description": "Get Term SONIA reference rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "term": {
+              "type": "string",
+              "description": "SONIA term",
+              "enum": ["1M", "3M", "6M", "12M"],
+              "default": "3M"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_swap_rates",
+        "description": "Get interest rate swap rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "maturity": {
+              "type": "string",
+              "description": "Swap maturity",
+              "enum": ["1Y", "2Y", "3Y", "5Y", "7Y", "10Y"],
+              "default": "5Y"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_overnight_index_swaps",
+        "description": "Get Overnight Index Swap rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_forward_rates",
+        "description": "Get forward interest rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "horizon": {
+              "type": "string",
+              "description": "Forward horizon",
+              "enum": ["1Y", "2Y", "5Y"],
+              "default": "1Y"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_inflation_data",
+        "description": "Get UK inflation data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "measure": {
+              "type": "string",
+              "description": "Inflation measure",
+              "enum": ["cpi", "cpih", "rpi", "core_cpi"],
+              "default": "cpi"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_cpi_data",
+        "description": "Get Consumer Price Index data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_rpi_data",
+        "description": "Get Retail Price Index data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_gdp_data",
+        "description": "Get UK GDP data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "gdp_type": {
+              "type": "string",
+              "description": "GDP measure",
+              "enum": ["growth", "level", "per_capita"],
+              "default": "growth"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_unemployment",
+        "description": "Get UK unemployment rate",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_wage_growth",
+        "description": "Get wage growth data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "measure": {
+              "type": "string",
+              "description": "Wage measure",
+              "enum": ["average_weekly", "regular_pay", "total_pay"],
+              "default": "average_weekly"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_productivity",
+        "description": "Get productivity data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_retail_sales",
+        "description": "Get retail sales data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_sterling_exchange_rates",
+        "description": "Get Sterling exchange rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "currency": {
+              "type": "string",
+              "description": "Foreign currency",
+              "enum": ["USD", "EUR", "JPY", "CHF", "CAD", "AUD", "CNY"],
+              "default": "USD"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_effective_exchange_rates",
+        "description": "Get Sterling effective exchange rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "eer_type": {
+              "type": "string",
+              "description": "EER type",
+              "enum": ["nominal", "real"],
+              "default": "nominal"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_gilt_yields",
+        "description": "Get UK government bond (gilt) yields",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "maturity": {
+              "type": "string",
+              "description": "Gilt maturity",
+              "enum": ["2Y", "3Y", "5Y", "7Y", "10Y", "20Y", "30Y"],
+              "default": "10Y"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_gilt_prices",
+        "description": "Get gilt prices",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_index_linked_gilts",
+        "description": "Get index-linked gilt yields",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "maturity": {
+              "type": "string",
+              "description": "Index-linked gilt maturity",
+              "enum": ["5Y", "10Y", "20Y"],
+              "default": "10Y"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_yield_curve",
+        "description": "Get UK yield curve",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_treasury_bills",
+        "description": "Get Treasury Bill rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_bank_lending",
+        "description": "Get bank lending data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_mortgage_lending",
+        "description": "Get mortgage lending data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_consumer_credit",
+        "description": "Get consumer credit data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_deposit_rates",
+        "description": "Get deposit interest rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "deposit_type": {
+              "type": "string",
+              "description": "Deposit type",
+              "enum": ["household", "corporate", "instant_access", "fixed_rate"],
+              "default": "household"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_lending_rates",
+        "description": "Get lending interest rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "loan_type": {
+              "type": "string",
+              "description": "Loan type",
+              "enum": ["mortgage", "personal_loan", "credit_card", "overdraft"],
+              "default": "mortgage"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_bank_capital_ratios",
+        "description": "Get bank capital ratios",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "ratio_type": {
+              "type": "string",
+              "description": "Capital ratio type",
+              "enum": ["tier1", "cet1", "total_capital"],
+              "default": "tier1"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_money_supply",
+        "description": "Get money supply data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "aggregate": {
+              "type": "string",
+              "description": "Money supply aggregate",
+              "enum": ["M0", "M4", "M4_lending"],
+              "default": "M4"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_broad_money",
+        "description": "Get broad money (M4) growth",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_credit_growth",
+        "description": "Get credit growth to private sector",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_sectoral_lending",
+        "description": "Get lending by sector",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "sector": {
+              "type": "string",
+              "description": "Economic sector",
+              "enum": ["household", "pnfc", "financial", "real_estate"],
+              "default": "household"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_lending_to_smes",
+        "description": "Get lending to small and medium enterprises",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_ftse_indices",
+        "description": "Get FTSE index data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "index": {
+              "type": "string",
+              "description": "FTSE index",
+              "enum": ["ftse100", "ftse250", "ftse_all_share"],
+              "default": "ftse100"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_house_prices",
+        "description": "Get UK house price indices",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "index_type": {
+              "type": "string",
+              "description": "House price index",
+              "enum": ["nationwide", "halifax", "land_registry"],
+              "default": "nationwide"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_mortgage_approvals",
+        "description": "Get mortgage approval numbers",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_mortgage_rates",
+        "description": "Get mortgage interest rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "mortgage_type": {
+              "type": "string",
+              "description": "Mortgage type",
+              "enum": ["variable", "fixed_2y", "fixed_3y", "fixed_5y"],
+              "default": "variable"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_buy_to_let",
+        "description": "Get buy-to-let mortgage data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_housing_transactions",
+        "description": "Get housing transaction volumes",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_current_account",
+        "description": "Get current account balance",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_trade_balance",
+        "description": "Get trade balance",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_exports",
+        "description": "Get export data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_imports",
+        "description": "Get import data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_agents_scores",
+        "description": "Get Bank of England Agents' summary scores",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "indicator": {
+              "type": "string",
+              "description": "Agents' indicator",
+              "enum": ["demand", "output", "employment", "costs"],
+              "default": "demand"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_business_investment",
+        "description": "Get business investment data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_systemic_risk_survey",
+        "description": "Get Systemic Risk Survey results",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_financial_stability_indicators",
+        "description": "Get financial stability indicators",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_countercyclical_buffer",
+        "description": "Get countercyclical capital buffer rate",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_leverage_ratio",
+        "description": "Get leverage ratio requirements",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_inflation_expectations",
+        "description": "Get inflation expectations from various sources",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string",
+              "description": "Expectations source",
+              "enum": ["market", "survey", "professional"],
+              "default": "market"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_inflation_attitudes_survey",
+        "description": "Get Inflation Attitudes Survey results",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_credit_conditions_survey",
+        "description": "Get Credit Conditions Survey results",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_mpc_minutes",
+        "description": "Get Monetary Policy Committee meeting minutes",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_asset_purchase_facility",
+        "description": "Get Asset Purchase Facility data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_qe_holdings",
+        "description": "Get quantitative easing holdings",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "asset_type": {
+              "type": "string",
+              "description": "Asset type",
+              "enum": ["gilts", "corporate_bonds"],
+              "default": "gilts"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_bank_reserves",
+        "description": "Get bank reserves at Bank of England",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_balance_sheet",
+        "description": "Get Bank of England balance sheet",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_term_funding_scheme",
+        "description": "Get Term Funding Scheme data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_historical_bank_rate",
+        "description": "Get historical Bank Rate from 1694",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "datefrom": {
+              "type": "string",
+              "description": "Start date (YYYY-MM-DD)",
+              "default": "1694-01-01"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_historical_exchange_rates",
+        "description": "Get historical exchange rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "datefrom": {
+              "type": "string",
+              "description": "Start date (YYYY-MM-DD)",
+              "default": "1975-01-01"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_historical_inflation",
+        "description": "Get historical inflation data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "datefrom": {
+              "type": "string",
+              "description": "Start date (YYYY-MM-DD)",
+              "default": "1988-01-01"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_chaps_volumes",
+        "description": "Get CHAPS payment system volumes",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_faster_payments",
+        "description": "Get Faster Payments statistics",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_payment_statistics",
+        "description": "Get payment system statistics",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_brexit_uncertainty_index",
+        "description": "Get Brexit uncertainty index",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_eu_trade_statistics",
+        "description": "Get EU trade statistics",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_climate_risk_indicators",
+        "description": "Get climate-related financial risk indicators",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_green_bonds",
+        "description": "Get green bond issuance and holdings",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "search_series",
+        "description": "Search for Bank of England data series",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "search_term": {
+              "type": "string",
+              "description": "Search term"
+            }
+          },
+          "required": ["search_term"]
+        }
+      },
+      {
+        "name": "get_series_metadata",
+        "description": "Get metadata for specific series",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "series_code": {
+              "type": "string",
+              "description": "Series code"
+            }
+          },
+          "required": ["series_code"]
+        }
+      },
+      {
+        "name": "get_data_availability",
+        "description": "Get information about data availability",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}
