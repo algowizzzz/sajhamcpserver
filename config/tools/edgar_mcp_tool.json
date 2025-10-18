@@ -1,0 +1,573 @@
+{
+  "name": "edgar_mcp_tool",
+  "module": "tools.edgar_mcp_tool.EDGARMCPTool",
+  "max_hits": 1000,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "get_company_info",
+        "description": "Get comprehensive company information from EDGAR including business details, addresses, and identifiers",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Central Index Key (10-digit identifier)"
+            },
+            "ticker": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_company_filings",
+        "description": "Get company filings from EDGAR with filtering options",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Central Index Key"
+            },
+            "ticker": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            },
+            "filing_type": {
+              "type": "string",
+              "description": "Type of filing (e.g., 10-K, 10-Q, 8-K, DEF 14A, S-1)"
+            },
+            "date_from": {
+              "type": "string",
+              "description": "Start date (YYYY-MM-DD)"
+            },
+            "date_to": {
+              "type": "string",
+              "description": "End date (YYYY-MM-DD)"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of filings to return",
+              "default": 20
+            }
+          }
+        }
+      },
+      {
+        "name": "get_filing_documents",
+        "description": "Get detailed documents and exhibits from a specific filing",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Central Index Key"
+            },
+            "accession_number": {
+              "type": "string",
+              "description": "Accession number of the filing"
+            },
+            "include_exhibits": {
+              "type": "boolean",
+              "description": "Include exhibit documents",
+              "default": true
+            }
+          },
+          "required": ["cik", "accession_number"]
+        }
+      },
+      {
+        "name": "get_insider_transactions",
+        "description": "Get insider trading transactions from Forms 3, 4, and 5",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Company CIK"
+            },
+            "ticker": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            },
+            "insider_cik": {
+              "type": "string",
+              "description": "Specific insider's CIK (optional)"
+            },
+            "transaction_type": {
+              "type": "string",
+              "description": "Transaction type (P=Purchase, S=Sale)"
+            },
+            "date_from": {
+              "type": "string",
+              "description": "Start date (YYYY-MM-DD)"
+            },
+            "date_to": {
+              "type": "string",
+              "description": "End date (YYYY-MM-DD)"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of transactions",
+              "default": 50
+            }
+          }
+        }
+      },
+      {
+        "name": "get_institutional_holdings",
+        "description": "Get institutional holdings from 13F filings",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Institution CIK"
+            },
+            "institution_name": {
+              "type": "string",
+              "description": "Institution name"
+            },
+            "quarter": {
+              "type": "string",
+              "description": "Quarter (e.g., 2024Q1)"
+            },
+            "cusip": {
+              "type": "string",
+              "description": "CUSIP of specific holding"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_beneficial_ownership",
+        "description": "Get beneficial ownership from Schedule 13D/G filings",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Company CIK"
+            },
+            "ticker": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            },
+            "owner_name": {
+              "type": "string",
+              "description": "Beneficial owner name"
+            },
+            "ownership_threshold": {
+              "type": "number",
+              "description": "Minimum ownership percentage",
+              "default": 5.0
+            }
+          }
+        }
+      },
+      {
+        "name": "get_proxy_statements",
+        "description": "Get proxy statements and executive compensation data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Company CIK"
+            },
+            "ticker": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            },
+            "year": {
+              "type": "integer",
+              "description": "Fiscal year"
+            },
+            "include_compensation": {
+              "type": "boolean",
+              "description": "Include executive compensation details",
+              "default": true
+            }
+          }
+        }
+      },
+      {
+        "name": "get_company_financials",
+        "description": "Get structured financial data from XBRL filings",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Company CIK"
+            },
+            "ticker": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            },
+            "statement_type": {
+              "type": "string",
+              "description": "Type of statement (income, balance, cash_flow, comprehensive_income)",
+              "enum": ["income", "balance", "cash_flow", "comprehensive_income", "all"]
+            },
+            "period": {
+              "type": "string",
+              "description": "Period type (annual, quarterly)",
+              "enum": ["annual", "quarterly", "all"]
+            },
+            "fiscal_year": {
+              "type": "integer",
+              "description": "Specific fiscal year"
+            },
+            "fiscal_quarter": {
+              "type": "integer",
+              "description": "Specific fiscal quarter (1-4)"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_fund_data",
+        "description": "Get mutual fund and ETF data from N-Q, N-CSR filings",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Fund CIK"
+            },
+            "ticker": {
+              "type": "string",
+              "description": "Fund ticker symbol"
+            },
+            "series_id": {
+              "type": "string",
+              "description": "Series ID for specific fund series"
+            },
+            "include_holdings": {
+              "type": "boolean",
+              "description": "Include portfolio holdings",
+              "default": true
+            }
+          }
+        }
+      },
+      {
+        "name": "search_filings",
+        "description": "Full-text search across EDGAR filings",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Search query text"
+            },
+            "filing_type": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Filing types to search"
+            },
+            "cik": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "CIKs to limit search to"
+            },
+            "date_from": {
+              "type": "string",
+              "description": "Start date (YYYY-MM-DD)"
+            },
+            "date_to": {
+              "type": "string",
+              "description": "End date (YYYY-MM-DD)"
+            },
+            "sic_code": {
+              "type": "string",
+              "description": "SIC industry code"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum results",
+              "default": 50
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "get_recent_filings",
+        "description": "Get most recent filings across all companies with real-time updates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "filing_type": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Filter by filing types"
+            },
+            "minutes_ago": {
+              "type": "integer",
+              "description": "Get filings from last N minutes",
+              "default": 60
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of filings",
+              "default": 100
+            }
+          }
+        }
+      },
+      {
+        "name": "get_ipo_registrations",
+        "description": "Get IPO registration statements (S-1, S-11)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "description": "Registration status (filed, effective, withdrawn)",
+              "enum": ["filed", "effective", "withdrawn", "all"]
+            },
+            "date_from": {
+              "type": "string",
+              "description": "Start date (YYYY-MM-DD)"
+            },
+            "date_to": {
+              "type": "string",
+              "description": "End date (YYYY-MM-DD)"
+            },
+            "industry": {
+              "type": "string",
+              "description": "SIC code or industry description"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_merger_filings",
+        "description": "Get merger and acquisition related filings (8-K, DEFM14A, S-4)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Company CIK"
+            },
+            "ticker": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            },
+            "transaction_type": {
+              "type": "string",
+              "description": "Type of transaction (merger, acquisition, tender_offer)",
+              "enum": ["merger", "acquisition", "tender_offer", "all"]
+            },
+            "date_from": {
+              "type": "string",
+              "description": "Start date (YYYY-MM-DD)"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_comment_letters",
+        "description": "Get SEC comment letters and company responses",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Company CIK"
+            },
+            "ticker": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            },
+            "date_from": {
+              "type": "string",
+              "description": "Start date (YYYY-MM-DD)"
+            },
+            "include_responses": {
+              "type": "boolean",
+              "description": "Include company responses",
+              "default": true
+            }
+          }
+        }
+      },
+      {
+        "name": "get_xbrl_facts",
+        "description": "Get structured XBRL company facts and metrics",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Company CIK"
+            },
+            "ticker": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            },
+            "concept": {
+              "type": "string",
+              "description": "XBRL concept name (e.g., Assets, Revenues)"
+            },
+            "taxonomy": {
+              "type": "string",
+              "description": "Taxonomy (us-gaap, ifrs-full, dei)",
+              "enum": ["us-gaap", "ifrs-full", "dei", "all"]
+            }
+          }
+        }
+      },
+      {
+        "name": "get_peer_comparison",
+        "description": "Compare company metrics with industry peers",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Primary company CIK"
+            },
+            "ticker": {
+              "type": "string",
+              "description": "Primary company ticker"
+            },
+            "peer_ciks": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "List of peer company CIKs"
+            },
+            "use_sic_peers": {
+              "type": "boolean",
+              "description": "Automatically include SIC code peers",
+              "default": false
+            },
+            "metrics": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Metrics to compare",
+              "default": ["Assets", "Revenues", "NetIncomeLoss", "EarningsPerShare"]
+            }
+          }
+        }
+      },
+      {
+        "name": "get_cik_lookup",
+        "description": "Look up CIK by various identifiers",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "ticker": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            },
+            "company_name": {
+              "type": "string",
+              "description": "Company name (partial match supported)"
+            },
+            "cusip": {
+              "type": "string",
+              "description": "CUSIP identifier"
+            },
+            "lei": {
+              "type": "string",
+              "description": "Legal Entity Identifier"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_company_tickers",
+        "description": "Get comprehensive list of company tickers and identifiers",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "exchange": {
+              "type": "string",
+              "description": "Stock exchange (NYSE, NASDAQ, AMEX)"
+            },
+            "sic_code": {
+              "type": "string",
+              "description": "SIC industry code"
+            },
+            "state": {
+              "type": "string",
+              "description": "State of incorporation"
+            },
+            "country": {
+              "type": "string",
+              "description": "Country code"
+            },
+            "status": {
+              "type": "string",
+              "description": "Company status (active, inactive)",
+              "enum": ["active", "inactive", "all"]
+            }
+          }
+        }
+      },
+      {
+        "name": "get_historical_data",
+        "description": "Get historical filing data for trend analysis",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Company CIK"
+            },
+            "ticker": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            },
+            "metric": {
+              "type": "string",
+              "description": "Financial metric to track"
+            },
+            "years": {
+              "type": "integer",
+              "description": "Number of years of history",
+              "default": 5
+            },
+            "frequency": {
+              "type": "string",
+              "description": "Data frequency (annual, quarterly)",
+              "enum": ["annual", "quarterly"]
+            }
+          }
+        }
+      },
+      {
+        "name": "validate_filing",
+        "description": "Validate EDGAR filing format and compliance",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "filing_content": {
+              "type": "string",
+              "description": "Filing content to validate"
+            },
+            "filing_type": {
+              "type": "string",
+              "description": "Type of filing for validation rules"
+            },
+            "check_xbrl": {
+              "type": "boolean",
+              "description": "Validate XBRL structure",
+              "default": true
+            }
+          },
+          "required": ["filing_content", "filing_type"]
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}
