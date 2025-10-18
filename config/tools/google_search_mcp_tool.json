@@ -1,0 +1,140 @@
+{
+  "name": "google_mcp_tool",
+  "module": "tools.google_search_mcp_tool.GoogleSearchMCPTool",
+  "max_hits": 1000,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "google_search",
+        "description": "Perform a Google search",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Search query"
+            },
+            "num_results": {
+              "type": "integer",
+              "description": "Number of results to return",
+              "default": 10
+            },
+            "language": {
+              "type": "string",
+              "description": "Language code",
+              "default": "en"
+            },
+            "safe": {
+              "type": "string",
+              "description": "Safe search setting",
+              "enum": ["off", "medium", "strict"],
+              "default": "off"
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "google_image_search",
+        "description": "Search for images on Google",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Image search query"
+            },
+            "num_results": {
+              "type": "integer",
+              "description": "Number of results",
+              "default": 10
+            },
+            "size": {
+              "type": "string",
+              "description": "Image size",
+              "enum": ["icon", "small", "medium", "large", "xlarge", "xxlarge", "huge"],
+              "default": "medium"
+            },
+            "type": {
+              "type": "string",
+              "description": "Image type",
+              "enum": ["clipart", "face", "lineart", "stock", "photo", "animated"],
+              "default": "photo"
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "google_news_search",
+        "description": "Search for news articles",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "News search query"
+            },
+            "num_results": {
+              "type": "integer",
+              "default": 10
+            },
+            "date_restrict": {
+              "type": "string",
+              "description": "Date restriction (e.g., 'd7' for last 7 days)",
+              "default": "d7"
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "google_scholar_search",
+        "description": "Search academic papers on Google Scholar",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Scholar search query"
+            },
+            "year_from": {
+              "type": "string",
+              "description": "Starting year"
+            },
+            "year_to": {
+              "type": "string",
+              "description": "Ending year"
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "google_site_search",
+        "description": "Search within a specific website",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Search query"
+            },
+            "site": {
+              "type": "string",
+              "description": "Site domain to search"
+            },
+            "num_results": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          "required": ["query", "site"]
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}

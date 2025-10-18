@@ -1,0 +1,200 @@
+{
+  "name": "fed_reserve_tool",
+  "module": "tools.fed_reserve_mcp_tool.FedReserveMCPTool",
+  "max_hits": 1000,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "get_interest_rates",
+        "description": "Get Federal interest rates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "rate_type": {
+              "type": "string",
+              "description": "Type of interest rate",
+              "enum": ["federal_funds", "prime", "discount"],
+              "default": "federal_funds"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Number of observations",
+              "default": 30
+            }
+          }
+        }
+      },
+      {
+        "name": "get_economic_series",
+        "description": "Get any economic series data from FRED",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "series_id": {
+              "type": "string",
+              "description": "FRED series ID"
+            },
+            "start_date": {
+              "type": "string",
+              "description": "Start date (YYYY-MM-DD)"
+            },
+            "end_date": {
+              "type": "string",
+              "description": "End date (YYYY-MM-DD)"
+            }
+          },
+          "required": ["series_id"]
+        }
+      },
+      {
+        "name": "get_gdp_data",
+        "description": "Get GDP data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "gdp_type": {
+              "type": "string",
+              "description": "Type of GDP",
+              "enum": ["real", "nominal"],
+              "default": "real"
+            },
+            "start_date": {
+              "type": "string",
+              "description": "Start date"
+            },
+            "end_date": {
+              "type": "string",
+              "description": "End date"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_inflation_data",
+        "description": "Get inflation data (CPI)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "inflation_type": {
+              "type": "string",
+              "description": "Type of inflation measure",
+              "enum": ["cpi", "pce", "core_cpi"],
+              "default": "cpi"
+            },
+            "start_date": {
+              "type": "string",
+              "description": "Start date"
+            },
+            "end_date": {
+              "type": "string",
+              "description": "End date"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_unemployment_data",
+        "description": "Get unemployment data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "start_date": {
+              "type": "string",
+              "description": "Start date"
+            },
+            "end_date": {
+              "type": "string",
+              "description": "End date"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_money_supply",
+        "description": "Get money supply data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "supply_type": {
+              "type": "string",
+              "description": "Type of money supply",
+              "enum": ["m1", "m2"],
+              "default": "m2"
+            },
+            "start_date": {
+              "type": "string",
+              "description": "Start date"
+            },
+            "end_date": {
+              "type": "string",
+              "description": "End date"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_treasury_yields",
+        "description": "Get Treasury yield curve data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "maturity": {
+              "type": "string",
+              "description": "Treasury maturity",
+              "enum": ["3M", "2Y", "5Y", "10Y", "30Y"],
+              "default": "10Y"
+            },
+            "start_date": {
+              "type": "string",
+              "description": "Start date"
+            },
+            "end_date": {
+              "type": "string",
+              "description": "End date"
+            }
+          }
+        }
+      },
+      {
+        "name": "search_series",
+        "description": "Search for economic series",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "search_text": {
+              "type": "string",
+              "description": "Search text"
+            }
+          },
+          "required": ["search_text"]
+        }
+      },
+      {
+        "name": "get_banking_statistics",
+        "description": "Get banking statistics",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "stat_type": {
+              "type": "string",
+              "description": "Type of banking statistic",
+              "enum": ["reserves", "loans", "deposits"],
+              "default": "reserves"
+            },
+            "start_date": {
+              "type": "string",
+              "description": "Start date"
+            },
+            "end_date": {
+              "type": "string",
+              "description": "End date"
+            }
+          }
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}

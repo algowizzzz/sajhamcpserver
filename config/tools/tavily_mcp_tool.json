@@ -1,0 +1,139 @@
+{
+  "name": "tavily_mcp_tool",
+  "module": "tools.tavily_mcp_tool.TavilyMCPTool",
+  "max_hits": 1000,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "tavily_search",
+        "description": "Perform a Tavily search",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Search query"
+            },
+            "search_depth": {
+              "type": "string",
+              "description": "Search depth",
+              "enum": ["basic", "advanced"],
+              "default": "basic"
+            },
+            "max_results": {
+              "type": "integer",
+              "default": 10
+            },
+            "include_images": {
+              "type": "boolean",
+              "default": false
+            },
+            "include_answer": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "tavily_news_search",
+        "description": "Search for news articles about entities or topics",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "News search query"
+            },
+            "days_back": {
+              "type": "integer",
+              "description": "Number of days to search back",
+              "default": 7
+            },
+            "topic": {
+              "type": "string",
+              "description": "Topic filter"
+            },
+            "max_results": {
+              "type": "integer",
+              "default": 20
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "tavily_entity_search",
+        "description": "Search for information about specific entities",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "entity_name": {
+              "type": "string",
+              "description": "Name of the entity"
+            },
+            "entity_type": {
+              "type": "string",
+              "description": "Type of entity",
+              "enum": ["company", "person", "place", "organization"]
+            },
+            "include_social": {
+              "type": "boolean",
+              "default": false
+            },
+            "include_financial": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "required": ["entity_name"]
+        }
+      },
+      {
+        "name": "tavily_context_search",
+        "description": "Search with context for more relevant results",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string"
+            },
+            "context": {
+              "type": "string",
+              "description": "Additional context for the search"
+            },
+            "previous_queries": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Previous related queries"
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "tavily_extract",
+        "description": "Extract content from specific URLs",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "urls": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "URLs to extract content from"
+            }
+          },
+          "required": ["urls"]
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}

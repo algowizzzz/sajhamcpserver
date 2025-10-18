@@ -1,0 +1,30 @@
+2025-10-18 15:41:12,139 - __main__ - INFO - Starting MCP Server...
+2025-10-18 15:41:12,163 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.54:5000
+2025-10-18 15:41:12,163 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-18 15:41:17,175 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:41:17] "[32mGET / HTTP/1.1[0m" 302 -
+2025-10-18 15:41:17,302 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:41:17] "GET /login HTTP/1.1" 200 -
+2025-10-18 15:41:18,422 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:41:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-18 15:41:28,195 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:41:28] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-10-18 15:41:28,271 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:41:28] "GET /dashboard HTTP/1.1" 200 -
+2025-10-18 15:41:40,924 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:41:40] "GET /tool/tavily_mcp_tool HTTP/1.1" 200 -
+2025-10-18 15:41:58,363 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:41:58] "GET /api/stats HTTP/1.1" 200 -
+2025-10-18 15:42:28,352 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:42:28] "GET /api/stats HTTP/1.1" 200 -
+2025-10-18 15:42:58,355 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:42:58] "GET /api/stats HTTP/1.1" 200 -
+2025-10-18 15:43:28,991 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:43:28] "GET /api/stats HTTP/1.1" 200 -
+2025-10-18 15:43:58,917 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:43:58] "GET /api/stats HTTP/1.1" 200 -
+2025-10-18 15:44:28,898 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:44:28] "GET /api/stats HTTP/1.1" 200 -
+2025-10-18 15:44:58,886 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:44:58] "GET /api/stats HTTP/1.1" 200 -
+2025-10-18 15:45:28,933 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:45:28] "GET /api/stats HTTP/1.1" 200 -
+2025-10-18 15:46:29,005 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:46:29] "GET /api/stats HTTP/1.1" 200 -
+2025-10-18 15:47:28,875 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:47:28] "GET /api/stats HTTP/1.1" 200 -
+2025-10-18 15:47:58,379 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:47:58] "GET /api/stats HTTP/1.1" 200 -
+2025-10-18 15:48:05,726 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:48:05] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-10-18 15:48:05,960 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:48:05] "GET /login HTTP/1.1" 200 -
+2025-10-18 15:48:14,601 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:48:14] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-10-18 15:48:14,613 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:48:14] "GET /dashboard HTTP/1.1" 200 -
+2025-10-18 15:48:44,758 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:48:44] "GET /api/stats HTTP/1.1" 200 -
+2025-10-18 15:49:02,248 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:49:02] "GET /tool/tavily_mcp_tool HTTP/1.1" 200 -
+2025-10-18 15:49:32,360 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 15:49:32] "GET /dashboard HTTP/1.1" 200 -

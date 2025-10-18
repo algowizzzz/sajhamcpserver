@@ -1,0 +1,357 @@
+{
+  "name": "duckdb_olap_tool",
+  "module": "tools.duckdb_olap_mcp_tool.DuckDBOlapMCPTool",
+  "max_hits": 1000,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "execute_query",
+        "description": "Execute a DuckDB SQL query",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "SQL query to execute"
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "list_tables",
+        "description": "List all tables and views in DuckDB",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_table_schema",
+        "description": "Get schema information for a table",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "table_name": {
+              "type": "string",
+              "description": "Name of the table"
+            }
+          },
+          "required": ["table_name"]
+        }
+      },
+      {
+        "name": "aggregate_data",
+        "description": "Perform aggregation operations",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "table": {
+              "type": "string",
+              "description": "Table name",
+              "default": "sales"
+            },
+            "group_by": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Columns to group by"
+            },
+            "aggregations": {
+              "type": "object",
+              "description": "Column to function mappings (e.g., {\"total_amount\": \"SUM\"})"
+            },
+            "filters": {
+              "type": "object",
+              "description": "Filter conditions as key-value pairs"
+            }
+          },
+          "required": ["table", "group_by"]
+        }
+      },
+      {
+        "name": "pivot_data",
+        "description": "Create pivot table",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "table": {
+              "type": "string",
+              "description": "Table name",
+              "default": "sales"
+            },
+            "rows": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Row grouping columns"
+            },
+            "columns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Column grouping columns"
+            },
+            "values": {
+              "type": "string",
+              "description": "Value column to aggregate"
+            },
+            "agg_func": {
+              "type": "string",
+              "description": "Aggregation function",
+              "enum": ["SUM", "AVG", "COUNT", "MIN", "MAX"],
+              "default": "SUM"
+            }
+          },
+          "required": ["table", "rows", "columns", "values"]
+        }
+      },
+      {
+        "name": "time_series_analysis",
+        "description": "Perform time series analysis",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "table": {
+              "type": "string",
+              "description": "Table name",
+              "default": "sales"
+            },
+            "date_column": {
+              "type": "string",
+              "description": "Date column name",
+              "default": "date"
+            },
+            "value_column": {
+              "type": "string",
+              "description": "Value column to analyze",
+              "default": "total_amount"
+            },
+            "granularity": {
+              "type": "string",
+              "description": "Time granularity",
+              "enum": ["day", "week", "month", "quarter", "year"],
+              "default": "month"
+            }
+          },
+          "required": ["table"]
+        }
+      },
+      {
+        "name": "top_n_analysis",
+        "description": "Get top N records by a metric",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "table": {
+              "type": "string",
+              "description": "Table name",
+              "default": "sales"
+            },
+            "group_by": {
+              "type": "string",
+              "description": "Column to group by",
+              "default": "product"
+            },
+            "metric": {
+              "type": "string",
+              "description": "Metric column",
+              "default": "total_amount"
+            },
+            "agg_func": {
+              "type": "string",
+              "description": "Aggregation function",
+              "enum": ["SUM", "AVG", "COUNT", "MIN", "MAX"],
+              "default": "SUM"
+            },
+            "n": {
+              "type": "integer",
+              "description": "Number of top records",
+              "default": 10
+            },
+            "order": {
+              "type": "string",
+              "description": "Sort order",
+              "enum": ["DESC", "ASC"],
+              "default": "DESC"
+            }
+          },
+          "required": ["table"]
+        }
+      },
+      {
+        "name": "window_functions",
+        "description": "Apply window functions for advanced analytics",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "table": {
+              "type": "string",
+              "description": "Table name",
+              "default": "sales"
+            },
+            "partition_by": {
+              "type": "string",
+              "description": "Column to partition by"
+            },
+            "order_by": {
+              "type": "string",
+              "description": "Column to order by",
+              "default": "date"
+            },
+            "window_type": {
+              "type": "string",
+              "description": "Type of window function",
+              "enum": ["row_number", "rank", "dense_rank", "lag", "lead", "cumsum"],
+              "default": "row_number"
+            }
+          },
+          "required": ["table"]
+        }
+      },
+      {
+        "name": "join_tables",
+        "description": "Join multiple tables",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "left_table": {
+              "type": "string",
+              "description": "Left table name",
+              "default": "sales"
+            },
+            "right_table": {
+              "type": "string",
+              "description": "Right table name",
+              "default": "customers"
+            },
+            "join_type": {
+              "type": "string",
+              "description": "Type of join",
+              "enum": ["INNER", "LEFT", "RIGHT", "FULL"],
+              "default": "INNER"
+            },
+            "join_key": {
+              "type": "string",
+              "description": "Join key column",
+              "default": "customer_id"
+            }
+          },
+          "required": ["left_table", "right_table"]
+        }
+      },
+      {
+        "name": "load_csv",
+        "description": "Load a CSV file into DuckDB",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "file_path": {
+              "type": "string",
+              "description": "Path to CSV file (relative to data folder)"
+            },
+            "table_name": {
+              "type": "string",
+              "description": "Name for the new table"
+            }
+          },
+          "required": ["file_path", "table_name"]
+        }
+      },
+      {
+        "name": "export_results",
+        "description": "Export query results to CSV",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "SQL query to execute and export"
+            },
+            "output_file": {
+              "type": "string",
+              "description": "Output CSV filename",
+              "default": "export.csv"
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "create_materialized_view",
+        "description": "Create a materialized view for performance",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "view_name": {
+              "type": "string",
+              "description": "Name for the materialized view"
+            },
+            "query": {
+              "type": "string",
+              "description": "SQL query for the view"
+            }
+          },
+          "required": ["view_name", "query"]
+        }
+      },
+      {
+        "name": "analyze_performance",
+        "description": "Analyze query performance",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "SQL query to analyze"
+            }
+          },
+          "required": ["query"]
+        }
+      }
+    ],
+    "resources": [
+      {
+        "name": "sales_data",
+        "description": "Sample sales data with orders and transactions",
+        "type": "table"
+      },
+      {
+        "name": "customer_data",
+        "description": "Sample customer data with demographics",
+        "type": "table"
+      },
+      {
+        "name": "sales_summary",
+        "description": "Pre-aggregated sales summary view",
+        "type": "view"
+      },
+      {
+        "name": "customer_sales",
+        "description": "Customer sales analysis view",
+        "type": "view"
+      }
+    ],
+    "prompts": [
+      {
+        "name": "olap_analysis",
+        "description": "Perform OLAP analysis on data",
+        "prompt": "What kind of OLAP analysis would you like to perform? (e.g., sales by region, time series analysis, top products)"
+      },
+      {
+        "name": "data_aggregation",
+        "description": "Aggregate data for reporting",
+        "prompt": "How would you like to aggregate your data? Specify the grouping columns and aggregation functions."
+      },
+      {
+        "name": "performance_tuning",
+        "description": "Optimize query performance",
+        "prompt": "Provide the query you want to optimize, and I'll analyze its performance."
+      }
+    ]
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "name": "sec_mcp_tool",
+  "module": "tools.sec_mcp_tool.SECMCPTool",
+  "max_hits": 1000,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "get_company_info",
+        "description": "Get company information from SEC",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Central Index Key"
+            },
+            "ticker": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_company_filings",
+        "description": "Get company filings from SEC",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Central Index Key"
+            },
+            "ticker": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            },
+            "filing_type": {
+              "type": "string",
+              "description": "Type of filing (e.g., 10-K, 10-Q, 8-K)"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of filings to return",
+              "default": 20
+            }
+          }
+        }
+      },
+      {
+        "name": "get_filing_details",
+        "description": "Get detailed information about a specific filing",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Central Index Key"
+            },
+            "accession_number": {
+              "type": "string",
+              "description": "Accession number of the filing"
+            }
+          },
+          "required": ["cik", "accession_number"]
+        }
+      },
+      {
+        "name": "get_insider_transactions",
+        "description": "Get insider transactions (Forms 3, 4, 5)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Central Index Key"
+            },
+            "ticker": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_company_facts",
+        "description": "Get company financial facts from XBRL data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "cik": {
+              "type": "string",
+              "description": "Central Index Key"
+            },
+            "ticker": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_cik_lookup",
+        "description": "Look up CIK by ticker symbol",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "ticker": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            }
+          },
+          "required": ["ticker"]
+        }
+      },
+      {
+        "name": "get_company_tickers",
+        "description": "Get list of all company tickers",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "exchange": {
+              "type": "string",
+              "description": "Stock exchange filter"
+            }
+          }
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}

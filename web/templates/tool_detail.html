@@ -1,0 +1,501 @@
+{% extends "base.html" %}
+{% block title %}{{ tool_name }} - MCP Server{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2><i class="bi bi-plugin"></i> Tool: {{ tool_name }}</h2>
+    <div>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Back to Dashboard
+        </a>
+        {% if 'admin' in session.user.roles %}
+        <button class="btn btn-warning" onclick="reloadTool()">
+            <i class="bi bi-arrow-repeat"></i> Reload Tool
+        </button>
+        {% endif %}
+    </div>
+</div>
+
+<ul class="nav nav-tabs" id="toolTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button">
+            <i class="bi bi-info-circle"></i> Overview
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="config-tab" data-bs-toggle="tab" data-bs-target="#config" type="button">
+            <i class="bi bi-gear"></i> Configuration
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="stats-tab" data-bs-toggle="tab" data-bs-target="#stats" type="button">
+            <i class="bi bi-graph-up"></i> Statistics
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="calls-tab" data-bs-toggle="tab" data-bs-target="#calls" type="button">
+            <i class="bi bi-list-ul"></i> Recent Calls
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="test-tab" data-bs-toggle="tab" data-bs-target="#test" type="button">
+            <i class="bi bi-play-circle"></i> Test Tool
+        </button>
+    </li>
+</ul>
+
+<div class="tab-content mt-3" id="toolTabContent">
+    <!-- Overview Tab -->
+    <div class="tab-pane fade show active" id="overview" role="tabpanel">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="bi bi-info"></i> Basic Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-4">Tool Name:</dt>
+                            <dd class="col-sm-8">{{ tool_name }}</dd>
+                            
+                            <dt class="col-sm-4">Module:</dt>
+                            <dd class="col-sm-8"><code>{{ config.module }}</code></dd>
+                            
+                            <dt class="col-sm-4">Max Hits:</dt>
+                            <dd class="col-sm-8">{{ config.max_hits }}</dd>
+                            
+                            <dt class="col-sm-4">Max Hit Interval:</dt>
+                            <dd class="col-sm-8">{{ config.max_hit_interval }} seconds</dd>
+                            
+                            <dt class="col-sm-4">Status:</dt>
+                            <dd class="col-sm-8">
+                                <span class="badge bg-success">
+                                    <i class="bi bi-circle-fill"></i> Active
+                                </span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="bi bi-activity"></i> Quick Stats</h5>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-6">Total Calls:</dt>
+                            <dd class="col-sm-6">
+                                <span class="badge bg-primary">{{ stats.total_calls if stats.total_calls else 0 }}</span>
+                            </dd>
+                            
+                            <dt class="col-sm-6">Calls Per Minute:</dt>
+                            <dd class="col-sm-6">
+                                <span class="badge bg-info">{{ stats.calls_per_minute if stats.calls_per_minute else 0 }}</span>
+                            </dd>
+                            
+                            <dt class="col-sm-6">Error Count:</dt>
+                            <dd class="col-sm-6">
+                                <span class="badge bg-danger">{{ stats.error_count if stats.error_count else 0 }}</span>
+                            </dd>
+                            
+                            <dt class="col-sm-6">Success Rate:</dt>
+                            <dd class="col-sm-6">
+                                {% if stats.total_calls and stats.total_calls > 0 %}
+                                    {% set success_rate = ((stats.total_calls - (stats.error_count or 0)) / stats.total_calls * 100) | round(1) %}
+                                    <span class="badge bg-{{ 'success' if success_rate > 90 else 'warning' if success_rate > 70 else 'danger' }}">
+                                        {{ success_rate }}%
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-secondary">N/A</span>
+                                {% endif %}
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5><i class="bi bi-tools"></i> Available Methods</h5>
+            </div>
+            <div class="card-body">
+                {% if config.tool_description and config.tool_description.tools %}
+                <div class="accordion" id="methodsAccordion">
+                    {% for tool in config.tool_description.tools %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ loop.index }}">
+                            <button class="accordion-button collapsed" type="button" 
+                                    data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}">
+                                <i class="bi bi-function"></i>&nbsp; <strong>{{ tool.name }}</strong>
+                                &nbsp;-&nbsp; {{ tool.description }}
+                            </button>
+                        </h2>
+                        <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" 
+                             data-bs-parent="#methodsAccordion">
+                            <div class="accordion-body">
+                                <h6>Input Schema:</h6>
+                                <pre><code>{{ tool.input_schema | tojson(indent=2) }}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted">No methods defined for this tool.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Configuration Tab -->
+    <div class="tab-pane fade" id="config" role="tabpanel">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h5><i class="bi bi-code-slash"></i> Configuration JSON</h5>
+                <button class="btn btn-sm btn-secondary" onclick="copyConfig()">
+                    <i class="bi bi-clipboard"></i> Copy
+                </button>
+            </div>
+            <div class="card-body">
+                <pre id="configJson"><code>{{ config | tojson(indent=2) }}</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Statistics Tab -->
+    <div class="tab-pane fade" id="stats" role="tabpanel">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-white bg-primary">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Calls</h5>
+                        <h2>{{ stats.total_calls if stats.total_calls else 0 }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-success">
+                    <div class="card-body">
+                        <h5 class="card-title">Successful Calls</h5>
+                        <h2>{{ (stats.total_calls or 0) - (stats.error_count or 0) }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-danger">
+                    <div class="card-body">
+                        <h5 class="card-title">Failed Calls</h5>
+                        <h2>{{ stats.error_count if stats.error_count else 0 }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5><i class="bi bi-graph-up-arrow"></i> Performance Metrics</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent Calls Tab -->
+    <div class="tab-pane fade" id="calls" role="tabpanel">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5><i class="bi bi-clock-history"></i> Recent Calls</h5>
+                    <select id="rowLimit" class="form-select form-select-sm" style="width: auto;" onchange="updateTable()">
+                        <option value="10">10 rows</option>
+                        <option value="50">50 rows</option>
+                        <option value="100">100 rows</option>
+                        <option value="all">All rows</option>
+                    </select>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped" id="callsTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Timestamp</th>
+                                <th>Method</th>
+                                <th>Arguments</th>
+                                <th>Result/Error</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if stats.recent_calls %}
+                            {% for call in stats.recent_calls %}
+                            <tr class="call-row">
+                                <td>{{ call.call_number if call.call_number else loop.index }}</td>
+                                <td><small>{{ call.timestamp }}</small></td>
+                                <td><code>{{ call.method }}</code></td>
+                                <td>
+                                    <small>
+                                        <details>
+                                            <summary>View</summary>
+                                            <pre>{{ call.arguments | tojson(indent=2) }}</pre>
+                                        </details>
+                                    </small>
+                                </td>
+                                <td>
+                                    <small>
+                                        {% if call.error %}
+                                        <span class="text-danger">{{ call.error[:100] }}...</span>
+                                        {% elif call.result %}
+                                        <span class="text-success">{{ call.result[:100] }}...</span>
+                                        {% else %}
+                                        <span class="text-muted">N/A</span>
+                                        {% endif %}
+                                    </small>
+                                </td>
+                                <td>
+                                    {% if call.error %}
+                                    <span class="badge bg-danger">Error</span>
+                                    {% else %}
+                                    <span class="badge bg-success">Success</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="6" class="text-center text-muted">No calls recorded</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-end" id="pagination"></ul>
+                </nav>
+            </div>
+        </div>
+        
+        {% if stats.recent_errors %}
+        <div class="card mt-3">
+            <div class="card-header bg-danger text-white">
+                <h5><i class="bi bi-exclamation-triangle"></i> Recent Errors</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Method</th>
+                                <th>Error</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for error in stats.recent_errors %}
+                            <tr>
+                                <td><small>{{ error.timestamp }}</small></td>
+                                <td><code>{{ error.method }}</code></td>
+                                <td><small class="text-danger">{{ error.error }}</small></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    
+    <!-- Test Tab -->
+    <div class="tab-pane fade" id="test" role="tabpanel">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="bi bi-terminal"></i> Test Tool Methods</h5>
+            </div>
+            <div class="card-body">
+                <form id="testForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Select Method</label>
+                                <select class="form-select" id="methodSelect">
+                                    <option value="">-- Select a method --</option>
+                                    {% if config.tool_description and config.tool_description.tools %}
+                                    {% for tool in config.tool_description.tools %}
+                                    <option value="{{ tool.name }}">{{ tool.name }} - {{ tool.description }}</option>
+                                    {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Or Enter Method Name</label>
+                                <input type="text" class="form-control" id="methodInput" placeholder="method_name">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Arguments (JSON format)</label>
+                        <textarea class="form-control" id="testArguments" rows="6" placeholder='{"key": "value"}'>{}</textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-play-fill"></i> Execute Method
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="clearTest()">
+                        <i class="bi bi-x-circle"></i> Clear
+                    </button>
+                </form>
+                
+                <div id="testResults" class="mt-4" style="display: none;">
+                    <hr>
+                    <h5>Results:</h5>
+                    <div class="alert" id="testAlert">
+                        <pre id="testOutput"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const toolName = '{{ tool_name }}';
+
+// Method selection
+$('#methodSelect').change(function() {
+    $('#methodInput').val($(this).val());
+    
+    // Try to populate default arguments based on schema
+    const selectedOption = $(this).find('option:selected').val();
+    if (selectedOption) {
+        // You could enhance this to parse the schema and provide template arguments
+        $('#testArguments').val('{}');
+    }
+});
+
+// Test form submission
+$('#testForm').on('submit', function(e) {
+    e.preventDefault();
+    
+    const method = $('#methodInput').val() || $('#methodSelect').val();
+    if (!method) {
+        alert('Please select or enter a method name');
+        return;
+    }
+    
+    let args;
+    try {
+        args = JSON.parse($('#testArguments').val());
+    } catch (e) {
+        alert('Invalid JSON in arguments: ' + e.message);
+        return;
+    }
+    
+    // Show loading
+    $('#testResults').show();
+    $('#testAlert').removeClass('alert-success alert-danger').addClass('alert-info');
+    $('#testOutput').text('Executing...');
+    
+    $.ajax({
+        url: `/api/tool/${toolName}/call`,
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            method: method,
+            arguments: args
+        }),
+        success: function(data) {
+            $('#testAlert').removeClass('alert-info alert-danger').addClass('alert-success');
+            $('#testOutput').text(JSON.stringify(data, null, 2));
+        },
+        error: function(xhr) {
+            $('#testAlert').removeClass('alert-info alert-success').addClass('alert-danger');
+            $('#testOutput').text('Error: ' + JSON.stringify(xhr.responseJSON || xhr.responseText, null, 2));
+        }
+    });
+});
+
+function clearTest() {
+    $('#methodSelect').val('');
+    $('#methodInput').val('');
+    $('#testArguments').val('{}');
+    $('#testResults').hide();
+}
+
+function copyConfig() {
+    const configText = document.getElementById('configJson').innerText;
+    navigator.clipboard.writeText(configText).then(() => {
+        alert('Configuration copied to clipboard!');
+    });
+}
+
+function reloadTool() {
+    if (!confirm(`Are you sure you want to reload ${toolName}?`)) return;
+    
+    $.post(`/api/tool/${toolName}/reload`)
+        .done(function(data) {
+            alert(data.message);
+            window.location.reload();
+        })
+        .fail(function(xhr) {
+            alert('Error: ' + (xhr.responseJSON?.error || 'Failed to reload tool'));
+        });
+}
+
+function updateTable() {
+    const limit = $('#rowLimit').val();
+    const rows = $('.call-row');
+    
+    if (limit === 'all') {
+        rows.show();
+    } else {
+        rows.hide();
+        rows.slice(0, parseInt(limit)).show();
+    }
+}
+
+// Initialize performance chart
+const ctx = document.getElementById('performanceChart');
+if (ctx) {
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['1h ago', '45m ago', '30m ago', '15m ago', 'Now'],
+            datasets: [{
+                label: 'Calls per minute',
+                data: [12, 19, 3, 5, {{ stats.calls_per_minute if stats.calls_per_minute else 0 }}],
+                borderWidth: 2,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+// Auto-refresh stats every 30 seconds
+setInterval(function() {
+    $.get(`/api/tool/${toolName}/stats`)
+        .done(function(data) {
+            console.log('Stats updated:', data);
+        });
+}, 30000);
+</script>
+{% endblock %}

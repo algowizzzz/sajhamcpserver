@@ -1,0 +1,220 @@
+{
+  "name": "yahoo_finance_tool",
+  "module": "tools.yahoo_finance_mcp_tool.YahooFinanceMCPTool",
+  "max_hits": 1000,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "get_stock_price",
+        "description": "Get current stock price",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "symbol": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            }
+          },
+          "required": ["symbol"]
+        }
+      },
+      {
+        "name": "get_stock_info",
+        "description": "Get comprehensive stock information",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "symbol": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            }
+          },
+          "required": ["symbol"]
+        }
+      },
+      {
+        "name": "get_historical_data",
+        "description": "Get historical price data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "symbol": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            },
+            "period": {
+              "type": "string",
+              "description": "Time period",
+              "enum": ["1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", "max"],
+              "default": "1mo"
+            },
+            "interval": {
+              "type": "string",
+              "description": "Data interval",
+              "enum": ["1m", "2m", "5m", "15m", "30m", "60m", "90m", "1h", "1d", "5d", "1wk", "1mo", "3mo"],
+              "default": "1d"
+            }
+          },
+          "required": ["symbol"]
+        }
+      },
+      {
+        "name": "get_financials",
+        "description": "Get financial statements",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "symbol": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            },
+            "quarterly": {
+              "type": "boolean",
+              "description": "Get quarterly data instead of annual",
+              "default": false
+            }
+          },
+          "required": ["symbol"]
+        }
+      },
+      {
+        "name": "get_balance_sheet",
+        "description": "Get balance sheet data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "symbol": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            },
+            "quarterly": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "required": ["symbol"]
+        }
+      },
+      {
+        "name": "get_cash_flow",
+        "description": "Get cash flow statement",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "symbol": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            },
+            "quarterly": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "required": ["symbol"]
+        }
+      },
+      {
+        "name": "get_dividends",
+        "description": "Get dividend history",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "symbol": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            }
+          },
+          "required": ["symbol"]
+        }
+      },
+      {
+        "name": "get_options",
+        "description": "Get options chain data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "symbol": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            },
+            "expiration_date": {
+              "type": "string",
+              "description": "Options expiration date"
+            }
+          },
+          "required": ["symbol"]
+        }
+      },
+      {
+        "name": "get_news",
+        "description": "Get recent news for a stock",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "symbol": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            }
+          },
+          "required": ["symbol"]
+        }
+      },
+      {
+        "name": "get_recommendations",
+        "description": "Get analyst recommendations",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "symbol": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            }
+          },
+          "required": ["symbol"]
+        }
+      },
+      {
+        "name": "get_institutional_holders",
+        "description": "Get institutional holders information",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "symbol": {
+              "type": "string",
+              "description": "Stock ticker symbol"
+            }
+          },
+          "required": ["symbol"]
+        }
+      },
+      {
+        "name": "get_market_summary",
+        "description": "Get market summary for major indices",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "indices": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of index symbols",
+              "default": ["^GSPC", "^DJI", "^IXIC", "^RUT"]
+            }
+          }
+        }
+      },
+      {
+        "name": "get_sector_performance",
+        "description": "Get sector performance data",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}

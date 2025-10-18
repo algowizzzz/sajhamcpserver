@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Login - MCP Server{% endblock %}
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <div class="card mt-5">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <i class="bi bi-lock"></i> Login to MCP Server
+                </h4>
+            </div>
+            <div class="card-body">
+                {% if error %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle"></i> {{ error }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                {% endif %}
+                
+                <form method="POST" id="loginForm">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">
+                            <i class="bi bi-person"></i> Username
+                        </label>
+                        <input type="text" class="form-control" id="username" name="username" 
+                               placeholder="Enter your username" required autofocus>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">
+                            <i class="bi bi-key"></i> Password
+                        </label>
+                        <input type="password" class="form-control" id="password" name="password" 
+                               placeholder="Enter your password" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">
+                            Remember me
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-box-arrow-in-right"></i> Login
+                    </button>
+                </form>
+            </div>
+            <div class="card-footer text-muted text-center">
+                <small>MCP Server v1.0.0</small>
+            </div>
+        </div>
+        
+        <div class="alert alert-info mt-3" role="alert">
+            <h6 class="alert-heading">Default Credentials:</h6>
+            <small>
+                <strong>Admin:</strong> admin / admin123<br>
+                <strong>User:</strong> user1 / user123
+            </small>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    // Add some client-side validation
+    $('#loginForm').on('submit', function(e) {
+        var username = $('#username').val().trim();
+        var password = $('#password').val();
+        
+        if (username.length < 1 || password.length < 1) {
+            e.preventDefault();
+            alert('Please enter both username and password');
+            return false;
+        }
+    });
+    
+    // Focus on username field
+    $('#username').focus();
+});
+</script>
+{% endblock %}

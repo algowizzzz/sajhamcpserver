@@ -1,0 +1,213 @@
+{
+  "name": "msoffice_tool",
+  "module": "tools.msoffice_mcp_tool.MSOfficeMCPTool",
+  "max_hits": 1000,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "list_files",
+        "description": "List available Office files",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "file_type": {
+              "type": "string",
+              "description": "Type of files to list",
+              "enum": ["word", "excel", "all"],
+              "default": "all"
+            }
+          }
+        }
+      },
+      {
+        "name": "read_word_document",
+        "description": "Read content from a Word document",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "filename": {
+              "type": "string",
+              "description": "Name of the Word document"
+            },
+            "max_paragraphs": {
+              "type": "integer",
+              "description": "Maximum number of paragraphs to read",
+              "default": 50
+            }
+          },
+          "required": ["filename"]
+        }
+      },
+      {
+        "name": "search_word_documents",
+        "description": "Search for text in Word documents",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "search_term": {
+              "type": "string",
+              "description": "Text to search for"
+            },
+            "case_sensitive": {
+              "type": "boolean",
+              "description": "Case sensitive search",
+              "default": false
+            }
+          },
+          "required": ["search_term"]
+        }
+      },
+      {
+        "name": "get_word_metadata",
+        "description": "Get metadata from a Word document",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "filename": {
+              "type": "string",
+              "description": "Name of the Word document"
+            }
+          },
+          "required": ["filename"]
+        }
+      },
+      {
+        "name": "read_excel_sheet",
+        "description": "Read data from an Excel sheet",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "filename": {
+              "type": "string",
+              "description": "Name of the Excel file"
+            },
+            "sheet_name": {
+              "type": "string",
+              "description": "Name of the sheet to read"
+            },
+            "max_rows": {
+              "type": "integer",
+              "description": "Maximum number of rows to read",
+              "default": 100
+            }
+          },
+          "required": ["filename"]
+        }
+      },
+      {
+        "name": "get_excel_sheets",
+        "description": "Get list of sheets in an Excel file",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "filename": {
+              "type": "string",
+              "description": "Name of the Excel file"
+            }
+          },
+          "required": ["filename"]
+        }
+      },
+      {
+        "name": "query_excel_data",
+        "description": "Query Excel data with filters",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "filename": {
+              "type": "string",
+              "description": "Name of the Excel file"
+            },
+            "sheet_name": {
+              "type": "string",
+              "description": "Name of the sheet"
+            },
+            "filters": {
+              "type": "object",
+              "description": "Column-value pairs for filtering"
+            },
+            "columns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Columns to return"
+            }
+          },
+          "required": ["filename"]
+        }
+      },
+      {
+        "name": "get_excel_statistics",
+        "description": "Get statistics from Excel data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "filename": {
+              "type": "string",
+              "description": "Name of the Excel file"
+            },
+            "sheet_name": {
+              "type": "string",
+              "description": "Name of the sheet"
+            }
+          },
+          "required": ["filename"]
+        }
+      },
+      {
+        "name": "search_excel_files",
+        "description": "Search for values in Excel files",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "search_value": {
+              "type": "string",
+              "description": "Value to search for"
+            }
+          },
+          "required": ["search_value"]
+        }
+      },
+      {
+        "name": "create_word_document",
+        "description": "Create a new Word document",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "filename": {
+              "type": "string",
+              "description": "Name for the new document",
+              "default": "new_document.docx"
+            },
+            "content": {
+              "type": "array",
+              "description": "Content to add to the document"
+            }
+          }
+        }
+      },
+      {
+        "name": "create_excel_file",
+        "description": "Create a new Excel file",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "filename": {
+              "type": "string",
+              "description": "Name for the new spreadsheet",
+              "default": "new_spreadsheet.xlsx"
+            },
+            "data": {
+              "type": "object",
+              "description": "Dictionary of sheet_name: data"
+            }
+          }
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}

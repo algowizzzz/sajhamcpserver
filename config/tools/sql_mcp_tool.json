@@ -1,0 +1,195 @@
+{
+  "name": "sql_mcp_tool",
+  "module": "tools.sql_mcp_tool.SQLMCPTool",
+  "max_hits": 1000,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "execute_query",
+        "description": "Execute a SQL query",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "SQL query to execute"
+            },
+            "allow_dangerous": {
+              "type": "boolean",
+              "description": "Allow dangerous operations like DROP, DELETE, TRUNCATE",
+              "default": false
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "get_table_schema",
+        "description": "Get schema information for a table",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "table_name": {
+              "type": "string",
+              "description": "Name of the table"
+            }
+          },
+          "required": ["table_name"]
+        }
+      },
+      {
+        "name": "list_tables",
+        "description": "List all tables in the database",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_table_info",
+        "description": "Get detailed information about a table",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "table_name": {
+              "type": "string",
+              "description": "Name of the table"
+            }
+          },
+          "required": ["table_name"]
+        }
+      },
+      {
+        "name": "search_customers",
+        "description": "Search for customers",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "search_term": {
+              "type": "string",
+              "description": "Search term for name or email"
+            },
+            "country": {
+              "type": "string",
+              "description": "Country filter"
+            }
+          }
+        }
+      },
+      {
+        "name": "search_products",
+        "description": "Search for products",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "description": "Product category"
+            },
+            "min_price": {
+              "type": "number",
+              "description": "Minimum price",
+              "default": 0
+            },
+            "max_price": {
+              "type": "number",
+              "description": "Maximum price",
+              "default": 999999
+            }
+          }
+        }
+      },
+      {
+        "name": "get_statistics",
+        "description": "Get database statistics",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "insert_record",
+        "description": "Insert a new record",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "table": {
+              "type": "string",
+              "description": "Table name"
+            },
+            "data": {
+              "type": "object",
+              "description": "Data to insert as key-value pairs"
+            }
+          },
+          "required": ["table", "data"]
+        }
+      },
+      {
+        "name": "update_record",
+        "description": "Update a record",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "table": {
+              "type": "string",
+              "description": "Table name"
+            },
+            "data": {
+              "type": "object",
+              "description": "Data to update as key-value pairs"
+            },
+            "where": {
+              "type": "object",
+              "description": "WHERE clause conditions as key-value pairs"
+            }
+          },
+          "required": ["table", "data", "where"]
+        }
+      },
+      {
+        "name": "delete_record",
+        "description": "Delete a record",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "table": {
+              "type": "string",
+              "description": "Table name"
+            },
+            "where": {
+              "type": "object",
+              "description": "WHERE clause conditions as key-value pairs"
+            }
+          },
+          "required": ["table", "where"]
+        }
+      }
+    ],
+    "resources": [
+      {
+        "name": "customers_table",
+        "description": "Sample customers table with customer information",
+        "type": "database_table"
+      },
+      {
+        "name": "products_table",
+        "description": "Sample products table with product catalog",
+        "type": "database_table"
+      }
+    ],
+    "prompts": [
+      {
+        "name": "query_builder",
+        "description": "Help build SQL queries",
+        "prompt": "What SQL query would you like to build?"
+      },
+      {
+        "name": "data_analysis",
+        "description": "Analyze data in the database",
+        "prompt": "What data analysis would you like to perform?"
+      }
+    ]
+  }
+}

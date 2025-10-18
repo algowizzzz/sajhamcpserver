@@ -1,0 +1,159 @@
+{
+  "name": "census_tool",
+  "module": "tools.census_mcp_tool.CensusMCPTool",
+  "max_hits": 1000,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "get_population_data",
+        "description": "Get population data from Census",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "year": {
+              "type": "integer",
+              "description": "Year of data",
+              "default": 2021
+            },
+            "geography": {
+              "type": "string",
+              "description": "Geographic level",
+              "enum": ["state", "county", "place"],
+              "default": "state"
+            },
+            "state": {
+              "type": "string",
+              "description": "State FIPS code or * for all",
+              "default": "*"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_demographic_data",
+        "description": "Get demographic data including age, race, ethnicity",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "year": {
+              "type": "integer",
+              "description": "Year of data",
+              "default": 2021
+            },
+            "state": {
+              "type": "string",
+              "description": "State FIPS code",
+              "default": "06"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_economic_data",
+        "description": "Get economic data including income, poverty, employment",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "year": {
+              "type": "integer",
+              "description": "Year of data",
+              "default": 2021
+            },
+            "state": {
+              "type": "string",
+              "description": "State FIPS code",
+              "default": "06"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_housing_data",
+        "description": "Get housing data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "year": {
+              "type": "integer",
+              "description": "Year of data",
+              "default": 2021
+            },
+            "state": {
+              "type": "string",
+              "description": "State FIPS code",
+              "default": "06"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_education_data",
+        "description": "Get education data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "year": {
+              "type": "integer",
+              "description": "Year of data",
+              "default": 2021
+            },
+            "state": {
+              "type": "string",
+              "description": "State FIPS code",
+              "default": "06"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_state_data",
+        "description": "Get comprehensive data for all states",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "year": {
+              "type": "integer",
+              "description": "Year of data",
+              "default": 2021
+            }
+          }
+        }
+      },
+      {
+        "name": "get_county_data",
+        "description": "Get data for counties",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "year": {
+              "type": "integer",
+              "description": "Year of data",
+              "default": 2021
+            },
+            "state": {
+              "type": "string",
+              "description": "State FIPS code",
+              "default": "06"
+            }
+          }
+        }
+      },
+      {
+        "name": "search_datasets",
+        "description": "Search available Census datasets",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "keyword": {
+              "type": "string",
+              "description": "Search keyword"
+            }
+          }
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "name": "wikipedia_tool",
+  "module": "tools.wikipedia_mcp_tool.WikipediaMCPTool",
+  "max_hits": 1000,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "search_articles",
+        "description": "Search for Wikipedia articles",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Search query"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of results",
+              "default": 10
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "get_article_summary",
+        "description": "Get article summary",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Article title"
+            },
+            "sentences": {
+              "type": "integer",
+              "description": "Number of sentences in summary",
+              "default": 5
+            }
+          },
+          "required": ["title"]
+        }
+      },
+      {
+        "name": "get_article_content",
+        "description": "Get full article content",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Article title"
+            }
+          },
+          "required": ["title"]
+        }
+      },
+      {
+        "name": "get_article_sections",
+        "description": "Get article sections",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Article title"
+            }
+          },
+          "required": ["title"]
+        }
+      },
+      {
+        "name": "get_random_article",
+        "description": "Get a random Wikipedia article",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_article_links",
+        "description": "Get links from an article",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Article title"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of links",
+              "default": 20
+            }
+          },
+          "required": ["title"]
+        }
+      },
+      {
+        "name": "get_article_categories",
+        "description": "Get article categories",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Article title"
+            }
+          },
+          "required": ["title"]
+        }
+      },
+      {
+        "name": "get_article_images",
+        "description": "Get images from an article",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Article title"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of images",
+              "default": 10
+            }
+          },
+          "required": ["title"]
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}
