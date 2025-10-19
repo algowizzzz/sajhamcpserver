@@ -1,237 +1,311 @@
-# EDGAR MCP Tool - Comprehensive Usage Guide
+# EDGAR MCP Tool Documentation
 
 ## Overview
-The EDGAR MCP Tool provides comprehensive access to the SEC's EDGAR database, enabling retrieval and analysis of corporate filings, financial data, insider transactions, and regulatory documents.
-
-## Key Features
-
-### 1. Company Information
-- **get_company_info**: Retrieve comprehensive company details including business addresses, SIC codes, fiscal year ends, and corporate structure
-- **get_cik_lookup**: Convert between various identifiers (ticker, company name, CUSIP, LEI) and CIK
-- **get_company_tickers**: Browse all available company tickers with filtering options
-
-### 2. Filing Retrieval
-- **get_company_filings**: Fetch company filings with date and type filtering
-- **get_filing_documents**: Access detailed documents and exhibits from specific filings
-- **get_recent_filings**: Monitor real-time filing submissions across all companies
-- **search_filings**: Full-text search across EDGAR database
-
-### 3. Financial Analysis
-- **get_company_financials**: Extract structured financial statements from XBRL data
-- **get_xbrl_facts**: Access detailed XBRL taxonomy facts and metrics
-- **get_historical_data**: Retrieve historical trends for specific financial metrics
-- **get_peer_comparison**: Compare company metrics with industry peers
-
-### 4. Ownership & Trading
-- **get_insider_transactions**: Track insider trading from Forms 3, 4, and 5
-- **get_institutional_holdings**: Analyze institutional positions from 13F filings
-- **get_beneficial_ownership**: Monitor major shareholders via Schedule 13D/G
-
-### 5. Corporate Actions
-- **get_proxy_statements**: Access proxy statements and executive compensation
-- **get_merger_filings**: Track M&A activity and related filings
-- **get_ipo_registrations**: Monitor IPO registration statements
-- **get_comment_letters**: Review SEC correspondence
-
-### 6. Fund Data
-- **get_fund_data**: Retrieve mutual fund and ETF filings and holdings
-
-### 7. Validation
-- **validate_filing**: Validate EDGAR filing format and compliance
-
-## Usage Examples
-
-### Basic Company Lookup
-```python
-# Get company info by ticker
-result = tool.handle_tool_call("get_company_info", {
-    "ticker": "AAPL"
-})
-
-# Get company info by CIK
-result = tool.handle_tool_call("get_company_info", {
-    "cik": "0000320193"
-})
-```
-
-### Retrieve Recent Filings
-```python
-# Get latest 10-K and 10-Q filings
-result = tool.handle_tool_call("get_company_filings", {
-    "ticker": "MSFT",
-    "filing_type": "10-K",
-    "limit": 5
-})
-
-# Get filings within date range
-result = tool.handle_tool_call("get_company_filings", {
-    "ticker": "GOOGL",
-    "date_from": "2024-01-01",
-    "date_to": "2024-12-31",
-    "limit": 20
-})
-```
-
-### Financial Analysis
-```python
-# Get income statement data
-result = tool.handle_tool_call("get_company_financials", {
-    "ticker": "TSLA",
-    "statement_type": "income",
-    "period": "quarterly",
-    "fiscal_year": 2024
-})
-
-# Get historical revenue trend
-result = tool.handle_tool_call("get_historical_data", {
-    "ticker": "AMZN",
-    "metric": "Revenues",
-    "years": 10,
-    "frequency": "annual"
-})
-```
-
-### Insider Trading Analysis
-```python
-# Get recent insider transactions
-result = tool.handle_tool_call("get_insider_transactions", {
-    "ticker": "META",
-    "transaction_type": "P",  # Purchases only
-    "date_from": "2024-01-01",
-    "limit": 50
-})
-```
-
-### Institutional Holdings
-```python
-# Get 13F filings for an institution
-result = tool.handle_tool_call("get_institutional_holdings", {
-    "institution_name": "Berkshire Hathaway",
-    "quarter": "2024Q3"
-})
-```
-
-### M&A Activity
-```python
-# Track merger-related filings
-result = tool.handle_tool_call("get_merger_filings", {
-    "ticker": "TGT",
-    "transaction_type": "merger",
-    "date_from": "2023-01-01"
-})
-```
-
-### Fund Analysis
-```python
-# Get fund data and holdings
-result = tool.handle_tool_call("get_fund_data", {
-    "ticker": "SPY",
-    "include_holdings": True
-})
-```
-
-### Peer Comparison
-```python
-# Compare with industry peers
-result = tool.handle_tool_call("get_peer_comparison", {
-    "ticker": "NVDA",
-    "use_sic_peers": True,
-    "metrics": ["Assets", "Revenues", "NetIncomeLoss", "ResearchAndDevelopmentExpense"]
-})
-```
+The EDGAR MCP Tool provides comprehensive access to the SEC EDGAR database for retrieving company filings, financial data, and regulatory information.
 
 ## Configuration
+- **Environment Variables:**
+  - `SEC_USER_AGENT`: Required user agent string for SEC API (format: "CompanyName/1.0 (contact@example.com)")
 
-### Environment Variables
-```bash
-# Required: Set your user agent with contact information
-export SEC_USER_AGENT="YourCompany/1.0 (your-email@example.com)"
-```
+## Available Methods
 
-### Rate Limiting
-The SEC enforces a rate limit of 10 requests per second. The tool automatically manages this through the `check_rate_limit()` method.
+### 1. get_company_info
+Retrieves comprehensive company information from EDGAR.
 
-## Data Formats
+**Parameters:**
+- `cik` (optional): Company CIK number
+- `ticker` (optional): Stock ticker symbol
+*Note: Either CIK or ticker is required*
 
-### CIK (Central Index Key)
-- 10-digit identifier for companies
-- Can be provided with or without leading zeros
-- Example: "0000320193" or "320193"
+**Returns:**
+- Company name, tickers, exchanges
+- SIC code and description
+- Address information
+- Filing statistics
+- Former names
+- Entity type
 
-### Filing Types
-Common filing types include:
-- **10-K**: Annual report
-- **10-Q**: Quarterly report
-- **8-K**: Current report
-- **DEF 14A**: Proxy statement
-- **S-1**: IPO registration
-- **4**: Insider trading
-- **13F-HR**: Institutional holdings
-- **SC 13D/G**: Beneficial ownership
+### 2. get_company_filings
+Retrieves company filings with advanced filtering options.
 
-### Date Formats
-- Use ISO format: "YYYY-MM-DD"
-- Example: "2024-03-15"
+**Parameters:**
+- `cik` or `ticker`: Company identifier
+- `filing_type` (optional): Specific form type (e.g., '10-K', '10-Q', '8-K')
+- `date_from` (optional): Start date filter
+- `date_to` (optional): End date filter
+- `limit` (default: 20): Maximum number of results
 
-## Response Structure
+**Returns:**
+- List of filings with accession numbers
+- Filing dates and report dates
+- Document URLs
+- Filing type statistics
 
-All responses follow a consistent structure:
-```json
-{
-    "status": 200,  // HTTP status code
-    "data": {},     // Response data
-    "error": null   // Error message if applicable
-}
-```
+### 3. get_filing_documents
+Gets detailed documents and exhibits from a specific filing.
+
+**Parameters:**
+- `cik`: Company CIK
+- `accession_number`: Filing accession number
+- `include_exhibits` (default: true): Include exhibit documents
+
+**Returns:**
+- Primary documents
+- Exhibits
+- Graphics files
+- XBRL documents
+- Document URLs and metadata
+
+### 4. get_insider_transactions
+Retrieves insider trading transactions (Forms 3, 4, 5).
+
+**Parameters:**
+- `cik` or `ticker`: Company identifier
+- `insider_cik` (optional): Specific insider's CIK
+- `transaction_type` (optional): Type of transaction
+- `date_from` (optional): Start date
+- `date_to` (optional): End date
+- `limit` (default: 50): Maximum results
+
+**Returns:**
+- Form 4 transactions
+- Form 3 initial holdings
+- Form 5 annual statements
+- Transaction details
+
+### 5. get_institutional_holdings
+Gets institutional holdings from 13F filings.
+
+**Parameters:**
+- `cik`: Institution CIK
+- `institution_name` (optional): Institution name
+- `quarter` (optional): Specific quarter (format: "2024Q1")
+- `cusip` (optional): Filter by specific CUSIP
+
+**Returns:**
+- Recent 13F-HR filings
+- Holdings information
+- Filing counts
+
+### 6. get_beneficial_ownership
+Retrieves beneficial ownership from Schedule 13D/G filings.
+
+**Parameters:**
+- `cik` or `ticker`: Company identifier
+- `owner_name` (optional): Specific owner name
+- `ownership_threshold` (default: 5.0): Ownership percentage threshold
+
+**Returns:**
+- Schedule 13D filings (active ownership)
+- Schedule 13G filings (passive ownership)
+- Ownership changes
+
+### 7. get_proxy_statements
+Gets proxy statements and executive compensation data.
+
+**Parameters:**
+- `cik` or `ticker`: Company identifier
+- `year` (default: current year): Fiscal year
+- `include_compensation` (default: true): Include compensation details
+
+**Returns:**
+- DEF 14A filings
+- Executive compensation structure
+- Proxy voting items
+
+### 8. get_company_financials
+Retrieves structured financial data from XBRL filings.
+
+**Parameters:**
+- `cik` or `ticker`: Company identifier
+- `statement_type` (default: 'all'): 'balance', 'income', 'cash_flow', 'comprehensive_income', or 'all'
+- `period` (default: 'all'): 'annual', 'quarterly', or 'all'
+- `fiscal_year` (optional): Specific fiscal year
+- `fiscal_quarter` (optional): Specific quarter
+
+**Returns:**
+- Financial metrics by statement type
+- Historical values with dates
+- Units and forms
+
+### 9. get_fund_data
+Gets mutual fund and ETF data.
+
+**Parameters:**
+- `cik` or `ticker`: Fund identifier
+- `series_id` (optional): Specific series ID
+- `include_holdings` (default: true): Include holdings data
+
+**Returns:**
+- N-Q and N-CSR filings
+- Proxy voting records (N-PX)
+- Prospectus updates
+
+### 10. search_filings
+Full-text search across EDGAR filings.
+
+**Parameters:**
+- `query`: Search query text
+- `filing_type` (optional): Filter by form types
+- `cik` (optional): Filter by companies
+- `date_from` (optional): Start date
+- `date_to` (optional): End date
+- `sic_code` (optional): Filter by SIC code
+- `limit` (default: 50): Maximum results
+
+### 11. get_recent_filings
+Gets most recent filings with real-time updates.
+
+**Parameters:**
+- `filing_type` (optional): Filter by form types
+- `minutes_ago` (default: 60): Time window in minutes
+- `limit` (default: 100): Maximum results
+
+### 12. get_ipo_registrations
+Retrieves IPO registration statements.
+
+**Parameters:**
+- `status` (default: 'all'): Registration status
+- `date_from` (optional): Start date
+- `date_to` (optional): End date
+- `industry` (optional): Industry filter
+
+**Returns:**
+- S-1, S-11, F-1, F-3 filings
+- Registration status
+
+### 13. get_merger_filings
+Gets merger and acquisition related filings.
+
+**Parameters:**
+- `cik` or `ticker`: Company identifier
+- `transaction_type` (default: 'all'): 'merger', 'acquisition', or 'tender_offer'
+- `date_from` (optional): Start date
+
+**Returns:**
+- DEFM14A merger proxies
+- S-4 registration statements
+- 8-K items related to M&A
+- Tender offer documents
+
+### 14. get_comment_letters
+Retrieves SEC comment letters and company responses.
+
+**Parameters:**
+- `cik` or `ticker`: Company identifier
+- `date_from` (optional): Start date
+- `include_responses` (default: true): Include company responses
+
+**Returns:**
+- CORRESP filings
+- UPLOAD filings
+- Comment letter exchanges
+
+### 15. get_xbrl_facts
+Gets structured XBRL company facts.
+
+**Parameters:**
+- `cik` or `ticker`: Company identifier
+- `concept` (optional): Specific XBRL concept
+- `taxonomy` (default: 'us-gaap'): Taxonomy to use
+
+**Returns:**
+- XBRL facts by taxonomy
+- Concept definitions
+- Historical values
+
+### 16. get_peer_comparison
+Compares company metrics with industry peers.
+
+**Parameters:**
+- `cik` or `ticker`: Primary company
+- `peer_ciks` (optional): List of peer CIKs
+- `use_sic_peers` (default: false): Auto-select SIC peers
+- `metrics`: List of metrics to compare
+
+### 17. get_cik_lookup
+Looks up CIK by various identifiers.
+
+**Parameters:**
+- `ticker` (optional): Stock ticker
+- `company_name` (optional): Company name
+- `cusip` (optional): CUSIP identifier
+- `lei` (optional): LEI identifier
+
+**Returns:**
+- Matching CIKs
+- Company names
+- Match confidence
+
+### 18. get_company_tickers
+Gets comprehensive list of company tickers.
+
+**Parameters:**
+- `exchange` (optional): Filter by exchange
+- `sic_code` (optional): Filter by SIC code
+- `state` (optional): Filter by state
+- `country` (optional): Filter by country
+- `status` (default: 'active'): Company status
+
+### 19. get_historical_data
+Retrieves historical filing data for trend analysis.
+
+**Parameters:**
+- `cik` or `ticker`: Company identifier
+- `metric`: Specific metric to track
+- `years` (default: 5): Number of years
+- `frequency` (default: 'annual'): 'annual' or 'quarterly'
+
+### 20. validate_filing
+Validates EDGAR filing format and compliance.
+
+**Parameters:**
+- `filing_content`: Filing document content
+- `filing_type`: Type of filing
+- `check_xbrl` (default: true): Validate XBRL structure
+
+## Filing Type Categories
+
+The tool organizes filings into categories:
+
+- **Annual**: 10-K, 10-K/A, 20-F, 20-F/A, 40-F, 40-F/A
+- **Quarterly**: 10-Q, 10-Q/A
+- **Current**: 8-K, 8-K/A, 6-K
+- **Proxy**: DEF 14A, DEFM14A, DEF 14C, PRE 14A
+- **Registration**: S-1, S-3, S-4, S-8, S-11, F-1, F-3, F-4
+- **Insider**: 3, 4, 5, 144
+- **Institutional**: 13F-HR, 13F-HR/A, 13D, 13G, 13D/A, 13G/A
+- **Fund**: N-Q, N-CSR, N-CSR/A, N-PX, 485BPOS, 485APOS
+
+## Rate Limiting
+- SEC limits requests to 10 per second
+- Tool automatically manages rate limiting
+- Includes caching for frequently accessed data
 
 ## Error Handling
+- Automatic CIK normalization (10-digit format)
+- Ticker to CIK conversion
+- Graceful handling of missing data
+- Network error recovery
 
-The tool provides detailed error messages:
-- Rate limit exceeded (429)
-- Invalid parameters (400)
-- Resource not found (404)
-- Server errors (500)
+## Example Usage
+```python
+# Get company information
+result = edgar_tool.handle_tool_call('get_company_info', {
+    'ticker': 'AAPL'
+})
 
-## Best Practices
+# Get recent 10-K filings
+result = edgar_tool.handle_tool_call('get_company_filings', {
+    'ticker': 'MSFT',
+    'filing_type': '10-K',
+    'limit': 5
+})
 
-1. **Use CIK when possible**: CIK lookups are faster than ticker searches
-2. **Cache frequently used data**: Store company info and ticker mappings
-3. **Batch requests efficiently**: Group related queries to minimize API calls
-4. **Respect rate limits**: Allow time between requests
-5. **Filter at source**: Use date ranges and filing type filters to reduce data volume
-6. **Parse incrementally**: For large datasets, process in chunks
-
-## Advanced Features
-
-### XBRL Processing
-The tool can extract structured data from XBRL filings:
-- Financial statements
-- Company facts
-- Custom metrics
-- Multi-period comparisons
-
-### Real-time Monitoring
-Monitor filings as they're submitted:
-- Set up polling for recent filings
-- Track specific companies or filing types
-- Alert on material events (8-K)
-
-### Compliance Validation
-Validate filing formats before submission:
-- Check required tags and structure
-- Verify XBRL compliance
-- Ensure proper formatting
-
-## Limitations
-
-1. **Full-text search**: Requires special EDGAR access credentials
-2. **Real-time feeds**: RSS/websocket feeds need additional integration
-3. **Historical data**: Some older filings may not have structured data
-4. **Document parsing**: Full document text extraction requires additional processing
-
-## Support & Resources
-
-- [SEC EDGAR Homepage](https://www.sec.gov/edgar)
-- [EDGAR API Documentation](https://www.sec.gov/edgar/sec-api-documentation)
-- [Company Search](https://www.sec.gov/edgar/searchedgar/companysearch)
-- [Filing Types Reference](https://www.sec.gov/info/edgar/forms/edgform.pdf)
+# Get financial data
+result = edgar_tool.handle_tool_call('get_company_financials', {
+    'ticker': 'GOOGL',
+    'statement_type': 'income',
+    'period': 'annual'
+})
+```
