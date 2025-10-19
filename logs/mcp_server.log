@@ -661,3 +661,6 @@
 2025-10-18 19:47:35,896 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 19:47:35] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
 2025-10-18 19:47:52,064 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 19:47:52] "POST /api/tool/edgar_mcp_tool/call HTTP/1.1" 200 -
 2025-10-18 19:48:05,898 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 19:48:05] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-18 19:48:28,860 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 19:48:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-18 19:48:28,862 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 19:48:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-18 19:48:28,863 - werkzeug - INFO - 127.0.0.1 - - [18/Oct/2025 19:48:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
