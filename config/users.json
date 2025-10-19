@@ -7,6 +7,9 @@
       "roles": [
         "admin",
         "user"
+      ],
+      "tools_access": [
+        "*"
       ]
     },
     {
@@ -15,6 +18,50 @@
       "full_name": "John Doe",
       "roles": [
         "user"
+      ],
+      "tools_access": [
+        "wikipedia",
+        "google_search",
+        "yahoo_finance",
+        "tavily",
+        "census",
+        "sql",
+        "duckdb_olap",
+        "msoffice"
+      ]
+    },
+    {
+      "id": "user2",
+      "password": "user456",
+      "full_name": "Jane Smith",
+      "roles": [
+        "user"
+      ],
+      "tools_access": [
+        "sec",
+        "edgar",
+        "fed_reserve",
+        "ecb",
+        "bank_of_england",
+        "bank_of_canada",
+        "yahoo_finance"
+      ]
+    },
+    {
+      "id": "analyst",
+      "password": "analyst789",
+      "full_name": "Data Analyst",
+      "roles": [
+        "user",
+        "analyst"
+      ],
+      "tools_access": [
+        "sql",
+        "duckdb_olap",
+        "census",
+        "msoffice",
+        "wikipedia",
+        "google_search"
       ]
     }
   ]
