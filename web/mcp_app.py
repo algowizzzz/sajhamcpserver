@@ -229,7 +229,11 @@ def tool_detail(tool_name):
 @app.route('/api/tools', methods=['GET'])
 @login_required
 def api_list_tools():
-    """API endpoint to list all tools"""
+    """
+    List all tools - returns HTML template or JSON based on request
+    Web UI: Renders tools.html template
+    API: Returns JSON response
+    """
     tools = tools_registry.list_tools()
     tool_details = []
 
@@ -242,10 +246,21 @@ def api_list_tools():
             'max_hit_interval': config.get('max_hit_interval', 10)
         })
 
-    return jsonify({
-        'tools': tool_details,
-        'count': len(tool_details)
-    })
+    # Check if this is an API request (wants JSON) or web UI request (wants HTML)
+    if request.headers.get('Accept') == 'application/json' or request.args.get('format') == 'json':
+        # Return JSON for API calls
+        return jsonify({
+            'tools': tool_details,
+            'count': len(tool_details)
+        })
+    else:
+        # Return HTML template for web UI
+        stats = tools_registry.get_statistics()
+        return render_template('tools.html',
+                             user=session['user'],
+                             tool_details=tool_details,
+                             stats=stats,
+                             year=datetime.now().year)
 
 
 @app.route('/api/tool/<tool_name>/call', methods=['POST'])
