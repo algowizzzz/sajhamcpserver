@@ -1,0 +1,251 @@
+{
+  "name": "rest_endpoint_tool",
+  "module": "tools.rest_endpoint_mcp_tool.RESTEndpointMCPTool",
+  "max_hits": 500,
+  "max_hit_interval": 10,
+  "authentication": {
+    "type": "none",
+    "username": "",
+    "password": "",
+    "token": "",
+    "key": "",
+    "header_name": "X-API-Key",
+    "headers": {}
+  },
+  "tool_description": {
+    "tools": [
+      {
+        "name": "get_request",
+        "description": "Execute HTTP GET request to retrieve data from an endpoint",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Full URL of the endpoint"
+            },
+            "query_params": {
+              "type": "object",
+              "description": "Query parameters as key-value pairs",
+              "default": {}
+            },
+            "headers": {
+              "type": "object",
+              "description": "Custom headers as key-value pairs",
+              "default": {}
+            },
+            "timeout": {
+              "type": "integer",
+              "description": "Request timeout in seconds",
+              "default": 30
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "post_request",
+        "description": "Execute HTTP POST request to send data to an endpoint",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Full URL of the endpoint"
+            },
+            "data": {
+              "type": "object",
+              "description": "JSON data to send in request body",
+              "default": {}
+            },
+            "query_params": {
+              "type": "object",
+              "description": "Query parameters as key-value pairs",
+              "default": {}
+            },
+            "headers": {
+              "type": "object",
+              "description": "Custom headers as key-value pairs",
+              "default": {}
+            },
+            "timeout": {
+              "type": "integer",
+              "description": "Request timeout in seconds",
+              "default": 30
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "put_request",
+        "description": "Execute HTTP PUT request to update data at an endpoint",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Full URL of the endpoint"
+            },
+            "data": {
+              "type": "object",
+              "description": "JSON data to send in request body",
+              "default": {}
+            },
+            "query_params": {
+              "type": "object",
+              "description": "Query parameters as key-value pairs",
+              "default": {}
+            },
+            "headers": {
+              "type": "object",
+              "description": "Custom headers as key-value pairs",
+              "default": {}
+            },
+            "timeout": {
+              "type": "integer",
+              "description": "Request timeout in seconds",
+              "default": 30
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "delete_request",
+        "description": "Execute HTTP DELETE request to remove data from an endpoint",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Full URL of the endpoint"
+            },
+            "query_params": {
+              "type": "object",
+              "description": "Query parameters as key-value pairs",
+              "default": {}
+            },
+            "headers": {
+              "type": "object",
+              "description": "Custom headers as key-value pairs",
+              "default": {}
+            },
+            "timeout": {
+              "type": "integer",
+              "description": "Request timeout in seconds",
+              "default": 30
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "patch_request",
+        "description": "Execute HTTP PATCH request to partially update data at an endpoint",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Full URL of the endpoint"
+            },
+            "data": {
+              "type": "object",
+              "description": "JSON data to send in request body",
+              "default": {}
+            },
+            "query_params": {
+              "type": "object",
+              "description": "Query parameters as key-value pairs",
+              "default": {}
+            },
+            "headers": {
+              "type": "object",
+              "description": "Custom headers as key-value pairs",
+              "default": {}
+            },
+            "timeout": {
+              "type": "integer",
+              "description": "Request timeout in seconds",
+              "default": 30
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "custom_request",
+        "description": "Execute custom HTTP request with full control over method and parameters",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Full URL of the endpoint"
+            },
+            "method": {
+              "type": "string",
+              "description": "HTTP method (GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS)",
+              "default": "GET"
+            },
+            "data": {
+              "type": "object",
+              "description": "JSON data to send in request body",
+              "default": {}
+            },
+            "query_params": {
+              "type": "object",
+              "description": "Query parameters as key-value pairs",
+              "default": {}
+            },
+            "headers": {
+              "type": "object",
+              "description": "Custom headers as key-value pairs",
+              "default": {}
+            },
+            "timeout": {
+              "type": "integer",
+              "description": "Request timeout in seconds",
+              "default": 30
+            },
+            "auth": {
+              "type": "array",
+              "description": "Authentication tuple [username, password] to override config",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "test_endpoint",
+        "description": "Test endpoint connectivity and response time",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Full URL of the endpoint to test"
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "get_endpoint_info",
+        "description": "Get information about configured endpoints and authentication",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}
