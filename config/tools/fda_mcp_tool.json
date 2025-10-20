@@ -1,0 +1,303 @@
+{
+  "name": "fda_tool",
+  "module": "tools.fda_mcp_tool.FDAMCPTool",
+  "max_hits": 200,
+  "max_hit_interval": 60,
+  "api_key": "",
+  "tool_description": {
+    "tools": [
+      {
+        "name": "search_drugs",
+        "description": "Search for drugs by name or active ingredient",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Drug brand name or generic name"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of results",
+              "default": 10
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "get_drug_label",
+        "description": "Get detailed drug label information including warnings, dosage, and interactions",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "drug_name": {
+              "type": "string",
+              "description": "Drug brand or generic name"
+            }
+          },
+          "required": ["drug_name"]
+        }
+      },
+      {
+        "name": "get_drug_adverse_events",
+        "description": "Get adverse event reports for a specific drug",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "drug_name": {
+              "type": "string",
+              "description": "Drug name"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of reports",
+              "default": 100
+            }
+          },
+          "required": ["drug_name"]
+        }
+      },
+      {
+        "name": "search_medical_devices",
+        "description": "Search for medical devices in FDA database",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Device name or description"
+            },
+            "device_class": {
+              "type": "string",
+              "description": "Device class: 1 (low risk), 2 (moderate risk), or 3 (high risk)"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of results",
+              "default": 10
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "get_device_recalls",
+        "description": "Get medical device recall information",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "device_name": {
+              "type": "string",
+              "description": "Device name"
+            },
+            "classification": {
+              "type": "string",
+              "description": "Recall class: Class I (most serious), Class II, or Class III"
+            },
+            "start_date": {
+              "type": "string",
+              "description": "Start date for recalls (YYYYMMDD)"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of results",
+              "default": 50
+            }
+          }
+        }
+      },
+      {
+        "name": "get_device_adverse_events",
+        "description": "Get adverse event reports for medical devices",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "device_name": {
+              "type": "string",
+              "description": "Device brand or generic name"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of events",
+              "default": 100
+            }
+          },
+          "required": ["device_name"]
+        }
+      },
+      {
+        "name": "search_food_recalls",
+        "description": "Search food safety recalls",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "product": {
+              "type": "string",
+              "description": "Product name or description"
+            },
+            "reason": {
+              "type": "string",
+              "description": "Reason for recall (e.g., Salmonella, Listeria)"
+            },
+            "classification": {
+              "type": "string",
+              "description": "Recall class: Class I, Class II, or Class III"
+            },
+            "start_date": {
+              "type": "string",
+              "description": "Start date for recalls (YYYYMMDD)"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of results",
+              "default": 50
+            }
+          }
+        }
+      },
+      {
+        "name": "get_food_enforcement",
+        "description": "Get food enforcement actions and recalls",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "product_type": {
+              "type": "string",
+              "description": "Product type (e.g., Food, Dietary Supplement)"
+            },
+            "state": {
+              "type": "string",
+              "description": "State abbreviation"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of results",
+              "default": 50
+            }
+          }
+        }
+      },
+      {
+        "name": "search_ndc_directory",
+        "description": "Search National Drug Code (NDC) directory",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "ndc_code": {
+              "type": "string",
+              "description": "National Drug Code (NDC)"
+            },
+            "brand_name": {
+              "type": "string",
+              "description": "Drug brand name"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of results",
+              "default": 10
+            }
+          }
+        }
+      },
+      {
+        "name": "get_drug_approvals",
+        "description": "Get drug approval applications (NDAs and ANDAs)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "application_number": {
+              "type": "string",
+              "description": "FDA application number"
+            },
+            "sponsor_name": {
+              "type": "string",
+              "description": "Sponsor or manufacturer name"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of results",
+              "default": 10
+            }
+          }
+        }
+      },
+      {
+        "name": "search_clinical_trials",
+        "description": "Search clinical trials (integrates with ClinicalTrials.gov)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "condition": {
+              "type": "string",
+              "description": "Medical condition or disease"
+            },
+            "intervention": {
+              "type": "string",
+              "description": "Drug, device, or intervention name"
+            },
+            "status": {
+              "type": "string",
+              "description": "Trial status (e.g., Recruiting, Completed)"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_generic_drugs",
+        "description": "Get generic drug equivalents for brand-name drugs",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "brand_name": {
+              "type": "string",
+              "description": "Brand name of drug"
+            }
+          },
+          "required": ["brand_name"]
+        }
+      },
+      {
+        "name": "search_510k_devices",
+        "description": "Search 510(k) premarket notification submissions for medical devices",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "device_name": {
+              "type": "string",
+              "description": "Device name"
+            },
+            "applicant": {
+              "type": "string",
+              "description": "Applicant or manufacturer name"
+            },
+            "year": {
+              "type": "string",
+              "description": "Year of decision (YYYY)"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of results",
+              "default": 20
+            }
+          }
+        }
+      },
+      {
+        "name": "get_drug_shortages",
+        "description": "Get current drug shortage information",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "drug_name": {
+              "type": "string",
+              "description": "Drug name to check for shortages"
+            }
+          }
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}

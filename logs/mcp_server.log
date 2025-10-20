@@ -1377,3 +1377,77 @@
 2025-10-20 11:08:28,866 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:08:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
 2025-10-20 11:08:28,872 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:08:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
 2025-10-20 11:08:34,900 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:08:34] "GET /api/tool/zillow_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:09:04,899 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:09:04] "GET /api/tool/zillow_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:09:28,865 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:09:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:09:28,866 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:09:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:09:28,867 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:09:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:09:28,872 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:09:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:09:35,862 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:09:35] "GET /api/tool/zillow_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:10:05,863 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:10:05] "GET /api/tool/zillow_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:10:28,865 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:10:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:10:28,866 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:10:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:10:28,868 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:10:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:10:28,870 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:10:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:10:35,864 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:10:35] "GET /api/tool/zillow_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:11:05,861 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:11:05] "GET /api/tool/zillow_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:11:28,860 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:11:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:11:28,861 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:11:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:11:28,863 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:11:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:11:28,866 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:11:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:12:06,861 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:12:06] "GET /api/tool/zillow_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:12:28,866 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:12:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:12:28,867 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:12:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:12:28,868 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:12:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:12:28,873 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:12:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:13:07,861 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:13:07] "GET /api/tool/zillow_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:13:28,865 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:13:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:13:28,867 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:13:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:13:28,868 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:13:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:13:28,872 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:13:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:14:08,860 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:14:08] "GET /api/tool/zillow_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:14:28,861 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:14:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:14:28,862 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:14:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:14:28,863 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:14:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:14:28,866 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:14:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:15:09,861 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:15:09] "GET /api/tool/zillow_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:15:28,861 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:15:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:15:28,862 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:15:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:15:28,864 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:15:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:15:28,866 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:15:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:16:10,861 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:16:10] "GET /api/tool/zillow_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:16:28,866 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:16:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:16:28,867 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:16:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:16:28,868 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:16:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:16:28,869 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:16:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:17:11,860 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:17:11] "GET /api/tool/zillow_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:17:28,863 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:17:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:17:28,865 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:17:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:17:28,866 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:17:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:17:28,871 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:17:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:18:12,865 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:18:12] "GET /api/tool/zillow_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:18:28,863 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:18:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:18:28,865 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:18:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:18:28,867 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:18:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:18:28,870 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:18:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:19:13,864 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:19:13] "GET /api/tool/zillow_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:19:28,864 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:19:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:19:28,866 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:19:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:19:28,868 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:19:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:19:28,871 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:19:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:20:14,862 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:20:14] "GET /api/tool/zillow_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:20:28,861 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:20:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:20:28,863 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:20:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:20:28,864 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:20:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:20:28,863 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:20:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:20:53,383 - __main__ - INFO - Starting MCP Server...
+2025-10-20 11:20:53,388 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.54:5000
+2025-10-20 11:20:53,388 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-20 11:26:37,016 - __main__ - INFO - Starting MCP Server...
+2025-10-20 11:26:37,018 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.54:5000
+2025-10-20 11:26:37,018 - werkzeug - INFO - [33mPress CTRL+C to quit[0m

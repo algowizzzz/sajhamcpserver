@@ -1,0 +1,300 @@
+{
+  "name": "usda_tool",
+  "module": "tools.usda_mcp_tool.USDAMCPTool",
+  "max_hits": 200,
+  "max_hit_interval": 60,
+  "api_key": "DEMO_KEY",
+  "tool_description": {
+    "tools": [
+      {
+        "name": "search_foods",
+        "description": "Search USDA food database for nutrition information",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Food name or description to search"
+            },
+            "data_type": {
+              "type": "string",
+              "description": "Data type: Foundation, SR Legacy, or Branded"
+            },
+            "page_size": {
+              "type": "integer",
+              "description": "Number of results per page",
+              "default": 50
+            },
+            "page_number": {
+              "type": "integer",
+              "description": "Page number for pagination",
+              "default": 1
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "get_food_details",
+        "description": "Get detailed nutrition information for a specific food",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "fdc_id": {
+              "type": "string",
+              "description": "FoodData Central ID"
+            }
+          },
+          "required": ["fdc_id"]
+        }
+      },
+      {
+        "name": "get_nutrients",
+        "description": "Get specific nutrients for multiple foods",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "fdc_ids": {
+              "type": "array",
+              "description": "Array of FoodData Central IDs",
+              "items": {
+                "type": "string"
+              }
+            },
+            "nutrients": {
+              "type": "array",
+              "description": "Array of nutrient names to filter (optional)",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": ["fdc_ids"]
+        }
+      },
+      {
+        "name": "search_farmers_markets",
+        "description": "Search for farmers markets by location",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "City and state (e.g., San Francisco, CA)"
+            },
+            "zipcode": {
+              "type": "string",
+              "description": "ZIP code"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_crop_data",
+        "description": "Get crop production and yield data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "commodity": {
+              "type": "string",
+              "description": "Commodity name (e.g., CORN, WHEAT, SOYBEANS)"
+            },
+            "state": {
+              "type": "string",
+              "description": "State name in uppercase (e.g., IOWA, KANSAS)"
+            },
+            "year": {
+              "type": "string",
+              "description": "Year of data"
+            }
+          },
+          "required": ["commodity"]
+        }
+      },
+      {
+        "name": "get_livestock_data",
+        "description": "Get livestock inventory and production data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "animal_type": {
+              "type": "string",
+              "description": "Animal type: CATTLE, HOGS, CHICKENS, SHEEP, etc."
+            },
+            "state": {
+              "type": "string",
+              "description": "State name in uppercase"
+            },
+            "year": {
+              "type": "string",
+              "description": "Year of data"
+            }
+          },
+          "required": ["animal_type"]
+        }
+      },
+      {
+        "name": "search_organic_data",
+        "description": "Get organic agriculture production data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "commodity": {
+              "type": "string",
+              "description": "Commodity name"
+            },
+            "state": {
+              "type": "string",
+              "description": "State name in uppercase"
+            },
+            "year": {
+              "type": "string",
+              "description": "Year of data"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_food_prices",
+        "description": "Get agricultural commodity price data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "commodity": {
+              "type": "string",
+              "description": "Commodity name (e.g., WHEAT, CORN)"
+            },
+            "year": {
+              "type": "string",
+              "description": "Year of data"
+            }
+          },
+          "required": ["commodity"]
+        }
+      },
+      {
+        "name": "search_nutrition_programs",
+        "description": "Search USDA nutrition assistance programs",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "program_type": {
+              "type": "string",
+              "description": "Program type: SNAP, WIC, School Lunch"
+            },
+            "state": {
+              "type": "string",
+              "description": "State abbreviation"
+            },
+            "year": {
+              "type": "string",
+              "description": "Year of data"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_dietary_guidelines",
+        "description": "Get USDA dietary guidelines and recommendations",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "description": "Food category: vegetables, fruits, grains, protein, dairy"
+            },
+            "age_group": {
+              "type": "string",
+              "description": "Age group for recommendations"
+            }
+          }
+        }
+      },
+      {
+        "name": "search_food_recalls",
+        "description": "Search USDA food safety recalls",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "keyword": {
+              "type": "string",
+              "description": "Keyword to search in recalls"
+            },
+            "start_date": {
+              "type": "string",
+              "description": "Start date (YYYY-MM-DD)"
+            },
+            "end_date": {
+              "type": "string",
+              "description": "End date (YYYY-MM-DD)"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_commodity_prices",
+        "description": "Get detailed commodity price information",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "commodity": {
+              "type": "string",
+              "description": "Commodity name"
+            },
+            "market_type": {
+              "type": "string",
+              "description": "Market type: CASH, FUTURES",
+              "default": "CASH"
+            },
+            "year": {
+              "type": "string",
+              "description": "Year of data"
+            }
+          },
+          "required": ["commodity"]
+        }
+      },
+      {
+        "name": "search_agricultural_census",
+        "description": "Search agricultural census data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "description": "State name in uppercase"
+            },
+            "sector": {
+              "type": "string",
+              "description": "Sector: CROPS, ANIMALS, ECONOMICS"
+            },
+            "year": {
+              "type": "string",
+              "description": "Census year (e.g., 2017, 2022)",
+              "default": "2017"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_soil_survey_data",
+        "description": "Get soil survey data for agricultural planning",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "description": "State name"
+            },
+            "county": {
+              "type": "string",
+              "description": "County name"
+            }
+          }
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}

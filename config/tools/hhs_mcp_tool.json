@@ -1,0 +1,330 @@
+{
+  "name": "hhs_tool",
+  "module": "tools.hhs_mcp_tool.HHSMCPTool",
+  "max_hits": 200,
+  "max_hit_interval": 60,
+  "api_key": "",
+  "base_url": "https://healthdata.gov/api/3",
+  "tool_description": {
+    "tools": [
+      {
+        "name": "search_datasets",
+        "description": "Search HHS open data datasets",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Search query"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Number of results to return",
+              "default": 20
+            },
+            "offset": {
+              "type": "integer",
+              "description": "Starting position for results",
+              "default": 0
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "get_dataset",
+        "description": "Get specific dataset by ID",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "dataset_id": {
+              "type": "string",
+              "description": "Dataset ID"
+            }
+          },
+          "required": ["dataset_id"]
+        }
+      },
+      {
+        "name": "search_hospitals",
+        "description": "Search for hospitals by location and type",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "description": "State abbreviation (e.g., CA, NY)"
+            },
+            "city": {
+              "type": "string",
+              "description": "City name"
+            },
+            "hospital_type": {
+              "type": "string",
+              "description": "Type of hospital (e.g., Acute Care, Critical Access)"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of results",
+              "default": 50
+            }
+          }
+        }
+      },
+      {
+        "name": "get_hospital_quality",
+        "description": "Get hospital quality ratings and measures",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "hospital_id": {
+              "type": "string",
+              "description": "Hospital provider ID"
+            },
+            "measure_type": {
+              "type": "string",
+              "description": "Type of measure: mortality, safety, readmission, patient_experience, or all",
+              "default": "all"
+            }
+          },
+          "required": ["hospital_id"]
+        }
+      },
+      {
+        "name": "get_medicare_data",
+        "description": "Get Medicare spending and utilization data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "description": "State abbreviation"
+            },
+            "year": {
+              "type": "string",
+              "description": "Year of data"
+            },
+            "category": {
+              "type": "string",
+              "description": "Category: inpatient, outpatient, or prescription"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_public_health_stats",
+        "description": "Get public health statistics",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "indicator": {
+              "type": "string",
+              "description": "Health indicator name"
+            },
+            "state": {
+              "type": "string",
+              "description": "State abbreviation"
+            },
+            "year_start": {
+              "type": "string",
+              "description": "Start year for data range"
+            },
+            "year_end": {
+              "type": "string",
+              "description": "End year for data range"
+            }
+          }
+        }
+      },
+      {
+        "name": "search_health_indicators",
+        "description": "Search health indicators by category",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "description": "Category: chronic_disease, maternal_health, mental_health, etc."
+            },
+            "location": {
+              "type": "string",
+              "description": "Location filter"
+            }
+          },
+          "required": ["category"]
+        }
+      },
+      {
+        "name": "get_disease_surveillance",
+        "description": "Get disease surveillance data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "disease": {
+              "type": "string",
+              "description": "Disease name (e.g., influenza, COVID-19)"
+            },
+            "state": {
+              "type": "string",
+              "description": "State abbreviation"
+            },
+            "start_date": {
+              "type": "string",
+              "description": "Start date (YYYY-MM-DD)"
+            },
+            "end_date": {
+              "type": "string",
+              "description": "End date (YYYY-MM-DD)"
+            }
+          },
+          "required": ["disease"]
+        }
+      },
+      {
+        "name": "get_healthcare_spending",
+        "description": "Get healthcare spending data by state and type",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "description": "State abbreviation"
+            },
+            "year": {
+              "type": "string",
+              "description": "Year of data"
+            },
+            "spending_type": {
+              "type": "string",
+              "description": "Type: hospital, physician, prescription, etc."
+            }
+          }
+        }
+      },
+      {
+        "name": "search_nursing_homes",
+        "description": "Search nursing homes and quality ratings",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "description": "State abbreviation"
+            },
+            "city": {
+              "type": "string",
+              "description": "City name"
+            },
+            "min_rating": {
+              "type": "integer",
+              "description": "Minimum star rating (1-5)",
+              "default": 1
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of results",
+              "default": 50
+            }
+          }
+        }
+      },
+      {
+        "name": "get_vaccination_data",
+        "description": "Get vaccination coverage data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "vaccine_type": {
+              "type": "string",
+              "description": "Vaccine type (e.g., COVID-19, Influenza, MMR)"
+            },
+            "state": {
+              "type": "string",
+              "description": "State abbreviation"
+            },
+            "age_group": {
+              "type": "string",
+              "description": "Age group (e.g., 0-17, 18-64, 65+)"
+            },
+            "year": {
+              "type": "string",
+              "description": "Year of data"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_opioid_data",
+        "description": "Get opioid prescription and overdose data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "description": "State abbreviation"
+            },
+            "year": {
+              "type": "string",
+              "description": "Year of data"
+            },
+            "data_type": {
+              "type": "string",
+              "description": "Type: prescriptions, overdoses, treatment, or all",
+              "default": "all"
+            }
+          }
+        }
+      },
+      {
+        "name": "search_community_health",
+        "description": "Search community health centers",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "description": "State abbreviation"
+            },
+            "county": {
+              "type": "string",
+              "description": "County name"
+            },
+            "service_type": {
+              "type": "string",
+              "description": "Type of service offered"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of results",
+              "default": 50
+            }
+          }
+        }
+      },
+      {
+        "name": "get_health_disparities",
+        "description": "Get health disparity data by demographics",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "indicator": {
+              "type": "string",
+              "description": "Health indicator to analyze"
+            },
+            "demographic": {
+              "type": "string",
+              "description": "Demographic category: race, income, education"
+            },
+            "state": {
+              "type": "string",
+              "description": "State abbreviation"
+            }
+          },
+          "required": ["indicator"]
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}
