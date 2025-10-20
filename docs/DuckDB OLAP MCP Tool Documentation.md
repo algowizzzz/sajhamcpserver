@@ -1,24 +1,323 @@
 # DuckDB OLAP MCP Tool Documentation
 
 ## Overview
-The DuckDB OLAP MCP Tool provides analytical database capabilities with OLAP operations, data aggregation, and advanced SQL analytics using DuckDB.
+The DuckDB OLAP MCP Tool provides analytical database capabilities with OLAP operations, data aggregation, and advanced SQL analytics using DuckDB. **Enhanced with automatic file discovery, intelligent table management, auto-refresh capabilities, and parameterized queries with automatic IN clause generation.**
+
+## Key Features
+
+### Automatic File Discovery
+- **Auto-detects CSV and Parquet files** in the data folder upon instantiation
+- **Recursive scanning** - discovers files in subdirectories
+- **Smart table naming** - converts filenames to lowercase table names (e.g., `Sales_Data.csv` → `sales_data`)
+- **Schema inference** - automatically detects column types and structure
+
+### Intelligent Table Management
+- **Automatic table creation** from discovered files
+- **Change detection** - monitors file modifications (size and timestamp)
+- **Auto-refresh** - periodically checks for new, modified, or deleted files
+- **Synchronized operations** - thread-safe table updates
+
+### Dynamic Refresh System
+- **Configurable refresh interval** (default: 10 minutes)
+- **Background refresh thread** for continuous monitoring
+- **Manual refresh trigger** available via API
+- **Change tracking** - reports new, updated, and deleted files
+
+### Parameterized Queries (NEW!)
+- **Multiple placeholder styles** - `:name`, `$name`, `{name}`
+- **Automatic IN clause generation** - list arguments become IN clauses
+- **SQL injection protection** - proper escaping and quoting
+- **Type-aware formatting** - handles strings, numbers, dates, booleans, nulls
 
 ## Configuration
-- **Environment Variables:**
-  - `DUCKDB_DATA_FOLDER` (default: 'data'): Data folder path
-- Automatic sample data generation
-- In-memory and persistent database options
-- CSV file integration
+
+### Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `DUCKDB_DATA_FOLDER` | Path to data folder containing CSV/Parquet files | `data` |
+| `DUCKDB_REFRESH_INTERVAL` | Auto-refresh interval in minutes | `10` |
+| `DUCKDB_AUTO_REFRESH` | Enable automatic table refresh (true/false) | `true` |
+
+### Example Configuration
+```bash
+export DUCKDB_DATA_FOLDER=/path/to/data
+export DUCKDB_REFRESH_INTERVAL=5
+export DUCKDB_AUTO_REFRESH=true
+```
+
+## Parameterized Queries
+
+### Overview
+Parameterized queries allow you to write SQL with placeholders that are safely replaced with values at execution time. This feature provides:
+- **Security**: Prevents SQL injection attacks
+- **Convenience**: Automatic IN clause generation for lists
+- **Flexibility**: Multiple placeholder syntaxes supported
+- **Type safety**: Proper handling of different data types
+
+### Placeholder Styles
+
+The tool supports three placeholder styles that can be used interchangeably:
+
+| Style | Example | Description |
+|-------|---------|-------------|
+| Colon | `:region` | Most common in SQL databases |
+| Dollar | `$region` | PostgreSQL-style |
+| Braces | `{region}` | Python format-style |
+
+### Automatic IN Clause Generation
+
+**The killer feature**: When you pass a list or tuple as a parameter value, it automatically generates an IN clause!
+
+**Before (manual):**
+```python
+regions = ['North', 'South', 'East']
+query = f"SELECT * FROM sales WHERE region IN ('{regions[0]}', '{regions[1]}', '{regions[2]}')"
+```
+
+**After (automatic):**
+```python
+query = "SELECT * FROM sales WHERE region IN :regions"
+arguments = {"regions": ['North', 'South', 'East']}
+# Automatically becomes: WHERE region IN ('North', 'South', 'East')
+```
+
+### Type Handling
+
+The parameterization engine properly formats different data types:
+
+| Python Type | SQL Output | Example |
+|-------------|------------|---------|
+| `None` | `NULL` | `None` → `NULL` |
+| `bool` | `TRUE/FALSE` | `True` → `TRUE` |
+| `int/float` | Raw number | `42` → `42` |
+| `str` | Quoted, escaped | `"O'Brien"` → `'O''Brien'` |
+| `datetime/date` | ISO format | `date(2024,1,15)` → `'2024-01-15'` |
+| `list/tuple` | IN clause | `[1,2,3]` → `(1, 2, 3)` |
+
+### Usage Examples
+
+#### Example 1: Simple Parameter Replacement
+```python
+# Using colon style
+result = duckdb_tool.handle_tool_call('execute_parameterized_query', {
+    'query': 'SELECT * FROM sales_data WHERE region = :region',
+    'arguments': {'region': 'North'}
+})
+
+# Using dollar style
+result = duckdb_tool.handle_tool_call('execute_parameterized_query', {
+    'query': 'SELECT * FROM sales_data WHERE region = $region',
+    'arguments': {'region': 'North'}
+})
+
+# Using brace style
+result = duckdb_tool.handle_tool_call('execute_parameterized_query', {
+    'query': 'SELECT * FROM sales_data WHERE region = {region}',
+    'arguments': {'region': 'North'}
+})
+```
+
+#### Example 2: List Arguments (IN Clause)
+```python
+# Automatically generates IN clause
+result = duckdb_tool.handle_tool_call('execute_parameterized_query', {
+    'query': '''
+        SELECT product, SUM(total_amount) as revenue
+        FROM sales_data
+        WHERE region IN :regions
+        AND product IN :products
+        GROUP BY product
+    ''',
+    'arguments': {
+        'regions': ['North', 'South', 'East'],
+        'products': ['Laptop', 'Phone', 'Tablet']
+    }
+})
+
+# Processed query becomes:
+# SELECT product, SUM(total_amount) as revenue
+# FROM sales_data
+# WHERE region IN ('North', 'South', 'East')
+# AND product IN ('Laptop', 'Phone', 'Tablet')
+# GROUP BY product
+```
+
+#### Example 3: Mixed Parameter Types
+```python
+result = duckdb_tool.handle_tool_call('execute_parameterized_query', {
+    'query': '''
+        SELECT *
+        FROM sales_data
+        WHERE date >= :start_date
+        AND date <= :end_date
+        AND region IN :regions
+        AND quantity > :min_quantity
+        AND status = :status
+    ''',
+    'arguments': {
+        'start_date': date(2024, 1, 1),
+        'end_date': date(2024, 12, 31),
+        'regions': ['North', 'South'],
+        'min_quantity': 5,
+        'status': 'Active'
+    }
+})
+```
+
+#### Example 4: Numeric Lists
+```python
+# Works with numeric lists too
+result = duckdb_tool.handle_tool_call('execute_parameterized_query', {
+    'query': '''
+        SELECT *
+        FROM sales_data
+        WHERE quantity IN :quantities
+        AND unit_price > :min_price
+    ''',
+    'arguments': {
+        'quantities': [1, 5, 10],
+        'min_price': 100.00
+    }
+})
+```
+
+#### Example 5: Empty Lists
+```python
+# Empty lists are handled safely
+result = duckdb_tool.handle_tool_call('execute_parameterized_query', {
+    'query': 'SELECT * FROM sales_data WHERE region IN :regions',
+    'arguments': {'regions': []}
+})
+# Becomes: WHERE region IN (NULL) - safe and returns no results
+```
+
+#### Example 6: Complex Analytics Query
+```python
+result = duckdb_tool.handle_tool_call('execute_parameterized_query', {
+    'query': '''
+        WITH filtered_sales AS (
+            SELECT *
+            FROM sales_data
+            WHERE region IN :regions
+            AND date BETWEEN :start_date AND :end_date
+        )
+        SELECT 
+            product,
+            COUNT(*) as order_count,
+            SUM(total_amount) as total_revenue,
+            AVG(total_amount) as avg_order_value
+        FROM filtered_sales
+        WHERE product IN :products
+        GROUP BY product
+        HAVING COUNT(*) > :min_orders
+        ORDER BY total_revenue DESC
+    ''',
+    'arguments': {
+        'regions': ['North', 'East', 'West'],
+        'start_date': '2024-01-01',
+        'end_date': '2024-12-31',
+        'products': ['Laptop', 'Phone', 'Monitor'],
+        'min_orders': 10
+    }
+})
+```
+
+### Response Format
+
+Parameterized queries return enhanced results:
+
+```json
+{
+  "original_query": "SELECT * FROM sales WHERE region IN :regions",
+  "processed_query": "SELECT * FROM sales WHERE region IN ('North', 'South')",
+  "results": [...],
+  "row_count": 450,
+  "columns": ["order_id", "date", "product", ...],
+  "parameter_metadata": {
+    "placeholders_replaced": 1,
+    "in_clauses_generated": 1,
+    "original_params": {"regions": ["North", "South"]}
+  }
+}
+```
+
+### Security Benefits
+
+The parameterization system provides protection against SQL injection:
+
+**Unsafe (DON'T DO THIS):**
+```python
+user_input = "North'; DROP TABLE sales_data; --"
+query = f"SELECT * FROM sales WHERE region = '{user_input}'"
+# DANGEROUS! Could delete your table
+```
+
+**Safe (DO THIS):**
+```python
+user_input = "North'; DROP TABLE sales_data; --"
+result = duckdb_tool.handle_tool_call('execute_parameterized_query', {
+    'query': 'SELECT * FROM sales WHERE region = :region',
+    'arguments': {'region': user_input}
+})
+# SAFE! Treats input as literal string: 'North''; DROP TABLE sales_data; --'
+```
+
+### Backward Compatibility
+
+The `execute_query` method now accepts an optional `arguments` parameter:
+
+```python
+# Old way (still works)
+result = duckdb_tool.handle_tool_call('execute_query', {
+    'query': "SELECT * FROM sales WHERE region = 'North'"
+})
+
+# New way with arguments
+result = duckdb_tool.handle_tool_call('execute_query', {
+    'query': 'SELECT * FROM sales WHERE region = :region',
+    'arguments': {'region': 'North'}
+})
+```
+
+## How It Works
+
+### Initialization Process
+1. **Scan data folder** for `.csv` and `.parquet` files
+2. **Generate table names** from filenames (lowercase, sanitized)
+3. **Create tables** with auto-detected schemas
+4. **Track file metadata** (modification time, size)
+5. **Create default views** (sales_summary, customer_sales if applicable)
+6. **Start background refresh** (if auto-refresh enabled)
+
+### Refresh Cycle
+Every N minutes (configurable), the system:
+1. **Scans for new files** → Creates new tables
+2. **Checks for modifications** → Refreshes changed tables
+3. **Detects deletions** → Removes corresponding tables
+4. **Updates metadata** → Records changes and timestamps
+
+### Table Naming Convention
+Files are converted to table names using these rules:
+- Convert to lowercase
+- Replace spaces and hyphens with underscores
+- Remove special characters
+- Keep only alphanumeric and underscores
+
+**Examples:**
+- `Sales Data.csv` → `sales_data`
+- `Customer-Info.parquet` → `customer_info`
+- `Q4_Report_2024.csv` → `q4_report_2024`
 
 ## Sample Data
 
-### Sales Data Table
+### Sales Data Table (`sales_data.csv`)
 - 1000 sample records
 - Products: Laptop, Phone, Tablet, Monitor, Keyboard
 - Regions: North, South, East, West, Central
 - Fields: order_id, date, product, region, quantity, unit_price, customer_id, discount, total_amount
 
-### Customer Data Table
+### Customer Data Table (`customer_data.csv`)
 - 200 sample customers
 - Countries: USA, Canada, UK, Germany, France, Japan
 - Segments: Enterprise, SMB, Consumer, Government
@@ -30,32 +329,89 @@ The DuckDB OLAP MCP Tool provides analytical database capabilities with OLAP ope
 
 ## Available Methods
 
-### 1. execute_query
-Execute a DuckDB SQL query.
+### New/Enhanced Methods
+
+#### 1. execute_query (ENHANCED)
+Execute a DuckDB SQL query with optional parameterization.
 
 **Parameters:**
 - `query`: SQL query string (required)
+- `arguments`: Optional dictionary of parameter values
 
 **Returns:**
 - Query results (limited to 100 rows)
 - Row count
 - Column names
+- Parameter metadata (if arguments provided)
 
-**Supports:**
-- All DuckDB SQL syntax
-- Window functions
-- CTEs
-- Advanced analytics
+**Example:**
+```python
+result = duckdb_tool.handle_tool_call('execute_query', {
+    'query': 'SELECT * FROM sales_data WHERE region IN :regions',
+    'arguments': {'regions': ['North', 'South']}
+})
+```
 
-### 2. list_tables
-List all tables and views in DuckDB.
+#### 2. execute_parameterized_query (NEW)
+Execute a parameterized query with automatic IN clause generation.
+
+**Parameters:**
+- `query`: SQL query with placeholders (required)
+- `arguments`: Dictionary of parameter values (required)
 
 **Returns:**
-- Table names
-- Table types (TABLE or VIEW)
-- Row counts
+- Original and processed queries
+- Results
+- Parameter metadata
 
-### 3. get_table_schema
+**Example:**
+```python
+result = duckdb_tool.handle_tool_call('execute_parameterized_query', {
+    'query': '''
+        SELECT product, SUM(total_amount) as revenue
+        FROM sales_data
+        WHERE region IN :regions AND date >= :start_date
+        GROUP BY product
+    ''',
+    'arguments': {
+        'regions': ['North', 'East'],
+        'start_date': '2024-01-01'
+    }
+})
+```
+
+#### 3. get_loaded_files
+Get information about currently loaded files and refresh status.
+
+**Parameters:** None
+
+**Returns:**
+- List of loaded files with metadata
+- Table names and row counts
+- Refresh interval and auto-refresh status
+- File sizes and load timestamps
+
+#### 4. refresh_tables
+Manually trigger table refresh to discover new, modified, or deleted files.
+
+**Parameters:** None
+
+**Returns:**
+- Changes detected (new, updated, deleted files)
+- Total tables count
+- Success confirmation
+
+### Core Methods
+
+#### 5. list_tables
+List all tables and views in DuckDB **with source file information**.
+
+**Returns:**
+- Table names and types
+- Row counts
+- **Source file paths** (for auto-discovered tables)
+
+#### 6. get_table_schema
 Get schema information for a table.
 
 **Parameters:**
@@ -65,259 +421,209 @@ Get schema information for a table.
 - Column details (name, type, nullable, default)
 - Sample data (5 rows)
 
-### 4. aggregate_data
+#### 7. aggregate_data
 Perform aggregation operations.
 
 **Parameters:**
-- `table` (default: 'sales'): Table to aggregate
+- `table` (default: 'sales_data'): Table to aggregate
 - `group_by`: List of grouping columns (required)
 - `aggregations`: Dictionary of column: function pairs
 - `filters` (optional): Filter conditions
 
-**Aggregation Functions:**
-- SUM, AVG, COUNT, MIN, MAX
-- STDDEV, VARIANCE
-- Any DuckDB aggregate function
-
-**Returns:**
-- Aggregated results
-- Applied query
-
-### 5. pivot_data
+#### 8. pivot_data
 Create pivot table.
 
-**Parameters:**
-- `table` (default: 'sales'): Source table
-- `rows`: Row dimension columns (required)
-- `columns`: Column dimension columns (required)
-- `values`: Value column (required)
-- `agg_func` (default: 'SUM'): Aggregation function
-
-**Returns:**
-- Pivoted data
-- Result dimensions
-
-### 6. time_series_analysis
+#### 9. time_series_analysis
 Perform time series analysis.
 
-**Parameters:**
-- `table` (default: 'sales'): Source table
-- `date_column` (default: 'date'): Date column
-- `value_column` (default: 'total_amount'): Value to analyze
-- `granularity` (default: 'month'): 'day', 'week', 'month', 'quarter', 'year'
-
-**Returns:**
-- Time series aggregations
-- Period statistics (count, total, average, min, max)
-
-### 7. top_n_analysis
+#### 10. top_n_analysis
 Get top N records by a metric.
 
-**Parameters:**
-- `table` (default: 'sales'): Source table
-- `group_by` (default: 'product'): Grouping column
-- `metric` (default: 'total_amount'): Metric column
-- `agg_func` (default: 'SUM'): Aggregation function
-- `n` (default: 10): Number of results
-- `order` (default: 'DESC'): Sort order
-
-**Returns:**
-- Top N results
-- Metric values
-
-### 8. window_functions
+#### 11. window_functions
 Apply window functions for advanced analytics.
 
-**Parameters:**
-- `table` (default: 'sales'): Source table
-- `partition_by` (optional): Partition column
-- `order_by` (default: 'date'): Order column
-- `window_type` (default: 'row_number'): Window function type
-
-**Window Types:**
-- row_number
-- rank
-- dense_rank
-- lag
-- lead
-- cumsum
-
-**Returns:**
-- Data with window function results
-
-### 9. join_tables
+#### 12. join_tables
 Join multiple tables.
 
-**Parameters:**
-- `left_table` (default: 'sales'): Left table
-- `right_table` (default: 'customers'): Right table
-- `join_type` (default: 'INNER'): 'INNER', 'LEFT', 'RIGHT', 'FULL'
-- `join_key` (default: 'customer_id'): Join column
+#### 13. load_csv
+Load a new CSV/Parquet file into DuckDB.
 
-**Returns:**
-- Joined data (limited to 100 rows)
-
-### 10. load_csv
-Load a new CSV file into DuckDB.
-
-**Parameters:**
-- `file_path`: CSV file path (required)
-- `table_name`: Target table name (required)
-
-**Returns:**
-- Table creation confirmation
-- Row count
-
-### 11. export_results
+#### 14. export_results
 Export query results to CSV.
 
-**Parameters:**
-- `query`: SQL query (required)
-- `output_file` (default: 'export.csv'): Output filename
-
-**Returns:**
-- Export confirmation
-- File path
-
-### 12. create_materialized_view
+#### 15. create_materialized_view
 Create a materialized view for performance.
 
-**Parameters:**
-- `view_name`: View name (required)
-- `query`: SQL query for view (required)
-
-**Returns:**
-- View creation confirmation
-- Row count
-
-### 13. analyze_performance
+#### 16. analyze_performance
 Analyze query performance.
 
-**Parameters:**
-- `query`: SQL query to analyze (required)
+## Usage Examples
 
-**Returns:**
-- Execution plan
-- Performance metrics
+### Parameterized Query Workflow
 
-## SQL Examples
-
-### Aggregation Query
-```sql
-SELECT 
-    product,
-    region,
-    SUM(total_amount) as revenue,
-    COUNT(*) as orders
-FROM sales
-WHERE date >= '2024-01-01'
-GROUP BY product, region
-ORDER BY revenue DESC
-```
-
-### Window Function Query
-```sql
-SELECT 
-    *,
-    ROW_NUMBER() OVER (PARTITION BY region ORDER BY total_amount DESC) as rank
-FROM sales
-```
-
-### Time Series Query
-```sql
-SELECT 
-    DATE_TRUNC('month', date) as month,
-    SUM(total_amount) as monthly_revenue,
-    COUNT(DISTINCT customer_id) as unique_customers
-FROM sales
-GROUP BY 1
-ORDER BY 1
-```
-
-## Example Usage
 ```python
-# Execute custom query
-result = duckdb_tool.handle_tool_call('execute_query', {
-    'query': 'SELECT * FROM sales LIMIT 10'
+# 1. Basic parameterized query
+result = duckdb_tool.handle_tool_call('execute_parameterized_query', {
+    'query': 'SELECT * FROM sales_data WHERE product = :product',
+    'arguments': {'product': 'Laptop'}
 })
 
-# Aggregate data
-result = duckdb_tool.handle_tool_call('aggregate_data', {
-    'table': 'sales',
-    'group_by': ['product', 'region'],
-    'aggregations': {
-        'total_amount': 'SUM',
-        'quantity': 'AVG'
+# 2. Multi-region analysis with IN clause
+result = duckdb_tool.handle_tool_call('execute_parameterized_query', {
+    'query': '''
+        SELECT region, COUNT(*) as orders, SUM(total_amount) as revenue
+        FROM sales_data
+        WHERE region IN :regions
+        GROUP BY region
+    ''',
+    'arguments': {'regions': ['North', 'South', 'East']}
+})
+
+# 3. Date range with multiple filters
+result = duckdb_tool.handle_tool_call('execute_parameterized_query', {
+    'query': '''
+        SELECT *
+        FROM sales_data
+        WHERE date BETWEEN :start_date AND :end_date
+        AND product IN :products
+        AND quantity >= :min_qty
+    ''',
+    'arguments': {
+        'start_date': '2024-01-01',
+        'end_date': '2024-12-31',
+        'products': ['Laptop', 'Phone'],
+        'min_qty': 5
     }
 })
+```
 
-# Create pivot table
-result = duckdb_tool.handle_tool_call('pivot_data', {
-    'table': 'sales',
-    'rows': ['product'],
-    'columns': ['region'],
-    'values': 'total_amount',
-    'agg_func': 'SUM'
-})
+### Auto-Discovery Workflow
 
-# Time series analysis
-result = duckdb_tool.handle_tool_call('time_series_analysis', {
-    'table': 'sales',
-    'date_column': 'date',
-    'value_column': 'total_amount',
-    'granularity': 'month'
-})
+```python
+# 1. Drop CSV/Parquet files in data folder
+# /data/sales_2024.csv
+# /data/products.parquet
+# /data/regions.csv
 
-# Top N analysis
-result = duckdb_tool.handle_tool_call('top_n_analysis', {
-    'table': 'sales',
-    'group_by': 'customer_id',
-    'metric': 'total_amount',
-    'n': 10
-})
+# 2. Tool automatically discovers and loads on initialization
+# Tables created: sales_2024, products, regions
 
-# Window functions
-result = duckdb_tool.handle_tool_call('window_functions', {
-    'table': 'sales',
-    'partition_by': 'region',
-    'order_by': 'total_amount',
-    'window_type': 'rank'
-})
+# 3. Check loaded files
+result = duckdb_tool.handle_tool_call('get_loaded_files', {})
 
-# Load CSV file
-result = duckdb_tool.handle_tool_call('load_csv', {
-    'file_path': 'new_data.csv',
-    'table_name': 'new_table'
-})
-
-# Export results
-result = duckdb_tool.handle_tool_call('export_results', {
-    'query': 'SELECT * FROM sales WHERE region = "North"',
-    'output_file': 'north_sales.csv'
+# 4. Query with parameters
+result = duckdb_tool.handle_tool_call('execute_parameterized_query', {
+    'query': 'SELECT * FROM sales_2024 WHERE region IN :regions',
+    'arguments': {'regions': ['North', 'South']}
 })
 ```
 
-## Advanced Features
+### Dynamic Dashboard Example
 
-### Performance Optimization
-- Automatic query optimization
-- Columnar storage
-- Vectorized execution
-- Parallel processing
+```python
+# Build a dynamic sales dashboard
+def get_sales_dashboard(regions, products, date_range):
+    return duckdb_tool.handle_tool_call('execute_parameterized_query', {
+        'query': '''
+            SELECT 
+                region,
+                product,
+                DATE_TRUNC('month', date) as month,
+                SUM(total_amount) as revenue,
+                COUNT(*) as orders,
+                AVG(total_amount) as avg_order
+            FROM sales_data
+            WHERE region IN :regions
+            AND product IN :products
+            AND date BETWEEN :start_date AND :end_date
+            GROUP BY region, product, month
+            ORDER BY month, region, product
+        ''',
+        'arguments': {
+            'regions': regions,
+            'products': products,
+            'start_date': date_range[0],
+            'end_date': date_range[1]
+        }
+    })
 
-### Supported Data Types
-- Numeric: INTEGER, BIGINT, DECIMAL, DOUBLE
-- String: VARCHAR, TEXT
-- Date/Time: DATE, TIME, TIMESTAMP
-- Boolean: BOOLEAN
-- Arrays and Structs
+# Use it
+dashboard = get_sales_dashboard(
+    regions=['North', 'East'],
+    products=['Laptop', 'Phone', 'Tablet'],
+    date_range=('2024-01-01', '2024-06-30')
+)
+```
 
-### OLAP Capabilities
-- Roll-up and drill-down
-- Slice and dice operations
-- Complex aggregations
-- Window analytics
-- Pivot operations
+## Best Practices
+
+### Parameterized Queries
+1. **Always use parameters for user input** - prevents SQL injection
+2. **Use lists for multi-value filters** - automatic IN clause generation
+3. **Choose consistent placeholder style** - stick with one style per project
+4. **Handle empty lists** - the tool safely converts them to `(NULL)`
+5. **Combine with CTEs** - create complex, safe queries
+
+### File Management
+1. **File Naming**: Use descriptive, lowercase names with underscores
+2. **Refresh Interval**: Set based on data update frequency (default 10 min is good for most cases)
+3. **File Size**: DuckDB handles large files efficiently, but consider partitioning very large datasets
+4. **Schema Stability**: Avoid changing column names/types in existing files
+5. **Manual Refresh**: Use when you need immediate updates before auto-refresh cycle
+
+## Performance Considerations
+
+### Parameterized Queries
+- **Zero overhead**: Parameter substitution happens before query execution
+- **Query plan caching**: DuckDB can cache execution plans for similar queries
+- **Large lists**: IN clauses with 1000+ items may impact performance; consider alternatives
+
+### Auto-Discovery
+- **Lazy loading**: Files only loaded into memory when queried
+- **Incremental updates**: Only changed files are refreshed
+- **Parallel processing**: DuckDB uses multiple cores automatically
+
+## Troubleshooting
+
+### Parameterized Query Issues
+
+**Problem**: Placeholder not being replaced
+```python
+# Check: Make sure placeholder name matches argument key
+query = "SELECT * FROM sales WHERE region = :region_name"
+arguments = {"region": "North"}  # ❌ Wrong key!
+arguments = {"region_name": "North"}  # ✅ Correct
+```
+
+**Problem**: IN clause not working with single value
+```python
+# Solution: Always use list for IN clause
+arguments = {"regions": "North"}  # ❌ Single string
+arguments = {"regions": ["North"]}  # ✅ List with one item
+```
+
+**Problem**: Special characters in string values
+```python
+# Solution: The tool handles escaping automatically
+arguments = {"name": "O'Brien"}  # ✅ Automatically becomes 'O''Brien'
+```
+
+## Migration Guide
+
+### From Previous Version
+The enhanced version is **fully backward compatible**. Existing code continues to work without changes.
+
+**What's New:**
+- Parameterized queries with `:name`, `$name`, `{name}` placeholders
+- Automatic IN clause generation for list arguments
+- Enhanced `execute_query` accepts optional `arguments` parameter
+- New `execute_parameterized_query` method for explicit parameterization
+- All previous features still work unchanged
+
+**No Breaking Changes:**
+- All existing methods work as before
+- Simple queries still work without parameters
+- File discovery and refresh unchanged
 
 ## Copyright Notice
 

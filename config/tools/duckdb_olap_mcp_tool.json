@@ -3,25 +3,63 @@
   "module": "tools.duckdb_olap_mcp_tool.DuckDBOlapMCPTool",
   "max_hits": 1000,
   "max_hit_interval": 10,
+  "environment": {
+    "DUCKDB_DATA_FOLDER": {
+      "description": "Path to data folder containing CSV/Parquet files",
+      "default": "data"
+    },
+    "DUCKDB_REFRESH_INTERVAL": {
+      "description": "Auto-refresh interval in minutes",
+      "default": "10"
+    },
+    "DUCKDB_AUTO_REFRESH": {
+      "description": "Enable automatic table refresh (true/false)",
+      "default": "true"
+    }
+  },
   "tool_description": {
     "tools": [
       {
         "name": "execute_query",
-        "description": "Execute a DuckDB SQL query",
+        "description": "Execute a DuckDB SQL query with optional parameterization. Supports placeholders (:name, $name, {name}) and automatic IN clause generation for list arguments.",
         "input_schema": {
           "type": "object",
           "properties": {
             "query": {
               "type": "string",
-              "description": "SQL query to execute"
+              "description": "SQL query to execute. Use :param, $param, or {param} for placeholders."
+            },
+            "arguments": {
+              "type": "object",
+              "description": "Optional dictionary of parameter values. List values automatically generate IN clauses.",
+              "additionalProperties": true
             }
           },
           "required": ["query"]
         }
       },
       {
+        "name": "execute_parameterized_query",
+        "description": "Execute a parameterized DuckDB SQL query with automatic IN clause generation. Supports multiple placeholder styles: :name, $name, {name}. List arguments are automatically converted to IN clauses.",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "SQL query with placeholders (e.g., 'SELECT * FROM table WHERE region IN :regions')"
+            },
+            "arguments": {
+              "type": "object",
+              "description": "Dictionary of parameter values. Lists automatically become IN clauses.",
+              "additionalProperties": true
+            }
+          },
+          "required": ["query", "arguments"]
+        }
+      },
+      {
         "name": "list_tables",
-        "description": "List all tables and views in DuckDB",
+        "description": "List all tables and views in DuckDB with source file information",
         "input_schema": {
           "type": "object",
           "properties": {}
@@ -42,6 +80,22 @@
         }
       },
       {
+        "name": "get_loaded_files",
+        "description": "Get information about currently loaded files and auto-refresh status",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "refresh_tables",
+        "description": "Manually trigger table refresh to discover new, modified, or deleted files",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
         "name": "aggregate_data",
         "description": "Perform aggregation operations",
         "input_schema": {
@@ -50,7 +104,7 @@
             "table": {
               "type": "string",
               "description": "Table name",
-              "default": "sales"
+              "default": "sales_data"
             },
             "group_by": {
               "type": "array",
@@ -80,7 +134,7 @@
             "table": {
               "type": "string",
               "description": "Table name",
-              "default": "sales"
+              "default": "sales_data"
             },
             "rows": {
               "type": "array",
@@ -119,7 +173,7 @@
             "table": {
               "type": "string",
               "description": "Table name",
-              "default": "sales"
+              "default": "sales_data"
             },
             "date_column": {
               "type": "string",
@@ -150,7 +204,7 @@
             "table": {
               "type": "string",
               "description": "Table name",
-              "default": "sales"
+              "default": "sales_data"
             },
             "group_by": {
               "type": "string",
@@ -192,7 +246,7 @@
             "table": {
               "type": "string",
               "description": "Table name",
-              "default": "sales"
+              "default": "sales_data"
             },
             "partition_by": {
               "type": "string",
@@ -222,12 +276,12 @@
             "left_table": {
               "type": "string",
               "description": "Left table name",
-              "default": "sales"
+              "default": "sales_data"
             },
             "right_table": {
               "type": "string",
               "description": "Right table name",
-              "default": "customers"
+              "default": "customer_data"
             },
             "join_type": {
               "type": "string",
@@ -246,20 +300,20 @@
       },
       {
         "name": "load_csv",
-        "description": "Load a CSV file into DuckDB",
+        "description": "Load a CSV or Parquet file into DuckDB (table name auto-generated from filename if not provided)",
         "input_schema": {
           "type": "object",
           "properties": {
             "file_path": {
               "type": "string",
-              "description": "Path to CSV file (relative to data folder)"
+              "description": "Path to CSV/Parquet file (relative to data folder)"
             },
             "table_name": {
               "type": "string",
-              "description": "Name for the new table"
+              "description": "Name for the new table (optional - auto-generated from filename)"
             }
           },
-          "required": ["file_path", "table_name"]
+          "required": ["file_path"]
         }
       },
       {
@@ -316,23 +370,28 @@
     ],
     "resources": [
       {
+        "name": "auto_discovered_tables",
+        "description": "Tables automatically created from CSV/Parquet files in data folder",
+        "type": "dynamic"
+      },
+      {
         "name": "sales_data",
-        "description": "Sample sales data with orders and transactions",
+        "description": "Sample sales data with orders and transactions (if sales_data.csv exists)",
         "type": "table"
       },
       {
         "name": "customer_data",
-        "description": "Sample customer data with demographics",
+        "description": "Sample customer data with demographics (if customer_data.csv exists)",
         "type": "table"
       },
       {
         "name": "sales_summary",
-        "description": "Pre-aggregated sales summary view",
+        "description": "Pre-aggregated sales summary view (created if sales_data table exists)",
         "type": "view"
       },
       {
         "name": "customer_sales",
-        "description": "Customer sales analysis view",
+        "description": "Customer sales analysis view (created if both sales_data and customer_data exist)",
         "type": "view"
       }
     ],
@@ -351,6 +410,16 @@
         "name": "performance_tuning",
         "description": "Optimize query performance",
         "prompt": "Provide the query you want to optimize, and I'll analyze its performance."
+      },
+      {
+        "name": "file_discovery",
+        "description": "Check auto-discovered data files",
+        "prompt": "View currently loaded files and refresh status using get_loaded_files tool."
+      },
+      {
+        "name": "parameterized_queries",
+        "description": "Use parameterized queries with IN clauses",
+        "prompt": "Create SQL queries with placeholders (:name, $name, {name}). List parameters automatically generate IN clauses."
       }
     ]
   }
