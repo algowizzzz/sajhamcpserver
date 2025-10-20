@@ -1,0 +1,255 @@
+{
+  "name": "zillow_tool",
+  "module": "tools.zillow_mcp_tool.ZillowMCPTool",
+  "max_hits": 300,
+  "max_hit_interval": 60,
+  "api_key": "YOUR_RAPIDAPI_KEY_HERE",
+  "base_url": "https://zillow-com1.p.rapidapi.com",
+  "tool_description": {
+    "tools": [
+      {
+        "name": "search_properties",
+        "description": "Search for properties by location and filters",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "Location to search (city, state, zip code, or address)"
+            },
+            "status": {
+              "type": "string",
+              "description": "Property status: forSale, forRent, or recentlySold",
+              "default": "forSale"
+            },
+            "home_type": {
+              "type": "string",
+              "description": "Type of home: Houses, Townhomes, Condos, Apartments"
+            },
+            "min_price": {
+              "type": "integer",
+              "description": "Minimum price"
+            },
+            "max_price": {
+              "type": "integer",
+              "description": "Maximum price"
+            },
+            "bedrooms": {
+              "type": "integer",
+              "description": "Number of bedrooms"
+            },
+            "bathrooms": {
+              "type": "integer",
+              "description": "Number of bathrooms"
+            },
+            "sort": {
+              "type": "string",
+              "description": "Sort order: Homes_for_You, Price_High_Low, Price_Low_High, Newest, Bedrooms, Bathrooms",
+              "default": "Homes_for_You"
+            },
+            "page": {
+              "type": "integer",
+              "description": "Page number for pagination",
+              "default": 1
+            }
+          },
+          "required": ["location"]
+        }
+      },
+      {
+        "name": "get_property_details",
+        "description": "Get detailed information about a specific property",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "property_url": {
+              "type": "string",
+              "description": "Zillow property URL"
+            }
+          },
+          "required": ["property_url"]
+        }
+      },
+      {
+        "name": "get_property_by_zpid",
+        "description": "Get property information by Zillow Property ID (ZPID)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "zpid": {
+              "type": "string",
+              "description": "Zillow Property ID"
+            }
+          },
+          "required": ["zpid"]
+        }
+      },
+      {
+        "name": "get_zestimate",
+        "description": "Get Zestimate (Zillow's estimated market value)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "zpid": {
+              "type": "string",
+              "description": "Zillow Property ID"
+            },
+            "property_url": {
+              "type": "string",
+              "description": "Zillow property URL (alternative to ZPID)"
+            }
+          }
+        }
+      },
+      {
+        "name": "search_by_address",
+        "description": "Search for property by specific address",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "address": {
+              "type": "string",
+              "description": "Street address"
+            },
+            "city": {
+              "type": "string",
+              "description": "City"
+            },
+            "state": {
+              "type": "string",
+              "description": "State"
+            },
+            "zipcode": {
+              "type": "string",
+              "description": "ZIP code"
+            }
+          },
+          "required": ["address"]
+        }
+      },
+      {
+        "name": "get_similar_properties",
+        "description": "Get similar properties (comparables)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "zpid": {
+              "type": "string",
+              "description": "Zillow Property ID"
+            }
+          },
+          "required": ["zpid"]
+        }
+      },
+      {
+        "name": "get_property_images",
+        "description": "Get all images for a property",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "zpid": {
+              "type": "string",
+              "description": "Zillow Property ID"
+            }
+          },
+          "required": ["zpid"]
+        }
+      },
+      {
+        "name": "get_market_trends",
+        "description": "Get market trends for a location",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "Location name"
+            },
+            "region_type": {
+              "type": "string",
+              "description": "Region type: city, county, zip, neighborhood",
+              "default": "city"
+            }
+          },
+          "required": ["location"]
+        }
+      },
+      {
+        "name": "get_school_info",
+        "description": "Get school information for a property",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "zpid": {
+              "type": "string",
+              "description": "Zillow Property ID"
+            }
+          },
+          "required": ["zpid"]
+        }
+      },
+      {
+        "name": "get_mortgage_calculator",
+        "description": "Calculate mortgage payment",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "price": {
+              "type": "number",
+              "description": "Property price"
+            },
+            "down_payment": {
+              "type": "number",
+              "description": "Down payment amount",
+              "default": 0
+            },
+            "interest_rate": {
+              "type": "number",
+              "description": "Annual interest rate (percentage)"
+            },
+            "loan_term": {
+              "type": "integer",
+              "description": "Loan term in years",
+              "default": 30
+            }
+          },
+          "required": ["price", "interest_rate"]
+        }
+      },
+      {
+        "name": "search_agents",
+        "description": "Search for real estate agents",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "Location to search for agents"
+            },
+            "specialty": {
+              "type": "string",
+              "description": "Agent specialty: buyer, seller, rental"
+            }
+          },
+          "required": ["location"]
+        }
+      },
+      {
+        "name": "get_rent_estimate",
+        "description": "Get rent estimate (Rent Zestimate)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "zpid": {
+              "type": "string",
+              "description": "Zillow Property ID"
+            }
+          },
+          "required": ["zpid"]
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}

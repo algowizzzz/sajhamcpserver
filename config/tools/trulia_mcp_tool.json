@@ -1,0 +1,339 @@
+{
+  "name": "trulia_tool",
+  "module": "tools.trulia_mcp_tool.TruliaMCPTool",
+  "max_hits": 300,
+  "max_hit_interval": 60,
+  "api_key": "YOUR_RAPIDAPI_KEY_HERE",
+  "base_url": "https://trulia-com-data.p.rapidapi.com",
+  "tool_description": {
+    "tools": [
+      {
+        "name": "search_properties",
+        "description": "Search for properties by location and filters",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "Location to search (city, state, zip code)"
+            },
+            "property_type": {
+              "type": "string",
+              "description": "Property type: for_sale or for_rent",
+              "default": "for_sale"
+            },
+            "home_type": {
+              "type": "array",
+              "description": "Type of home: Single_Family_Home, Condo, Townhome",
+              "items": {
+                "type": "string"
+              }
+            },
+            "min_price": {
+              "type": "integer",
+              "description": "Minimum price"
+            },
+            "max_price": {
+              "type": "integer",
+              "description": "Maximum price"
+            },
+            "min_beds": {
+              "type": "integer",
+              "description": "Minimum bedrooms"
+            },
+            "max_beds": {
+              "type": "integer",
+              "description": "Maximum bedrooms"
+            },
+            "min_baths": {
+              "type": "integer",
+              "description": "Minimum bathrooms"
+            },
+            "max_baths": {
+              "type": "integer",
+              "description": "Maximum bathrooms"
+            },
+            "min_sqft": {
+              "type": "integer",
+              "description": "Minimum square feet"
+            },
+            "max_sqft": {
+              "type": "integer",
+              "description": "Maximum square feet"
+            },
+            "sort_by": {
+              "type": "string",
+              "description": "Sort order: relevance, price_low, price_high, newest",
+              "default": "relevance"
+            },
+            "page": {
+              "type": "integer",
+              "description": "Page number for pagination",
+              "default": 1
+            }
+          },
+          "required": ["location"]
+        }
+      },
+      {
+        "name": "get_property_details",
+        "description": "Get detailed information about a specific property",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "property_id": {
+              "type": "string",
+              "description": "Trulia property ID"
+            },
+            "property_url": {
+              "type": "string",
+              "description": "Trulia property URL"
+            }
+          }
+        }
+      },
+      {
+        "name": "search_by_coordinates",
+        "description": "Search for properties by geographic coordinates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "type": "number",
+              "description": "Latitude coordinate"
+            },
+            "longitude": {
+              "type": "number",
+              "description": "Longitude coordinate"
+            },
+            "radius": {
+              "type": "number",
+              "description": "Search radius in miles",
+              "default": 5
+            },
+            "property_type": {
+              "type": "string",
+              "description": "Property type: for_sale or for_rent",
+              "default": "for_sale"
+            }
+          },
+          "required": ["latitude", "longitude"]
+        }
+      },
+      {
+        "name": "get_neighborhood_info",
+        "description": "Get comprehensive neighborhood information",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "Neighborhood or area name"
+            }
+          },
+          "required": ["location"]
+        }
+      },
+      {
+        "name": "get_crime_data",
+        "description": "Get crime statistics for an area",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "Location to get crime data for"
+            }
+          },
+          "required": ["location"]
+        }
+      },
+      {
+        "name": "get_school_ratings",
+        "description": "Get school ratings and information",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "Location to search for schools"
+            },
+            "property_id": {
+              "type": "string",
+              "description": "Property ID to get nearby schools"
+            }
+          }
+        }
+      },
+      {
+        "name": "get_commute_time",
+        "description": "Calculate commute time from property to destination",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "property_location": {
+              "type": "string",
+              "description": "Property address or location"
+            },
+            "destination": {
+              "type": "string",
+              "description": "Destination address"
+            },
+            "travel_mode": {
+              "type": "string",
+              "description": "Travel mode: driving, transit, walking, bicycling",
+              "default": "driving"
+            }
+          },
+          "required": ["property_location", "destination"]
+        }
+      },
+      {
+        "name": "search_rentals",
+        "description": "Search specifically for rental properties",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "Location to search for rentals"
+            },
+            "min_rent": {
+              "type": "integer",
+              "description": "Minimum monthly rent"
+            },
+            "max_rent": {
+              "type": "integer",
+              "description": "Maximum monthly rent"
+            },
+            "bedrooms": {
+              "type": "integer",
+              "description": "Number of bedrooms"
+            },
+            "bathrooms": {
+              "type": "integer",
+              "description": "Number of bathrooms"
+            },
+            "pets_allowed": {
+              "type": "boolean",
+              "description": "Filter for pet-friendly rentals"
+            }
+          },
+          "required": ["location"]
+        }
+      },
+      {
+        "name": "get_local_amenities",
+        "description": "Get local amenities near a property",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "Property location"
+            },
+            "amenity_type": {
+              "type": "string",
+              "description": "Type of amenity: all, restaurants, shopping, parks",
+              "default": "all"
+            },
+            "radius": {
+              "type": "number",
+              "description": "Search radius in miles",
+              "default": 1
+            }
+          },
+          "required": ["location"]
+        }
+      },
+      {
+        "name": "get_price_history",
+        "description": "Get price history for a property",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "property_id": {
+              "type": "string",
+              "description": "Property ID"
+            }
+          },
+          "required": ["property_id"]
+        }
+      },
+      {
+        "name": "get_tax_history",
+        "description": "Get tax history for a property",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "property_id": {
+              "type": "string",
+              "description": "Property ID"
+            }
+          },
+          "required": ["property_id"]
+        }
+      },
+      {
+        "name": "search_new_homes",
+        "description": "Search for new construction homes",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "Location to search"
+            },
+            "builder": {
+              "type": "string",
+              "description": "Builder name to filter by"
+            },
+            "min_price": {
+              "type": "integer",
+              "description": "Minimum price"
+            },
+            "max_price": {
+              "type": "integer",
+              "description": "Maximum price"
+            }
+          },
+          "required": ["location"]
+        }
+      },
+      {
+        "name": "get_open_houses",
+        "description": "Get open house listings",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "Location to search for open houses"
+            },
+            "date": {
+              "type": "string",
+              "description": "Date in YYYY-MM-DD format"
+            }
+          },
+          "required": ["location"]
+        }
+      },
+      {
+        "name": "get_saved_searches",
+        "description": "Get saved search criteria for authenticated users",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "user_id": {
+              "type": "string",
+              "description": "User ID"
+            }
+          },
+          "required": ["user_id"]
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}
