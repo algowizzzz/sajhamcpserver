@@ -1,0 +1,324 @@
+{
+  "name": "parquet_tool",
+  "module": "tools.parquet_mcp_tool.ParquetMCPTool",
+  "max_hits": 1000,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "list_parquet_files",
+        "description": "List all available parquet files in the data folder",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_file_info",
+        "description": "Get detailed information about a parquet file",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "file_name": {
+              "type": "string",
+              "description": "Name of the parquet file"
+            }
+          },
+          "required": ["file_name"]
+        }
+      },
+      {
+        "name": "list_columns",
+        "description": "List all columns in a parquet file with data types and null counts",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "file_name": {
+              "type": "string",
+              "description": "Name of the parquet file"
+            }
+          },
+          "required": ["file_name"]
+        }
+      },
+      {
+        "name": "get_column_stats",
+        "description": "Get statistics for specific columns (count, unique, mean, min, max, etc.)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "file_name": {
+              "type": "string",
+              "description": "Name of the parquet file"
+            },
+            "columns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of column names (empty for all columns)"
+            }
+          },
+          "required": ["file_name"]
+        }
+      },
+      {
+        "name": "get_unique_values",
+        "description": "Get unique values for a column",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "file_name": {
+              "type": "string",
+              "description": "Name of the parquet file"
+            },
+            "column": {
+              "type": "string",
+              "description": "Column name"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of unique values to return",
+              "default": 100
+            }
+          },
+          "required": ["file_name", "column"]
+        }
+      },
+      {
+        "name": "filter_data",
+        "description": "Filter data by column conditions with operators (gt, lt, in, contains, etc.)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "file_name": {
+              "type": "string",
+              "description": "Name of the parquet file"
+            },
+            "filters": {
+              "type": "object",
+              "description": "Filter conditions as {column: value} or {column: {operator: value}}"
+            },
+            "columns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Columns to return (empty for all)"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum rows to return",
+              "default": 100
+            }
+          },
+          "required": ["file_name"]
+        }
+      },
+      {
+        "name": "aggregate_data",
+        "description": "Aggregate data by grouping columns",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "file_name": {
+              "type": "string",
+              "description": "Name of the parquet file"
+            },
+            "group_by": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Columns to group by"
+            },
+            "aggregations": {
+              "type": "object",
+              "description": "Aggregation functions as {column: function} (sum, mean, count, min, max)"
+            },
+            "filters": {
+              "type": "object",
+              "description": "Pre-aggregation filters"
+            }
+          },
+          "required": ["file_name", "group_by", "aggregations"]
+        }
+      },
+      {
+        "name": "query_data",
+        "description": "Query data using pandas query syntax",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "file_name": {
+              "type": "string",
+              "description": "Name of the parquet file"
+            },
+            "query": {
+              "type": "string",
+              "description": "Pandas query string (e.g., 'age > 25 and country == \"USA\"')"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum rows to return",
+              "default": 100
+            }
+          },
+          "required": ["file_name", "query"]
+        }
+      },
+      {
+        "name": "get_sample",
+        "description": "Get a sample of data from the parquet file",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "file_name": {
+              "type": "string",
+              "description": "Name of the parquet file"
+            },
+            "n": {
+              "type": "integer",
+              "description": "Number of rows to sample",
+              "default": 10
+            },
+            "random": {
+              "type": "boolean",
+              "description": "Random sample (true) or first n rows (false)",
+              "default": false
+            }
+          },
+          "required": ["file_name"]
+        }
+      },
+      {
+        "name": "get_value_counts",
+        "description": "Get value counts for a column",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "file_name": {
+              "type": "string",
+              "description": "Name of the parquet file"
+            },
+            "column": {
+              "type": "string",
+              "description": "Column name"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum number of values to return",
+              "default": 20
+            }
+          },
+          "required": ["file_name", "column"]
+        }
+      },
+      {
+        "name": "get_data_summary",
+        "description": "Get comprehensive summary of the parquet file",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "file_name": {
+              "type": "string",
+              "description": "Name of the parquet file"
+            }
+          },
+          "required": ["file_name"]
+        }
+      },
+      {
+        "name": "export_filtered_data",
+        "description": "Export filtered data to a new parquet file",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "file_name": {
+              "type": "string",
+              "description": "Source parquet file name"
+            },
+            "output_name": {
+              "type": "string",
+              "description": "Output file name",
+              "default": "filtered_output.parquet"
+            },
+            "filters": {
+              "type": "object",
+              "description": "Filter conditions"
+            },
+            "columns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Columns to export"
+            }
+          },
+          "required": ["file_name"]
+        }
+      },
+      {
+        "name": "join_files",
+        "description": "Join two parquet files",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "left_file": {
+              "type": "string",
+              "description": "Left parquet file name"
+            },
+            "right_file": {
+              "type": "string",
+              "description": "Right parquet file name"
+            },
+            "on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Column(s) to join on"
+            },
+            "how": {
+              "type": "string",
+              "description": "Join type: inner, left, right, outer",
+              "enum": ["inner", "left", "right", "outer"],
+              "default": "inner"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Maximum rows to return",
+              "default": 100
+            }
+          },
+          "required": ["left_file", "right_file", "on"]
+        }
+      }
+    ],
+    "resources": [
+      {
+        "name": "parquet_files",
+        "description": "Parquet files available for analysis",
+        "type": "dataset"
+      }
+    ],
+    "prompts": [
+      {
+        "name": "data_exploration",
+        "description": "Explore parquet data structure and content",
+        "prompt": "What would you like to know about your parquet files? (files, columns, statistics, samples)"
+      },
+      {
+        "name": "data_filtering",
+        "description": "Filter and extract data",
+        "prompt": "Specify filter conditions to extract data from parquet files."
+      },
+      {
+        "name": "data_aggregation",
+        "description": "Aggregate and summarize data",
+        "prompt": "Define grouping columns and aggregation functions for data analysis."
+      }
+    ]
+  }
+}
+

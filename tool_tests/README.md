@@ -26,6 +26,8 @@ Each report includes:
 | Weather | ✅ Operational | 2025-10-20 | 4/4 | `weather_tool_test.md` |
 | Bank of Canada | ⚠️ Partial | 2025-10-20 | 3/7 tested (56 total) | `bank_of_canada_tool_test.md` |
 | MS Office | ✅ Operational | 2025-10-20 | 10/11 | `msoffice_tool_test.md` |
+| DuckDB OLAP | ✅ Operational | 2025-10-20 | 4/4 basic tests | `duckdb_olap_tool_test.md` |
+| Parquet Analytics | ✅ Operational | 2025-10-20 | 9/13 | `parquet_tool_test.md` |
 
 ## Tools Pending Tests
 
@@ -38,7 +40,6 @@ Remaining tools to test:
 - [ ] Bank of England
 - [ ] European Central Bank
 - [ ] SQL Database
-- [ ] DuckDB OLAP
 - [ ] FDA (Food and Drug Administration)
 - [ ] HHS (Health and Human Services)
 - [ ] USDA (Agriculture)
@@ -66,9 +67,9 @@ For each tool test:
 ---
 
 **Last Updated:** 2025-10-20  
-**Total Tools:** 22  
-**Tools Tested:** 5  
-**Fully Operational:** 4  
+**Total Tools:** 24  
+**Tools Tested:** 7  
+**Fully Operational:** 6  
 **Partially Operational:** 1  
-**Overall Success Rate:** 80%
+**Overall Success Rate:** 86%
 
