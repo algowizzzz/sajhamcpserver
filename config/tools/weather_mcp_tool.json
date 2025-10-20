@@ -1,0 +1,98 @@
+{
+  "name": "weather_tool",
+  "module": "tools.weather_mcp_tool.WeatherMCPTool",
+  "max_hits": 1000,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "get_current_weather",
+        "description": "Get current weather conditions for a location",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "City name, address, or location (e.g., 'London', 'New York', 'Paris')"
+            },
+            "units": {
+              "type": "string",
+              "description": "Temperature units: 'metric' (Celsius) or 'imperial' (Fahrenheit)",
+              "enum": ["metric", "imperial"],
+              "default": "metric"
+            }
+          },
+          "required": ["location"]
+        }
+      },
+      {
+        "name": "get_forecast",
+        "description": "Get weather forecast for up to 3 days",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "City name or location"
+            },
+            "days": {
+              "type": "integer",
+              "description": "Number of forecast days (1-3)",
+              "minimum": 1,
+              "maximum": 3,
+              "default": 3
+            },
+            "units": {
+              "type": "string",
+              "description": "Temperature units: 'metric' or 'imperial'",
+              "enum": ["metric", "imperial"],
+              "default": "metric"
+            }
+          },
+          "required": ["location"]
+        }
+      },
+      {
+        "name": "get_weather_by_coordinates",
+        "description": "Get weather by latitude and longitude coordinates",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "type": "number",
+              "description": "Latitude coordinate"
+            },
+            "longitude": {
+              "type": "number",
+              "description": "Longitude coordinate"
+            },
+            "units": {
+              "type": "string",
+              "description": "Temperature units: 'metric' or 'imperial'",
+              "enum": ["metric", "imperial"],
+              "default": "metric"
+            }
+          },
+          "required": ["latitude", "longitude"]
+        }
+      },
+      {
+        "name": "get_moon_phase",
+        "description": "Get moon phase and astronomy information",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "City name or location",
+              "default": "London"
+            }
+          }
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}
+

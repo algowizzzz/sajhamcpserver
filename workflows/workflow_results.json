@@ -1,0 +1,49 @@
+{
+  "search": {
+    "count": 5,
+    "query": "Artificial Intelligence",
+    "results": [
+      "Artificial intelligence",
+      "Artificial general intelligence",
+      "Generative artificial intelligence",
+      "History of artificial intelligence",
+      "A.I. Artificial Intelligence"
+    ]
+  },
+  "summary": {
+    "page_id": "1164",
+    "summary": "Artificial intelligence (AI) is the capability of computational systems to perform tasks typically associated with human intelligence, such as learning, reasoning, problem-solving, perception, and decision-making. It is a field of research in computer science that develops and studies methods and software that enable machines to perceive their environment and use learning and intelligence to take actions that maximize their chances of achieving defined goals.\nHigh-profile applications of AI include advanced web search engines (e.g., Google Search); recommendation systems (used by YouTube, Amazon, and Netflix); virtual assistants (e.g., Google Assistant, Siri, and Alexa); autonomous vehicles (e.g., Waymo); generative and creative tools (e.g., language models and AI art); and superhuman play and analysis in strategy games (e.g., chess and Go).",
+    "title": "Artificial intelligence",
+    "url": "https://en.wikipedia.org/wiki/Artificial_intelligence"
+  },
+  "links": {
+    "link_count": 10,
+    "links": [
+      "15.ai",
+      "2001: A Space Odyssey",
+      "2001: A Space Odyssey (novel)",
+      "2024 Indian general election",
+      "3D optical data storage",
+      "A* search algorithm",
+      "A.I. Artificial Intelligence",
+      "AAAI",
+      "ABB",
+      "ACM Computing Classification System"
+    ],
+    "title": "Artificial intelligence"
+  },
+  "related": [
+    {
+      "page_id": "23941708",
+      "summary": "2001: A Space Odyssey is a 1968 epic science fiction film produced and directed by Stanley Kubrick, who co-wrote the screenplay with Arthur C. Clarke. Its plot was inspired by several short stories optioned from Clarke, primarily \"The Sentinel\" (1951) and \"Encounter in the Dawn\" (1953).",
+      "title": "2001: A Space Odyssey",
+      "url": "https://en.wikipedia.org/wiki/2001:_A_Space_Odyssey"
+    },
+    {
+      "page_id": "1660387",
+      "summary": "2001: A Space Odyssey is a 1968 science fiction novel by English writer Arthur C. Clarke. It was developed concurrently with Stanley Kubrick's film version and published after the release of the film.",
+      "title": "2001: A Space Odyssey (novel)",
+      "url": "https://en.wikipedia.org/wiki/2001:_A_Space_Odyssey_(novel)"
+    }
+  ]
+}
