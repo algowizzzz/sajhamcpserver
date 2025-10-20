@@ -7,7 +7,7 @@
     "tools": [
       {
         "name": "crawl_website",
-        "description": "Crawl a website starting from a URL and extract text content up to 3 levels deep",
+        "description": "Crawl a website starting from a URL and extract text content up to 3 levels deep with redirect tracking",
         "input_schema": {
           "type": "object",
           "properties": {
@@ -43,6 +43,16 @@
               "type": "boolean",
               "description": "Extract page metadata (title, description, keywords)",
               "default": true
+            },
+            "follow_redirects": {
+              "type": "boolean",
+              "description": "Follow HTTP redirects",
+              "default": true
+            },
+            "track_redirects": {
+              "type": "boolean",
+              "description": "Track and report redirect information",
+              "default": true
             }
           },
           "required": ["url"]
@@ -50,7 +60,7 @@
       },
       {
         "name": "crawl_single_page",
-        "description": "Crawl a single page and extract its text content and links",
+        "description": "Crawl a single page and extract its text content and links with redirect tracking",
         "input_schema": {
           "type": "object",
           "properties": {
@@ -66,6 +76,16 @@
             "extract_metadata": {
               "type": "boolean",
               "description": "Extract page metadata",
+              "default": true
+            },
+            "follow_redirects": {
+              "type": "boolean",
+              "description": "Follow HTTP redirects",
+              "default": true
+            },
+            "track_redirects": {
+              "type": "boolean",
+              "description": "Track and report redirect information",
               "default": true
             }
           },
@@ -256,7 +276,7 @@
       },
       {
         "name": "check_url_accessibility",
-        "description": "Check if a URL is accessible and get response information",
+        "description": "Check if a URL is accessible and get response information with redirect tracking",
         "input_schema": {
           "type": "object",
           "properties": {
@@ -268,6 +288,54 @@
               "type": "boolean",
               "description": "Follow redirects",
               "default": true
+            },
+            "max_redirects": {
+              "type": "integer",
+              "description": "Maximum number of redirects to follow",
+              "default": 10
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "trace_redirects",
+        "description": "Trace all redirects for a URL and provide detailed analysis",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "URL to trace redirects for"
+            },
+            "max_redirects": {
+              "type": "integer",
+              "description": "Maximum number of redirects to follow",
+              "default": 10
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "get_redirect_chain",
+        "description": "Get detailed redirect chain showing each step in the redirect process",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "URL to get redirect chain for"
+            },
+            "include_headers": {
+              "type": "boolean",
+              "description": "Include HTTP headers for each redirect step",
+              "default": false
+            },
+            "max_redirects": {
+              "type": "integer",
+              "description": "Maximum number of redirects to follow",
+              "default": 10
             }
           },
           "required": ["url"]
