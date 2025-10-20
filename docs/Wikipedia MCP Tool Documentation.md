@@ -166,3 +166,10 @@ When a search term matches multiple articles, the tool returns disambiguation op
 - Language currently set to English only
 - Rate limiting may apply for excessive requests
 - Some special pages may not be accessible
+
+
+## Copyright Notice
+
+© 2025 - 2030 Ashutosh Sinha.
+
+All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the publisher, except in the case of brief quotations embodied in critical reviews and certain other noncommercial uses permitted by copyright law.

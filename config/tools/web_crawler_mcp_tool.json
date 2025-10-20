@@ -1,0 +1,280 @@
+{
+  "name": "web_crawler_tool",
+  "module": "tools.web_crawler_mcp_tool.WebCrawlerMCPTool",
+  "max_hits": 100,
+  "max_hit_interval": 10,
+  "tool_description": {
+    "tools": [
+      {
+        "name": "crawl_website",
+        "description": "Crawl a website starting from a URL and extract text content up to 3 levels deep",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Starting URL to crawl"
+            },
+            "max_depth": {
+              "type": "integer",
+              "description": "Maximum depth to crawl (1-3)",
+              "default": 3,
+              "minimum": 1,
+              "maximum": 3
+            },
+            "max_pages": {
+              "type": "integer",
+              "description": "Maximum number of pages to crawl",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 100
+            },
+            "same_domain_only": {
+              "type": "boolean",
+              "description": "Only crawl pages within the same domain",
+              "default": true
+            },
+            "include_external_links": {
+              "type": "boolean",
+              "description": "Include external links in results",
+              "default": false
+            },
+            "extract_metadata": {
+              "type": "boolean",
+              "description": "Extract page metadata (title, description, keywords)",
+              "default": true
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "crawl_single_page",
+        "description": "Crawl a single page and extract its text content and links",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "URL of the page to crawl"
+            },
+            "extract_links": {
+              "type": "boolean",
+              "description": "Extract all links from the page",
+              "default": true
+            },
+            "extract_metadata": {
+              "type": "boolean",
+              "description": "Extract page metadata",
+              "default": true
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "extract_all_links",
+        "description": "Extract all links from a given URL",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "URL to extract links from"
+            },
+            "absolute_urls": {
+              "type": "boolean",
+              "description": "Return absolute URLs",
+              "default": true
+            },
+            "filter_domain": {
+              "type": "string",
+              "description": "Filter links by domain (optional)"
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "extract_all_document_links",
+        "description": "Extract all document links (PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, TXT) from a URL",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "URL to extract document links from"
+            },
+            "document_types": {
+              "type": "array",
+              "description": "Filter by specific document types",
+              "items": {
+                "type": "string",
+                "enum": ["pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "txt"]
+              }
+            },
+            "absolute_urls": {
+              "type": "boolean",
+              "description": "Return absolute URLs",
+              "default": true
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "extract_images",
+        "description": "Extract all image URLs from a given page",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "URL to extract images from"
+            },
+            "include_alt_text": {
+              "type": "boolean",
+              "description": "Include alt text for images",
+              "default": true
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "extract_headings",
+        "description": "Extract all headings (H1-H6) from a page",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "URL to extract headings from"
+            },
+            "include_hierarchy": {
+              "type": "boolean",
+              "description": "Organize headings by hierarchy",
+              "default": true
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "extract_tables",
+        "description": "Extract all tables from a page as structured data",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "URL to extract tables from"
+            },
+            "format": {
+              "type": "string",
+              "description": "Output format for tables",
+              "enum": ["json", "csv", "text"],
+              "default": "json"
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "get_page_metadata",
+        "description": "Extract metadata from a page (title, description, keywords, author, etc.)",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "URL to extract metadata from"
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "search_text_in_page",
+        "description": "Search for specific text or patterns within a page",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "URL to search in"
+            },
+            "search_term": {
+              "type": "string",
+              "description": "Text or pattern to search for"
+            },
+            "case_sensitive": {
+              "type": "boolean",
+              "description": "Case sensitive search",
+              "default": false
+            },
+            "context_chars": {
+              "type": "integer",
+              "description": "Number of characters to include as context around matches",
+              "default": 100
+            }
+          },
+          "required": ["url", "search_term"]
+        }
+      },
+      {
+        "name": "get_sitemap",
+        "description": "Fetch and parse the sitemap.xml of a website",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Base URL of the website"
+            },
+            "sitemap_url": {
+              "type": "string",
+              "description": "Specific sitemap URL (optional)"
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "get_robots_txt",
+        "description": "Fetch and parse the robots.txt file of a website",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Base URL of the website"
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "check_url_accessibility",
+        "description": "Check if a URL is accessible and get response information",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "URL to check"
+            },
+            "follow_redirects": {
+              "type": "boolean",
+              "description": "Follow redirects",
+              "default": true
+            }
+          },
+          "required": ["url"]
+        }
+      }
+    ],
+    "resources": [],
+    "prompts": []
+  }
+}

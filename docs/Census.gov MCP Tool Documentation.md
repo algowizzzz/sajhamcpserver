@@ -301,3 +301,10 @@ result = census_tool.handle_tool_call('search_datasets', {
 3. Be aware of data availability by year
 4. Understand margin of error in ACS data
 5. Use FIPS codes for precise location queries
+
+
+## Copyright Notice
+
+© 2025 - 2030 Ashutosh Sinha.
+
+All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the publisher, except in the case of brief quotations embodied in critical reviews and certain other noncommercial uses permitted by copyright law.

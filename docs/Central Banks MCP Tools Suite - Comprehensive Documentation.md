@@ -163,3 +163,10 @@ uk_curve = boe_tool.handle_tool_call("get_yield_curve", {})
 ```python
 # USD as base
 eur_usd = ecb_tool.handle_tool_call("get_euro_exchange_rates
+
+
+## Copyright Notice
+
+© 2025 - 2030 Ashutosh Sinha.
+
+All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the publisher, except in the case of brief quotations embodied in critical reviews and certain other noncommercial uses permitted by copyright law.
