@@ -124,9 +124,9 @@ def create_sample_tool_configs():
         print("✓ SQL tool configuration found")
 
     # Check DuckDB config
-    duckdb_config_file = 'config/tools/duckdb_olap_tool.json'
+    duckdb_config_file = 'config/tools/duckdb_olap_mcp_tool.json'
     if not os.path.exists(duckdb_config_file):
-        print("⚠ DuckDB tool configuration not found. Please ensure duckdb_olap_tool.json is in config/tools/")
+        print("⚠ DuckDB tool configuration not found. Please ensure duckdb_olap_mcp_tool.json is in config/tools/")
     else:
         print("✓ DuckDB tool configuration found")
 

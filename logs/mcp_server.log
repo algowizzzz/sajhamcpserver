@@ -1638,3 +1638,77 @@
 2025-10-20 11:53:45,563 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:53:45] "GET /api/tool/duckdb_olap_tool/stats HTTP/1.1" 200 -
 2025-10-20 11:53:57,796 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:53:57] "POST /api/tool/duckdb_olap_tool/call HTTP/1.1" 200 -
 2025-10-20 11:54:15,564 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:54:15] "GET /api/tool/duckdb_olap_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:54:28,864 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:54:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:54:28,865 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:54:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:54:28,865 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:54:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:54:28,871 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:54:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:54:45,563 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:54:45] "GET /api/tool/duckdb_olap_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:55:15,860 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:55:15] "GET /api/tool/duckdb_olap_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:55:28,865 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:55:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:55:28,866 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:55:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:55:28,867 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:55:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:55:28,871 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:55:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:55:45,864 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:55:45] "GET /api/tool/duckdb_olap_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:56:15,862 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:56:15] "GET /api/tool/duckdb_olap_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:56:28,873 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:56:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:56:28,875 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:56:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:56:28,876 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:56:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:56:28,881 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:56:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:57:16,860 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:57:16] "GET /api/tool/duckdb_olap_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:57:28,861 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:57:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:57:28,863 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:57:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:57:28,863 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:57:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:57:28,867 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:57:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:57:58,852 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:57:58] "GET /api/tool/duckdb_olap_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:58:05,545 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:58:05] "POST /api/tool/duckdb_olap_tool/call HTTP/1.1" 200 -
+2025-10-20 11:58:15,560 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:58:15] "GET /api/tool/duckdb_olap_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:58:28,862 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:58:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:58:28,863 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:58:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:58:28,863 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:58:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:58:28,866 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:58:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:58:45,862 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:58:45] "GET /api/tool/duckdb_olap_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:59:15,563 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:59:15] "GET /api/tool/duckdb_olap_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:59:28,867 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:59:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:59:28,868 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:59:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 11:59:28,869 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:59:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:59:28,873 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:59:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 11:59:45,861 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 11:59:45] "GET /api/tool/duckdb_olap_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:00:15,861 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:00:15] "GET /api/tool/duckdb_olap_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:00:28,860 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:00:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 12:00:28,862 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:00:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:00:28,862 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:00:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:00:28,866 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:00:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:01:16,864 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:01:16] "GET /api/tool/duckdb_olap_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:01:28,864 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:01:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:01:28,866 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:01:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 12:01:28,869 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:01:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:01:28,870 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:01:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:02:17,863 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:02:17] "GET /api/tool/duckdb_olap_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:02:28,865 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:02:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 12:02:28,868 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:02:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:02:28,869 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:02:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:02:28,870 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:02:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:03:18,860 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:03:18] "GET /api/tool/duckdb_olap_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:03:28,865 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:03:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 12:03:28,866 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:03:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:03:28,866 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:03:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:03:28,871 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:03:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:03:36,725 - __main__ - INFO - Starting MCP Server...
+2025-10-20 12:03:36,728 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.54:5000
+2025-10-20 12:03:36,728 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-20 12:03:42,259 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:03:42] "[32mGET /tool/duckdb_olap_tool HTTP/1.1[0m" 302 -
+2025-10-20 12:03:42,280 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:03:42] "GET /login?next=http://127.0.0.1:5000/tool/duckdb_olap_tool HTTP/1.1" 200 -
+2025-10-20 12:03:49,221 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:03:49] "[32mPOST /login?next=http://127.0.0.1:5000/tool/duckdb_olap_tool HTTP/1.1[0m" 302 -
+2025-10-20 12:03:49,243 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:03:49] "GET /tool/duckdb_olap_tool HTTP/1.1" 200 -
+2025-10-20 12:04:06,978 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:04:06] "GET /dashboard HTTP/1.1" 200 -
+2025-10-20 12:04:09,779 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:04:09] "GET /tool/tavily_mcp_tool HTTP/1.1" 200 -
+2025-10-20 12:04:17,061 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:04:17] "GET /dashboard HTTP/1.1" 200 -
+2025-10-20 12:04:22,850 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:04:22] "GET /tool/duckdb_olap_tool HTTP/1.1" 200 -
+2025-10-20 12:04:28,868 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:04:28] "[32mGET /api/tool/wikipedia_tool/stats HTTP/1.1[0m" 302 -
+2025-10-20 12:04:28,868 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:04:28] "GET /api/tool/yahoo_finance_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:04:28,869 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:04:28] "GET /api/tool/edgar_mcp_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:04:28,875 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:04:28] "GET /login?next=http://localhost:5000/api/tool/wikipedia_tool/stats HTTP/1.1" 200 -
+2025-10-20 12:04:33,279 - werkzeug - INFO - 127.0.0.1 - - [20/Oct/2025 12:04:33] "POST /api/tool/duckdb_olap_tool/call HTTP/1.1" 200 -

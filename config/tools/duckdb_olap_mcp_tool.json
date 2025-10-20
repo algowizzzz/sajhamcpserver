@@ -21,16 +21,40 @@
     "tools": [
       {
         "name": "execute_query",
-        "description": "Execute a DuckDB SQL query",
+        "description": "Execute a DuckDB SQL query with optional parameterization. Supports placeholders (:name, $name, {name}) and automatic IN clause generation for list arguments.",
         "input_schema": {
           "type": "object",
           "properties": {
             "query": {
               "type": "string",
-              "description": "SQL query to execute"
+              "description": "SQL query to execute. Use :param, $param, or {param} for placeholders."
+            },
+            "arguments": {
+              "type": "object",
+              "description": "Optional dictionary of parameter values. List values automatically generate IN clauses.",
+              "additionalProperties": true
             }
           },
           "required": ["query"]
+        }
+      },
+      {
+        "name": "execute_parameterized_query",
+        "description": "Execute a parameterized DuckDB SQL query with automatic IN clause generation. Supports multiple placeholder styles: :name, $name, {name}. List arguments are automatically converted to IN clauses.",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "SQL query with placeholders (e.g., 'SELECT * FROM table WHERE region IN :regions')"
+            },
+            "arguments": {
+              "type": "object",
+              "description": "Dictionary of parameter values. Lists automatically become IN clauses.",
+              "additionalProperties": true
+            }
+          },
+          "required": ["query", "arguments"]
         }
       },
       {
@@ -391,6 +415,11 @@
         "name": "file_discovery",
         "description": "Check auto-discovered data files",
         "prompt": "View currently loaded files and refresh status using get_loaded_files tool."
+      },
+      {
+        "name": "parameterized_queries",
+        "description": "Use parameterized queries with IN clauses",
+        "prompt": "Create SQL queries with placeholders (:name, $name, {name}). List parameters automatically generate IN clauses."
       }
     ]
   }

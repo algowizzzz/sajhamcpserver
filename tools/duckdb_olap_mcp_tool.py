@@ -1,21 +1,22 @@
 """
-DuckDB OLAP MCP Tool implementation with automatic file discovery and refresh
+DuckDB OLAP MCP Tool implementation with automatic file discovery, refresh, and parameterized queries
 """
 import os
 import duckdb
 import pandas as pd
-from typing import Dict, Any, List, Set
+from typing import Dict, Any, List, Set, Union
 from .base_mcp_tool import BaseMCPTool
-from datetime import datetime
+from datetime import datetime, date
 import csv
 import random
 import threading
 import time
 from pathlib import Path
+import re
 
 
 class DuckDBOlapMCPTool(BaseMCPTool):
-    """MCP Tool for DuckDB OLAP operations with auto-discovery and refresh"""
+    """MCP Tool for DuckDB OLAP operations with auto-discovery, refresh, and parameterized queries"""
 
     def _initialize(self):
         """Initialize DuckDB and create sample data"""
@@ -89,6 +90,90 @@ class DuckDBOlapMCPTool(BaseMCPTool):
 
             df = pd.DataFrame(customer_data)
             df.to_csv(customer_file, index=False)
+
+    def _format_sql_value(self, value: Any) -> str:
+        """Format a Python value for SQL"""
+        if value is None:
+            return 'NULL'
+        elif isinstance(value, bool):
+            return 'TRUE' if value else 'FALSE'
+        elif isinstance(value, (int, float)):
+            return str(value)
+        elif isinstance(value, (datetime, date)):
+            return f"'{value.isoformat()}'"
+        elif isinstance(value, str):
+            # Escape single quotes by doubling them
+            escaped = value.replace("'", "''")
+            return f"'{escaped}'"
+        else:
+            # For other types, convert to string and escape
+            escaped = str(value).replace("'", "''")
+            return f"'{escaped}'"
+
+    def _process_query_with_params(self, query: str, params: Dict[str, Any]) -> tuple[str, Dict[str, Any]]:
+        """
+        Process query with parameters, handling list values as IN clauses
+
+        Supports multiple placeholder styles:
+        - :param_name (named style)
+        - $param_name (dollar style)
+        - {param_name} (brace style)
+
+        Args:
+            query: SQL query with placeholders
+            params: Dictionary of parameter values
+
+        Returns:
+            Tuple of (processed_query, metadata)
+        """
+        if not params:
+            return query, {"placeholders_replaced": 0, "in_clauses_generated": 0}
+
+        processed_query = query
+        placeholders_replaced = 0
+        in_clauses_generated = 0
+
+        # Sort params by length (descending) to handle longer names first
+        # This prevents 'region_id' from being replaced before 'region'
+        sorted_params = sorted(params.items(), key=lambda x: len(x[0]), reverse=True)
+
+        for param_name, param_value in sorted_params:
+            # Define placeholder patterns to search for
+            patterns = [
+                f':{param_name}\\b',      # :param_name
+                f'\\${param_name}\\b',    # $param_name
+                f'\\{{{param_name}\\}}'   # {param_name}
+            ]
+
+            found = False
+            for pattern in patterns:
+                if re.search(pattern, processed_query):
+                    found = True
+
+                    if isinstance(param_value, (list, tuple)):
+                        # Generate IN clause for list values
+                        if len(param_value) == 0:
+                            # Empty list - use a condition that's always false
+                            replacement = "(NULL)"
+                        else:
+                            formatted_values = [self._format_sql_value(v) for v in param_value]
+                            replacement = f"({', '.join(formatted_values)})"
+                        in_clauses_generated += 1
+                    else:
+                        # Single value
+                        replacement = self._format_sql_value(param_value)
+
+                    processed_query = re.sub(pattern, replacement, processed_query)
+                    placeholders_replaced += 1
+                    break  # Only replace with first matching pattern
+
+        metadata = {
+            "placeholders_replaced": placeholders_replaced,
+            "in_clauses_generated": in_clauses_generated,
+            "original_params": params
+        }
+
+        return processed_query, metadata
 
     def _get_table_name_from_file(self, file_path: str) -> str:
         """Convert filename to table name (lowercase, no extension)"""
@@ -294,6 +379,7 @@ class DuckDBOlapMCPTool(BaseMCPTool):
 
             tool_methods = {
                 "execute_query": self._execute_query,
+                "execute_parameterized_query": self._execute_parameterized_query,
                 "list_tables": self._list_tables,
                 "get_table_schema": self._get_table_schema,
                 "aggregate_data": self._aggregate_data,
@@ -354,13 +440,19 @@ class DuckDBOlapMCPTool(BaseMCPTool):
         }
 
     def _execute_query(self, params: Dict[str, Any]) -> Dict[str, Any]:
-        """Execute a DuckDB SQL query"""
+        """Execute a DuckDB SQL query (legacy method - kept for backward compatibility)"""
         query = params.get('query', '')
+        arguments = params.get('arguments', None)
 
         if not query:
             return {"error": "Query is required"}
 
         try:
+            # If arguments provided, process as parameterized query
+            if arguments:
+                return self._execute_parameterized_query({'query': query, 'arguments': arguments})
+
+            # Otherwise, execute directly
             result = self.conn.execute(query).fetchdf()
 
             return {
@@ -372,6 +464,42 @@ class DuckDBOlapMCPTool(BaseMCPTool):
 
         except Exception as e:
             return {"error": str(e), "query": query}
+
+    def _execute_parameterized_query(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Execute a parameterized DuckDB SQL query with automatic IN clause generation
+
+        Supports placeholders: :name, $name, {name}
+        List values automatically converted to IN clauses
+        """
+        query = params.get('query', '')
+        arguments = params.get('arguments', {})
+
+        if not query:
+            return {"error": "Query is required"}
+
+        try:
+            # Process query with parameters
+            processed_query, metadata = self._process_query_with_params(query, arguments)
+
+            # Execute processed query
+            result = self.conn.execute(processed_query).fetchdf()
+
+            return {
+                "original_query": query,
+                "processed_query": processed_query,
+                "results": result.head(100).to_dict('records'),
+                "row_count": len(result),
+                "columns": result.columns.tolist(),
+                "parameter_metadata": metadata
+            }
+
+        except Exception as e:
+            return {
+                "error": str(e),
+                "original_query": query,
+                "arguments": arguments
+            }
 
     def _list_tables(self, params: Dict[str, Any]) -> Dict[str, Any]:
         """List all tables and views in DuckDB"""
