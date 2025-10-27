@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+<!--
+Copyright All rights Reserved 2025-2030, Ashutosh Sinha, Email: ajsinha@gmail.com
+-->
+{% block title %}Admin - Manage Users - SAJHA MCP Server{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h1 class="h3">
+                <i class="bi bi-people-fill"></i> User Management
+            </h1>
+        </div>
+        <div class="col-md-6 text-end">
+            <button class="btn btn-success" onclick="showAddUserForm()">
+                <i class="bi bi-person-plus"></i> Add User
+            </button>
+        </div>
+    </div>
+    
+    <!-- Users Table -->
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover" id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Roles</th>
+                            <th>Tools Access</th>
+                            <th>Status</th>
+                            <th>Last Login</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td><strong>{{ user.user_id }}</strong></td>
+                            <td>{{ user.user_name }}</td>
+                            <td>{{ user.email or '-' }}</td>
+                            <td>
+                                {% for role in user.roles %}
+                                <span class="badge bg-info">{{ role }}</span>
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% if '*' in user.tools %}
+                                <span class="badge bg-success">All Tools</span>
+                                {% else %}
+                                <span class="badge bg-secondary">{{ user.tools|length }} tools</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if user.enabled %}
+                                <span class="badge bg-success">Active</span>
+                                {% else %}
+                                <span class="badge bg-danger">Disabled</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if user.last_login %}
+                                {{ user.last_login }}
+                                {% else %}
+                                <span class="text-muted">Never</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" 
+                                        onclick="editUser('{{ user.user_id }}')">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                {% if user.user_id != 'admin' %}
+                                <button class="btn btn-sm btn-danger" 
+                                        onclick="deleteUser('{{ user.user_id }}')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add User Form (separate page) -->
+<div id="addUserForm" style="display: none;"></div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function showAddUserForm() {
+    // Redirect to add user page
+    window.location.href = '/admin/users/add';
+}
+
+function editUser(userId) {
+    // Redirect to edit user page
+    window.location.href = `/admin/users/${userId}/edit`;
+}
+
+function deleteUser(userId) {
+    if (confirm(`Delete user: ${userId}?`)) {
+        $.ajax({
+            url: `/api/admin/users/${userId}`,
+            method: 'DELETE'
+        })
+        .done(function() {
+            location.reload();
+        })
+        .fail(function() {
+            alert('Failed to delete user');
+        });
+    }
+}
+
+// Initialize DataTable
+$(document).ready(function() {
+    $('#usersTable').DataTable({
+        "pageLength": 25,
+        "order": [[0, "asc"]]
+    });
+});
+</script>
+{% endblock %}

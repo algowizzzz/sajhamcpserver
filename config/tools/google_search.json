@@ -1,0 +1,56 @@
+{
+  "name": "google_search",
+  "type": "google_search",
+  "description": "Search the web using Google",
+  "version": "1.0.0",
+  "enabled": true,
+  "api_key": "",
+  "search_engine_id": "",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "Search query"
+      },
+      "num_results": {
+        "type": "integer",
+        "description": "Number of results to return",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 10
+      },
+      "start": {
+        "type": "integer",
+        "description": "Starting index for results (for pagination)",
+        "default": 1,
+        "minimum": 1
+      },
+      "safe_search": {
+        "type": "string",
+        "description": "Safe search level",
+        "enum": ["off", "medium", "high"],
+        "default": "medium"
+      },
+      "search_type": {
+        "type": "string",
+        "description": "Type of search",
+        "enum": ["web", "image", "video"],
+        "default": "web"
+      },
+      "site": {
+        "type": "string",
+        "description": "Restrict search to specific site (e.g., wikipedia.org)"
+      }
+    },
+    "required": ["query"]
+  },
+  "metadata": {
+    "author": "Ashutosh Sinha",
+    "category": "Web Search",
+    "tags": ["search", "google", "web"],
+    "rateLimit": 100,
+    "cacheTTL": 3600,
+    "note": "Requires Google Custom Search API key and Search Engine ID for production use"
+  }
+}

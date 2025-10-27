@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+<!--
+Copyright All rights Reserved 2025-2030, Ashutosh Sinha, Email: ajsinha@gmail.com
+-->
+{% block title %}Monitoring - Users - SAJHA MCP Server{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h3 mb-4">
+        <i class="bi bi-people"></i> User Activity Monitoring
+    </h1>
+    
+    <!-- User Statistics -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5>Total Users</h5>
+                    <p class="display-4">{{ users|length }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5>Active Users</h5>
+                    <p class="display-4">{{ users|selectattr('enabled')|list|length }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5>Admin Users</h5>
+                    <p class="display-4">{{ users|selectattr('roles', 'contains', 'admin')|list|length }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5>Online Now</h5>
+                    <p class="display-4">0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- User Activity Chart -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="bi bi-activity"></i> User Activity (Last 30 Minutes)</h5>
+        </div>
+        <div class="card-body">
+            <canvas id="activityChart" height="100"></canvas>
+        </div>
+    </div>
+    
+    <!-- User Activity Table -->
+    <div class="card">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0"><i class="bi bi-table"></i> User Sessions</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped" id="activityTable">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Last Login</th>
+                            <th>Session Duration</th>
+                            <th>Tool Executions</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td><strong>{{ user.user_id }}</strong></td>
+                            <td>{{ user.user_name }}</td>
+                            <td>
+                                {% for role in user.roles %}
+                                <span class="badge bg-info">{{ role }}</span>
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% if user.last_login %}
+                                {{ user.last_login }}
+                                {% else %}
+                                <span class="text-muted">Never</span>
+                                {% endif %}
+                            </td>
+                            <td>-</td>
+                            <td>0</td>
+                            <td>
+                                {% if user.enabled %}
+                                <span class="badge bg-success">Active</span>
+                                {% else %}
+                                <span class="badge bg-secondary">Inactive</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Initialize activity chart
+const ctx = document.getElementById('activityChart').getContext('2d');
+const activityChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: generateTimeLabels(),
+        datasets: [{
+            label: 'Active Users',
+            data: generateDemoData(30, 0, 10),
+            borderColor: 'rgb(75, 192, 192)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            tension: 0.1
+        }, {
+            label: 'API Requests',
+            data: generateDemoData(30, 0, 50),
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            tension: 0.1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+            mode: 'index',
+            intersect: false,
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Count'
+                }
+            }
+        }
+    }
+});
+
+// Generate time labels for last 30 minutes
+function generateTimeLabels() {
+    const labels = [];
+    const now = new Date();
+    for (let i = 29; i >= 0; i--) {
+        const time = new Date(now - i * 60000);
+        labels.push(time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }));
+    }
+    return labels;
+}
+
+// Generate demo data
+function generateDemoData(points, min = 0, max = 100) {
+    const data = [];
+    for (let i = 0; i < points; i++) {
+        data.push(Math.floor(Math.random() * (max - min + 1)) + min);
+    }
+    return data;
+}
+
+// Update chart every minute
+setInterval(function() {
+    // Add new data point
+    activityChart.data.labels.shift();
+    activityChart.data.labels.push(new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }));
+    
+    activityChart.data.datasets.forEach((dataset) => {
+        dataset.data.shift();
+        dataset.data.push(Math.floor(Math.random() * 10));
+    });
+    
+    activityChart.update();
+}, 60000);
+
+// Initialize DataTable
+$(document).ready(function() {
+    $('#activityTable').DataTable({
+        "pageLength": 25,
+        "order": [[3, "desc"]]
+    });
+});
+</script>
+{% endblock %}

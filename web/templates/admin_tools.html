@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+<!--
+Copyright All rights Reserved 2025-2030, Ashutosh Sinha, Email: ajsinha@gmail.com
+-->
+{% block title %}Admin - Manage Tools - SAJHA MCP Server{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h3 mb-4">
+        <i class="bi bi-gear-fill"></i> Tools Management
+    </h1>
+    
+    <!-- Tool Errors -->
+    {% if tool_errors %}
+    <div class="card border-danger mb-4">
+        <div class="card-header bg-danger text-white">
+            <h5 class="mb-0"><i class="bi bi-exclamation-triangle-fill"></i> Tool Loading Errors</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Tool</th>
+                            <th>Error</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tool_name, error in tool_errors.items() %}
+                        <tr>
+                            <td>{{ tool_name }}</td>
+                            <td class="text-danger">{{ error }}</td>
+                            <td>
+                                <button class="btn btn-sm btn-warning" onclick="reloadTools()">
+                                    <i class="bi bi-arrow-clockwise"></i> Reload All
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Tools Metrics -->
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="bi bi-graph-up"></i> Tool Metrics & Management</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover" id="toolsMetricsTable">
+                    <thead>
+                        <tr>
+                            <th>Tool Name</th>
+                            <th>Version</th>
+                            <th>Status</th>
+                            <th>Executions</th>
+                            <th>Avg Time (s)</th>
+                            <th>Last Executed</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for metric in tools_metrics %}
+                        <tr>
+                            <td><strong>{{ metric.name }}</strong></td>
+                            <td>{{ metric.version }}</td>
+                            <td>
+                                {% if metric.enabled %}
+                                <span class="badge bg-success">Enabled</span>
+                                {% else %}
+                                <span class="badge bg-danger">Disabled</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ metric.execution_count }}</td>
+                            <td>{{ "%.2f"|format(metric.average_execution_time) }}</td>
+                            <td>
+                                {% if metric.last_execution %}
+                                {{ metric.last_execution }}
+                                {% else %}
+                                <span class="text-muted">Never</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if metric.enabled %}
+                                <button class="btn btn-sm btn-warning" 
+                                        onclick="toggleTool('{{ metric.name }}', false)">
+                                    <i class="bi bi-pause-circle"></i> Disable
+                                </button>
+                                {% else %}
+                                <button class="btn btn-sm btn-success" 
+                                        onclick="toggleTool('{{ metric.name }}', true)">
+                                    <i class="bi bi-play-circle"></i> Enable
+                                </button>
+                                {% endif %}
+                                <button class="btn btn-sm btn-info" 
+                                        onclick="viewConfig('{{ metric.name }}')">
+                                    <i class="bi bi-file-code"></i> Config
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Actions -->
+    <div class="card mt-4">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0"><i class="bi bi-lightning"></i> Quick Actions</h5>
+        </div>
+        <div class="card-body">
+            <button class="btn btn-primary" onclick="reloadTools()">
+                <i class="bi bi-arrow-clockwise"></i> Reload All Tools
+            </button>
+            <button class="btn btn-success" onclick="enableAllTools()">
+                <i class="bi bi-check-circle"></i> Enable All Tools
+            </button>
+            <button class="btn btn-warning" onclick="disableAllTools()">
+                <i class="bi bi-x-circle"></i> Disable All Tools
+            </button>
+            <button class="btn btn-info" onclick="exportMetrics()">
+                <i class="bi bi-download"></i> Export Metrics
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function toggleTool(toolName, enable) {
+    const action = enable ? 'enable' : 'disable';
+    const url = `/api/admin/tools/${toolName}/${action}`;
+    
+    $.post(url)
+        .done(function() {
+            location.reload();
+        })
+        .fail(function() {
+            alert(`Failed to ${action} tool: ${toolName}`);
+        });
+}
+
+function reloadTools() {
+    if (confirm('Reload all tools? This may take a moment.')) {
+        $.post('/api/admin/tools/reload')
+            .done(function() {
+                location.reload();
+            })
+            .fail(function() {
+                alert('Failed to reload tools');
+            });
+    }
+}
+
+function enableAllTools() {
+    if (confirm('Enable all tools?')) {
+        // This would need to be implemented in the backend
+        alert('Feature coming soon');
+    }
+}
+
+function disableAllTools() {
+    if (confirm('Disable all tools? This will prevent all tool executions.')) {
+        // This would need to be implemented in the backend
+        alert('Feature coming soon');
+    }
+}
+
+function viewConfig(toolName) {
+    window.open(`/api/tools/${toolName}/config`, '_blank');
+}
+
+function exportMetrics() {
+    window.location.href = '/api/admin/tools/metrics/export';
+}
+
+// Initialize DataTable
+$(document).ready(function() {
+    $('#toolsMetricsTable').DataTable({
+        "pageLength": 25,
+        "order": [[0, "asc"]]
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,1238 @@
+2025-10-26 18:45:05,760 - __main__ - INFO - Starting SAJHA MCP Server on 0.0.0.0:8000
+2025-10-26 18:45:05,776 - core.auth_manager - INFO - Created default admin user configuration
+2025-10-26 18:45:05,776 - tools.tools_registry - INFO - Loading tools from config/tools
+2025-10-26 18:45:05,783 - tools.tools_registry - INFO - Tool registered: wikipedia
+2025-10-26 18:45:05,783 - tools.tools_registry - INFO - Loaded built-in tool: wikipedia (wikipedia)
+2025-10-26 18:45:05,783 - tools.tools_registry - INFO - Tool registered: yahoo_finance
+2025-10-26 18:45:05,783 - tools.tools_registry - INFO - Loaded built-in tool: yahoo_finance (yahoo_finance)
+2025-10-26 18:45:05,783 - tools.tools_registry - INFO - Tool registered: fed_reserve
+2025-10-26 18:45:05,783 - tools.tools_registry - INFO - Loaded built-in tool: fed_reserve (fed_reserve)
+2025-10-26 18:45:05,783 - tools.tools_registry - INFO - Tool registered: google_search
+2025-10-26 18:45:05,783 - tools.tools_registry - INFO - Loaded built-in tool: google_search (google_search)
+2025-10-26 18:45:05,783 - tools.tools_registry - INFO - Started file monitoring for tool configurations
+2025-10-26 18:45:52,605 - __main__ - INFO - Starting SAJHA MCP Server on 0.0.0.0:8000
+2025-10-26 18:45:52,620 - core.auth_manager - INFO - Loaded 1 users from configuration
+2025-10-26 18:45:52,620 - tools.tools_registry - INFO - Loading tools from config/tools
+2025-10-26 18:45:52,621 - tools.tools_registry - INFO - Tool registered: wikipedia
+2025-10-26 18:45:52,621 - tools.tools_registry - INFO - Loaded built-in tool: wikipedia (wikipedia)
+2025-10-26 18:45:52,621 - tools.tools_registry - INFO - Tool registered: yahoo_finance
+2025-10-26 18:45:52,621 - tools.tools_registry - INFO - Loaded built-in tool: yahoo_finance (yahoo_finance)
+2025-10-26 18:45:52,621 - tools.tools_registry - INFO - Tool registered: fed_reserve
+2025-10-26 18:45:52,621 - tools.tools_registry - INFO - Loaded built-in tool: fed_reserve (fed_reserve)
+2025-10-26 18:45:52,622 - tools.tools_registry - INFO - Tool registered: google_search
+2025-10-26 18:45:52,622 - tools.tools_registry - INFO - Loaded built-in tool: google_search (google_search)
+2025-10-26 18:45:52,622 - tools.tools_registry - INFO - Started file monitoring for tool configurations
+2025-10-26 18:45:52,625 - werkzeug - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+2025-10-26 18:45:52,645 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.2.54:8000
+2025-10-26 18:45:52,645 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-26 18:45:56,058 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:45:56] "[32mGET / HTTP/1.1[0m" 302 -
+2025-10-26 18:45:56,061 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:45:56] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-10-26 18:45:56,071 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:45:56] "GET /login?next=http://127.0.0.1:8000/dashboard HTTP/1.1" 200 -
+2025-10-26 18:45:56,088 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:45:56] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-10-26 18:45:56,088 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:45:56] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-10-26 18:45:56,294 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:45:56] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-26 18:46:09,627 - core.auth_manager - INFO - User authenticated successfully: admin
+2025-10-26 18:46:09,628 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:46:09] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-10-26 18:46:09,644 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:46:09] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 18:46:09,666 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:46:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:46:09,670 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:46:09] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:46:20,499 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:46:20] "GET /tools/execute/wikipedia HTTP/1.1" 200 -
+2025-10-26 18:46:20,523 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:46:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:46:20,524 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:46:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:46:20,557 - root - INFO - WebSocket client connected: xSYZ48hrDaG8sodxAAAB
+2025-10-26 18:46:35,621 - WikipediaTool - ERROR - Wikipedia search error: HTTP Error 403: Forbidden
+2025-10-26 18:46:35,621 - WikipediaTool - ERROR - Tool execution failed: wikipedia - Failed to search Wikipedia: HTTP Error 403: Forbidden
+Traceback (most recent call last):
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/wikipedia_tool.py", line 103, in _search
+    with urllib.request.urlopen(url) as response:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 493, in open
+    response = meth(req, response)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 602, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 531, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 611, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 403: Forbidden
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/base_mcp_tool.py", line 132, in execute_with_tracking
+    result = self.execute(arguments)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/wikipedia_tool.py", line 74, in execute
+    return self._search(query, arguments.get('limit', 5))
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/wikipedia_tool.py", line 128, in _search
+    raise ValueError(f"Failed to search Wikipedia: {str(e)}")
+ValueError: Failed to search Wikipedia: HTTP Error 403: Forbidden
+2025-10-26 18:46:35,626 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:46:35] "[35m[1mPOST /api/tools/execute HTTP/1.1[0m" 500 -
+2025-10-26 18:46:44,940 - root - INFO - WebSocket client disconnected: xSYZ48hrDaG8sodxAAAB
+2025-10-26 18:46:44,951 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:46:44] "GET /tools HTTP/1.1" 200 -
+2025-10-26 18:46:44,951 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:46:44] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2025-10-26 18:46:44,961 - werkzeug - ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 336, in execute
+    write(b"")
+    ~~~~~^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 261, in write
+    assert status_set is not None, "write() before start_response"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: write() before start_response
+2025-10-26 18:46:44,964 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:46:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:46:44,964 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:46:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:46:53,883 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:46:53] "GET /tools/execute/yahoo_finance HTTP/1.1" 200 -
+2025-10-26 18:46:53,903 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:46:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:46:53,904 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:46:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:46:53,932 - root - INFO - WebSocket client connected: Vjn0vcHqlo3JYI1WAAAD
+2025-10-26 18:47:05,436 - YahooFinanceTool - ERROR - Tool execution failed: yahoo_finance - 'symbol' is required for get_quote action
+Traceback (most recent call last):
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/base_mcp_tool.py", line 132, in execute_with_tracking
+    result = self.execute(arguments)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/yahoo_finance_tool.py", line 83, in execute
+    raise ValueError("'symbol' is required for get_quote action")
+ValueError: 'symbol' is required for get_quote action
+2025-10-26 18:47:05,438 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:47:05] "[35m[1mPOST /api/tools/execute HTTP/1.1[0m" 500 -
+2025-10-26 18:47:28,624 - YahooFinanceTool - ERROR - Tool execution failed: yahoo_finance - 'symbol' is required for get_quote action
+Traceback (most recent call last):
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/base_mcp_tool.py", line 132, in execute_with_tracking
+    result = self.execute(arguments)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/yahoo_finance_tool.py", line 83, in execute
+    raise ValueError("'symbol' is required for get_quote action")
+ValueError: 'symbol' is required for get_quote action
+2025-10-26 18:47:28,626 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:47:28] "[35m[1mPOST /api/tools/execute HTTP/1.1[0m" 500 -
+2025-10-26 18:47:53,009 - YahooFinanceTool - ERROR - Yahoo Finance quote error: URL can't contain control characters. '/v8/finance/chart/{"symbol" :"AAPL"}' (found at least ' ')
+2025-10-26 18:47:53,009 - YahooFinanceTool - ERROR - Tool execution failed: yahoo_finance - Failed to get quote: URL can't contain control characters. '/v8/finance/chart/{"symbol" :"AAPL"}' (found at least ' ')
+Traceback (most recent call last):
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/yahoo_finance_tool.py", line 121, in _get_quote
+    with urllib.request.urlopen(req) as response:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 487, in open
+    response = self._open(req, data)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 504, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 1369, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        context=self._context)
+                        ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 1321, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              encode_chunked=req.has_header('Transfer-encoding'))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/http/client.py", line 1338, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/http/client.py", line 1349, in _send_request
+    self.putrequest(method, url, **skips)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/http/client.py", line 1183, in putrequest
+    self._validate_path(url)
+    ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/http/client.py", line 1283, in _validate_path
+    raise InvalidURL(f"URL can't contain control characters. {url!r} "
+                     f"(found at least {match.group()!r})")
+http.client.InvalidURL: URL can't contain control characters. '/v8/finance/chart/{"symbol" :"AAPL"}' (found at least ' ')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/base_mcp_tool.py", line 132, in execute_with_tracking
+    result = self.execute(arguments)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/yahoo_finance_tool.py", line 84, in execute
+    return self._get_quote(symbol)
+           ~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/yahoo_finance_tool.py", line 167, in _get_quote
+    raise ValueError(f"Failed to get quote: {str(e)}")
+ValueError: Failed to get quote: URL can't contain control characters. '/v8/finance/chart/{"symbol" :"AAPL"}' (found at least ' ')
+2025-10-26 18:47:53,022 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:47:53] "[35m[1mPOST /api/tools/execute HTTP/1.1[0m" 500 -
+2025-10-26 18:49:09,859 - YahooFinanceTool - ERROR - Tool execution failed: yahoo_finance - 'symbol' is required for get_quote action
+Traceback (most recent call last):
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/base_mcp_tool.py", line 132, in execute_with_tracking
+    result = self.execute(arguments)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/yahoo_finance_tool.py", line 83, in execute
+    raise ValueError("'symbol' is required for get_quote action")
+ValueError: 'symbol' is required for get_quote action
+2025-10-26 18:49:09,861 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:49:09] "[35m[1mPOST /api/tools/execute HTTP/1.1[0m" 500 -
+2025-10-26 18:49:13,160 - root - INFO - WebSocket client disconnected: Vjn0vcHqlo3JYI1WAAAD
+2025-10-26 18:49:13,169 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:49:13] "GET /tools HTTP/1.1" 200 -
+2025-10-26 18:49:13,170 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:49:13] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2025-10-26 18:49:13,182 - werkzeug - ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 336, in execute
+    write(b"")
+    ~~~~~^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 261, in write
+    assert status_set is not None, "write() before start_response"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: write() before start_response
+2025-10-26 18:49:13,192 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:49:13] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:49:13,193 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:49:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:49:26,238 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:49:26] "GET /tools/execute/google_search HTTP/1.1" 200 -
+2025-10-26 18:49:26,259 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:49:26] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:49:26,260 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:49:26] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:49:26,291 - root - INFO - WebSocket client connected: 1bOwfq2fldat6Z5wAAAF
+2025-10-26 18:49:50,933 - GoogleSearchTool - INFO - Tool executed successfully: google_search (0.00s)
+2025-10-26 18:49:50,934 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:49:50] "POST /api/tools/execute HTTP/1.1" 200 -
+2025-10-26 18:52:57,035 - root - INFO - WebSocket client disconnected: 1bOwfq2fldat6Z5wAAAF
+2025-10-26 18:52:57,046 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:52:57] "GET /admin/tools HTTP/1.1" 200 -
+2025-10-26 18:52:57,047 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:52:57] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2025-10-26 18:52:57,058 - werkzeug - ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 336, in execute
+    write(b"")
+    ~~~~~^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 261, in write
+    assert status_set is not None, "write() before start_response"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: write() before start_response
+2025-10-26 18:52:57,060 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:52:57] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:52:57,062 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:52:57] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:53:00,929 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:00] "[33mGET /api/tools/wikipedia/config HTTP/1.1[0m" 404 -
+2025-10-26 18:53:00,966 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:00] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:53:00,969 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:00] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:53:05,087 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:05] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 18:53:05,101 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:05] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:53:05,102 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:05] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:53:10,392 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:10] "GET /admin/users HTTP/1.1" 200 -
+2025-10-26 18:53:10,405 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:53:10,407 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:10] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:53:16,029 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:16] "GET /admin/tools HTTP/1.1" 200 -
+2025-10-26 18:53:16,039 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:16] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:53:16,041 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:16] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:53:25,297 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:25] "[33mGET /api/admin/tools/metrics/export HTTP/1.1[0m" 404 -
+2025-10-26 18:53:25,323 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:25] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:53:25,325 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:25] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:53:28,171 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:28] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 18:53:28,183 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:28] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:53:28,183 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:28] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:53:32,611 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:32] "GET /monitoring/tools HTTP/1.1" 200 -
+2025-10-26 18:53:32,623 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:53:32,626 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:53:41,587 - web.app - ERROR - Exception on /monitoring/users [GET]
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 87, in decorated_function
+    return f(*args, **kwargs)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 245, in monitoring_users
+    return render_template('monitoring_users.html',
+                         user=user_session,
+                         users=users)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/base.html", line 95, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 35, in block 'content'
+    <p class="display-4">{{ users|selectattr('roles', 'contains', 'admin')|list|length }}</p>
+    ^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/async_utils.py", line 48, in wrapper
+    return normal_func(*args, **kwargs)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1365, in sync_do_list
+    return list(value)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1798, in select_or_reject
+    if func(item):
+       ~~~~^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1783, in <lambda>
+    return lambda item: modfunc(func(transfunc(item)))
+                                ~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1778, in func
+    return context.environment.call_test(name, item, args, kwargs, context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 594, in call_test
+    return self._filter_test_common(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, value, args, kwargs, context, eval_ctx, False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 526, in _filter_test_common
+    raise TemplateRuntimeError(msg)
+jinja2.exceptions.TemplateRuntimeError: No test named 'contains'.
+2025-10-26 18:53:41,593 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:41] "[35m[1mGET /monitoring/users HTTP/1.1[0m" 500 -
+2025-10-26 18:53:41,607 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:53:41,611 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:53:46,626 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:46] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 18:53:46,647 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:53:46,649 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:46] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:53:47,944 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:47] "GET /tools HTTP/1.1" 200 -
+2025-10-26 18:53:47,963 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:47] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:53:47,965 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:47] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:53:49,524 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:49] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 18:53:49,537 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:49] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:53:49,538 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:53:49] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:54:50,974 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:54:50] "GET /tools HTTP/1.1" 200 -
+2025-10-26 18:54:50,990 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:54:50] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:54:50,991 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:54:50] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:54:52,691 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:54:52] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 18:54:52,705 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:54:52] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:54:52,705 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:54:52] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:57:53,231 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:57:53] "GET /tools/execute/wikipedia HTTP/1.1" 200 -
+2025-10-26 18:57:53,246 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:57:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:57:53,246 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:57:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:57:53,273 - root - INFO - WebSocket client connected: IIrAeIpSZd_GT3snAAAH
+2025-10-26 18:58:07,438 - WikipediaTool - ERROR - Wikipedia search error: HTTP Error 403: Forbidden
+2025-10-26 18:58:07,439 - WikipediaTool - ERROR - Tool execution failed: wikipedia - Failed to search Wikipedia: HTTP Error 403: Forbidden
+Traceback (most recent call last):
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/wikipedia_tool.py", line 103, in _search
+    with urllib.request.urlopen(url) as response:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 493, in open
+    response = meth(req, response)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 602, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 531, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 611, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 403: Forbidden
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/base_mcp_tool.py", line 132, in execute_with_tracking
+    result = self.execute(arguments)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/wikipedia_tool.py", line 74, in execute
+    return self._search(query, arguments.get('limit', 5))
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/wikipedia_tool.py", line 128, in _search
+    raise ValueError(f"Failed to search Wikipedia: {str(e)}")
+ValueError: Failed to search Wikipedia: HTTP Error 403: Forbidden
+2025-10-26 18:58:07,443 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:58:07] "[35m[1mPOST /api/tools/execute HTTP/1.1[0m" 500 -
+2025-10-26 18:58:17,401 - root - INFO - WebSocket client disconnected: IIrAeIpSZd_GT3snAAAH
+2025-10-26 18:58:17,405 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:58:17] "GET /tools HTTP/1.1" 200 -
+2025-10-26 18:58:17,410 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:58:17] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2025-10-26 18:58:17,411 - werkzeug - ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 336, in execute
+    write(b"")
+    ~~~~~^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 261, in write
+    assert status_set is not None, "write() before start_response"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: write() before start_response
+2025-10-26 18:58:17,420 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:58:17] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:58:17,420 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:58:17] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:58:20,244 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:58:20] "GET /tools/execute/yahoo_finance HTTP/1.1" 200 -
+2025-10-26 18:58:20,263 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:58:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 18:58:20,265 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 18:58:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 18:58:20,287 - root - INFO - WebSocket client connected: 2uuCqYm-1ZWzfaSGAAAJ
+2025-10-26 19:00:09,755 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:00:09] "GET /admin/tools HTTP/1.1" 200 -
+2025-10-26 19:00:09,765 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:00:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:00:09,768 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:00:09] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:00:13,876 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:00:13] "GET /admin/tools HTTP/1.1" 200 -
+2025-10-26 19:00:13,891 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:00:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:00:13,891 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:00:13] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:00:15,449 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:00:15] "GET /tools HTTP/1.1" 200 -
+2025-10-26 19:00:15,465 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:00:15] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:00:15,465 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:00:15] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:00:16,492 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:00:16] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 19:00:16,506 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:00:16] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:00:16,506 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:00:16] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:00:48,999 - root - INFO - WebSocket client disconnected: 2uuCqYm-1ZWzfaSGAAAJ
+2025-10-26 19:00:49,009 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:00:49] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2025-10-26 19:00:49,020 - werkzeug - ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 336, in execute
+    write(b"")
+    ~~~~~^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 261, in write
+    assert status_set is not None, "write() before start_response"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: write() before start_response
+2025-10-26 19:04:11,408 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:04:11] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 19:04:11,420 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:04:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:04:11,422 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:04:11] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:04:13,398 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:04:13] "GET /tools HTTP/1.1" 200 -
+2025-10-26 19:04:13,415 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:04:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:04:13,415 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:04:13] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:04:18,565 - web.app - ERROR - Exception on /monitoring/users [GET]
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 87, in decorated_function
+    return f(*args, **kwargs)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 245, in monitoring_users
+    return render_template('monitoring_users.html',
+                         user=user_session,
+                         users=users)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/base.html", line 95, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 35, in block 'content'
+    <p class="display-4">{{ users|selectattr('roles', 'contains', 'admin')|list|length }}</p>
+    ^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/async_utils.py", line 48, in wrapper
+    return normal_func(*args, **kwargs)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1365, in sync_do_list
+    return list(value)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1798, in select_or_reject
+    if func(item):
+       ~~~~^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1783, in <lambda>
+    return lambda item: modfunc(func(transfunc(item)))
+                                ~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1778, in func
+    return context.environment.call_test(name, item, args, kwargs, context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 594, in call_test
+    return self._filter_test_common(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, value, args, kwargs, context, eval_ctx, False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 526, in _filter_test_common
+    raise TemplateRuntimeError(msg)
+jinja2.exceptions.TemplateRuntimeError: No test named 'contains'.
+2025-10-26 19:04:18,568 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:04:18] "[35m[1mGET /monitoring/users HTTP/1.1[0m" 500 -
+2025-10-26 19:04:18,589 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:04:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:04:18,594 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:04:18] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:23:08,770 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:23:08] "GET /tools HTTP/1.1" 200 -
+2025-10-26 19:23:08,787 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:23:08] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:23:08,788 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:23:08] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:23:11,401 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:23:11] "GET /tools/execute/yahoo_finance HTTP/1.1" 200 -
+2025-10-26 19:23:11,424 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:23:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:23:11,424 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:23:11] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:23:11,455 - root - INFO - WebSocket client connected: 709MDxqWDQYkbJeMAAAL
+2025-10-26 19:23:24,647 - YahooFinanceTool - INFO - Tool executed successfully: yahoo_finance (0.16s)
+2025-10-26 19:23:24,648 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:23:24] "POST /api/tools/execute HTTP/1.1" 200 -
+2025-10-26 19:23:39,206 - YahooFinanceTool - INFO - Tool executed successfully: yahoo_finance (0.12s)
+2025-10-26 19:23:39,208 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:23:39] "POST /api/tools/execute HTTP/1.1" 200 -
+2025-10-26 19:24:28,948 - root - INFO - WebSocket client disconnected: 709MDxqWDQYkbJeMAAAL
+2025-10-26 19:24:28,957 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:24:28] "GET /admin/tools HTTP/1.1" 200 -
+2025-10-26 19:24:28,959 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:24:28] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2025-10-26 19:24:28,970 - werkzeug - ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 336, in execute
+    write(b"")
+    ~~~~~^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 261, in write
+    assert status_set is not None, "write() before start_response"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: write() before start_response
+2025-10-26 19:24:28,976 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:24:28] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:24:28,978 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:24:28] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:24:41,127 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:24:41] "GET /admin/users HTTP/1.1" 200 -
+2025-10-26 19:24:41,148 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:24:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:24:41,149 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:24:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:24:46,461 - web.app - ERROR - Exception on /monitoring/users [GET]
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 87, in decorated_function
+    return f(*args, **kwargs)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 245, in monitoring_users
+    return render_template('monitoring_users.html',
+                         user=user_session,
+                         users=users)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/base.html", line 95, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 35, in block 'content'
+    <p class="display-4">{{ users|selectattr('roles', 'contains', 'admin')|list|length }}</p>
+    ^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/async_utils.py", line 48, in wrapper
+    return normal_func(*args, **kwargs)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1365, in sync_do_list
+    return list(value)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1798, in select_or_reject
+    if func(item):
+       ~~~~^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1783, in <lambda>
+    return lambda item: modfunc(func(transfunc(item)))
+                                ~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1778, in func
+    return context.environment.call_test(name, item, args, kwargs, context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 594, in call_test
+    return self._filter_test_common(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, value, args, kwargs, context, eval_ctx, False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 526, in _filter_test_common
+    raise TemplateRuntimeError(msg)
+jinja2.exceptions.TemplateRuntimeError: No test named 'contains'.
+2025-10-26 19:24:46,465 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:24:46] "[35m[1mGET /monitoring/users HTTP/1.1[0m" 500 -
+2025-10-26 19:24:46,480 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:24:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:24:46,481 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:24:46] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:24:48,310 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:24:48] "GET /tools HTTP/1.1" 200 -
+2025-10-26 19:24:48,351 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:24:48] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:24:48,352 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:24:48] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:24:51,408 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:24:51] "GET /monitoring/tools HTTP/1.1" 200 -
+2025-10-26 19:24:51,422 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:24:51] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:24:51,424 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:24:51] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:25:02,155 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:25:02] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 19:25:02,175 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:25:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:25:02,177 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:25:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:37:32,918 - tools.tools_registry - INFO - New tool configuration detected: tavily.json
+2025-10-26 19:37:32,919 - tools.tools_registry - WARNING - Tool tavily has no implementation specified
+2025-10-26 19:38:31,570 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:38:31] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 19:38:31,586 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:38:31] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:38:31,588 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:38:31] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:38:39,630 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:38:39] "[33mPOST /api/admin/tools/tavily/reload HTTP/1.1[0m" 404 -
+2025-10-26 19:40:17,937 - tools.tools_registry - INFO - Tool configuration changed: tavily.json
+2025-10-26 19:40:17,937 - tools.tools_registry - WARNING - Tool tavily has no implementation specified
+2025-10-26 19:41:52,829 - __main__ - INFO - Starting SAJHA MCP Server on 0.0.0.0:8000
+2025-10-26 19:41:52,845 - core.auth_manager - INFO - Loaded 1 users from configuration
+2025-10-26 19:41:52,846 - tools.tools_registry - INFO - Loading tools from config/tools
+2025-10-26 19:41:52,846 - tools.tools_registry - INFO - Tool registered: wikipedia
+2025-10-26 19:41:52,847 - tools.tools_registry - INFO - Loaded built-in tool: wikipedia (wikipedia)
+2025-10-26 19:41:52,847 - tools.tools_registry - INFO - Tool registered: yahoo_finance
+2025-10-26 19:41:52,847 - tools.tools_registry - INFO - Loaded built-in tool: yahoo_finance (yahoo_finance)
+2025-10-26 19:41:52,847 - tools.tools_registry - ERROR - Error loading built-in tool tavily: module 'tools.impl.fed_reserve_tool' has no attribute 'TavilyTool'
+2025-10-26 19:41:52,847 - tools.tools_registry - INFO - Tool registered: fed_reserve
+2025-10-26 19:41:52,847 - tools.tools_registry - INFO - Loaded built-in tool: fed_reserve (fed_reserve)
+2025-10-26 19:41:52,847 - tools.tools_registry - INFO - Tool registered: google_search
+2025-10-26 19:41:52,847 - tools.tools_registry - INFO - Loaded built-in tool: google_search (google_search)
+2025-10-26 19:41:52,847 - tools.tools_registry - INFO - Started file monitoring for tool configurations
+2025-10-26 19:41:52,851 - werkzeug - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+2025-10-26 19:41:52,853 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.2.54:8000
+2025-10-26 19:41:52,853 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-26 19:41:58,438 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:41:58] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-10-26 19:41:58,460 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:41:58] "GET /login?next=http://127.0.0.1:8000/dashboard HTTP/1.1" 200 -
+2025-10-26 19:41:58,485 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:41:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:41:58,486 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:41:58] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:41:59,868 - core.auth_manager - INFO - User authenticated successfully: admin
+2025-10-26 19:41:59,869 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:41:59] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-10-26 19:41:59,885 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:41:59] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 19:41:59,908 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:41:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:41:59,909 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:41:59] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:43:50,687 - __main__ - INFO - Starting SAJHA MCP Server on 0.0.0.0:8000
+2025-10-26 19:43:50,703 - core.auth_manager - INFO - Loaded 1 users from configuration
+2025-10-26 19:43:50,703 - tools.tools_registry - INFO - Loading tools from config/tools
+2025-10-26 19:43:50,704 - tools.tools_registry - INFO - Tool registered: wikipedia
+2025-10-26 19:43:50,704 - tools.tools_registry - INFO - Loaded built-in tool: wikipedia (wikipedia)
+2025-10-26 19:43:50,704 - tools.tools_registry - INFO - Tool registered: yahoo_finance
+2025-10-26 19:43:50,704 - tools.tools_registry - INFO - Loaded built-in tool: yahoo_finance (yahoo_finance)
+2025-10-26 19:43:50,705 - tools.tools_registry - INFO - Tool registered: tavily
+2025-10-26 19:43:50,706 - tools.tools_registry - INFO - Loaded built-in tool: tavily (tavily)
+2025-10-26 19:43:50,706 - tools.tools_registry - INFO - Tool registered: fed_reserve
+2025-10-26 19:43:50,706 - tools.tools_registry - INFO - Loaded built-in tool: fed_reserve (fed_reserve)
+2025-10-26 19:43:50,706 - tools.tools_registry - INFO - Tool registered: google_search
+2025-10-26 19:43:50,706 - tools.tools_registry - INFO - Loaded built-in tool: google_search (google_search)
+2025-10-26 19:43:50,706 - tools.tools_registry - INFO - Started file monitoring for tool configurations
+2025-10-26 19:43:50,710 - werkzeug - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+2025-10-26 19:43:50,712 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.2.54:8000
+2025-10-26 19:43:50,712 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-26 19:43:56,445 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:43:56] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-10-26 19:43:56,463 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:43:56] "GET /login?next=http://127.0.0.1:8000/dashboard HTTP/1.1" 200 -
+2025-10-26 19:43:56,487 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:43:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:43:56,489 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:43:56] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:43:57,987 - core.auth_manager - INFO - User authenticated successfully: admin
+2025-10-26 19:43:57,988 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:43:57] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-10-26 19:43:58,001 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:43:58] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 19:43:58,023 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:43:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:43:58,026 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:43:58] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:44:03,026 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:44:03] "GET /tools/execute/tavily HTTP/1.1" 200 -
+2025-10-26 19:44:03,047 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:44:03] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:44:03,053 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:44:03] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:44:03,073 - root - INFO - WebSocket client connected: n5ov0CKQD5TsBMM4AAAB
+2025-10-26 19:44:08,322 - root - INFO - WebSocket client disconnected: n5ov0CKQD5TsBMM4AAAB
+2025-10-26 19:44:08,333 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:44:08] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2025-10-26 19:44:08,335 - werkzeug - ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 336, in execute
+    write(b"")
+    ~~~~~^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 261, in write
+    assert status_set is not None, "write() before start_response"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: write() before start_response
+2025-10-26 19:49:05,741 - tools.tools_registry - INFO - New tool configuration detected: bank_of_canada.json
+2025-10-26 19:49:05,741 - tools.tools_registry - WARNING - Tool bank_of_canada has no implementation specified
+2025-10-26 19:51:52,976 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:51:52] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 19:51:52,996 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:51:52] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:51:52,997 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:51:52] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:52:35,764 - tools.tools_registry - INFO - Tool configuration changed: bank_of_canada.json
+2025-10-26 19:52:35,764 - tools.tools_registry - WARNING - Tool bank_of_canada has no implementation specified
+2025-10-26 19:52:44,316 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:52:44] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 19:52:44,338 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:52:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:52:44,346 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:52:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 19:54:50,784 - tools.tools_registry - INFO - Tool configuration changed: bank_of_canada.json
+2025-10-26 19:54:50,791 - tools.tools_registry - INFO - Tool registered: bank_of_canada
+2025-10-26 19:54:50,791 - tools.tools_registry - INFO - Loaded custom tool: bank_of_canada
+2025-10-26 19:54:56,264 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:54:56] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 19:54:56,281 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:54:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 19:54:56,283 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 19:54:56] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:01:25,827 - tools.tools_registry - INFO - New tool configuration detected: msdoc_tools.json
+2025-10-26 20:01:25,827 - tools.tools_registry - ERROR - Error loading custom tool msdoc_tools: No module named 'tools.impl.msdoc_tools'
+2025-10-26 20:01:54,985 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:01:54] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 20:01:54,994 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:01:54] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:01:54,997 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:01:54] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:02:36,097 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:02:36] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 20:02:36,111 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:02:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:02:36,111 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:02:36] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:02:39,752 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:02:39] "[33mPOST /api/admin/tools/msdoc_tools/reload HTTP/1.1[0m" 404 -
+2025-10-26 20:03:05,837 - tools.tools_registry - INFO - Tool configuration changed: msdoc_tools.json
+2025-10-26 20:03:05,846 - tools.tools_registry - INFO - Tool registered: msdoc_tools
+2025-10-26 20:03:05,846 - tools.tools_registry - INFO - Loaded custom tool: msdoc_tools
+2025-10-26 20:03:06,213 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:03:06] "[33mPOST /api/admin/tools/msdoc_tools/reload HTTP/1.1[0m" 404 -
+2025-10-26 20:04:18,738 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:04:18] "[33mPOST /api/admin/tools/msdoc_tools/reload HTTP/1.1[0m" 404 -
+2025-10-26 20:05:32,353 - __main__ - INFO - Starting SAJHA MCP Server on 0.0.0.0:8000
+2025-10-26 20:05:32,368 - core.auth_manager - INFO - Loaded 1 users from configuration
+2025-10-26 20:05:32,368 - tools.tools_registry - INFO - Loading tools from config/tools
+2025-10-26 20:05:32,369 - tools.tools_registry - INFO - Tool registered: wikipedia
+2025-10-26 20:05:32,370 - tools.tools_registry - INFO - Loaded built-in tool: wikipedia (wikipedia)
+2025-10-26 20:05:32,370 - tools.tools_registry - INFO - Tool registered: yahoo_finance
+2025-10-26 20:05:32,370 - tools.tools_registry - INFO - Loaded built-in tool: yahoo_finance (yahoo_finance)
+2025-10-26 20:05:32,370 - tools.tools_registry - INFO - Tool registered: tavily
+2025-10-26 20:05:32,370 - tools.tools_registry - INFO - Loaded built-in tool: tavily (tavily)
+2025-10-26 20:05:32,374 - tools.tools_registry - INFO - Tool registered: msdoc_tools
+2025-10-26 20:05:32,374 - tools.tools_registry - INFO - Loaded custom tool: msdoc_tools
+2025-10-26 20:05:32,374 - tools.tools_registry - INFO - Tool registered: fed_reserve
+2025-10-26 20:05:32,374 - tools.tools_registry - INFO - Loaded built-in tool: fed_reserve (fed_reserve)
+2025-10-26 20:05:32,376 - tools.tools_registry - INFO - Tool registered: bank_of_canada
+2025-10-26 20:05:32,376 - tools.tools_registry - INFO - Loaded custom tool: bank_of_canada
+2025-10-26 20:05:32,376 - tools.tools_registry - INFO - Tool registered: google_search
+2025-10-26 20:05:32,376 - tools.tools_registry - INFO - Loaded built-in tool: google_search (google_search)
+2025-10-26 20:05:32,377 - tools.tools_registry - INFO - Started file monitoring for tool configurations
+2025-10-26 20:05:32,380 - werkzeug - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+2025-10-26 20:05:32,383 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.2.54:8000
+2025-10-26 20:05:32,383 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-26 20:05:44,671 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:05:44] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-10-26 20:05:44,691 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:05:44] "GET /login?next=http://127.0.0.1:8000/dashboard HTTP/1.1" 200 -
+2025-10-26 20:05:44,715 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:05:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:05:44,717 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:05:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:05:46,136 - core.auth_manager - INFO - User authenticated successfully: admin
+2025-10-26 20:05:46,136 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:05:46] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-10-26 20:05:46,147 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:05:46] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 20:05:46,162 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:05:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:05:46,164 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:05:46] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:10:19,664 - web.app - ERROR - Exception on /monitoring/users [GET]
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 87, in decorated_function
+    return f(*args, **kwargs)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 245, in monitoring_users
+    return render_template('monitoring_users.html',
+                         user=user_session,
+                         users=users)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/base.html", line 95, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 35, in block 'content'
+    <p class="display-4">{{ users|selectattr('roles', 'contains', 'admin')|list|length }}</p>
+    ^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/async_utils.py", line 48, in wrapper
+    return normal_func(*args, **kwargs)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1365, in sync_do_list
+    return list(value)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1798, in select_or_reject
+    if func(item):
+       ~~~~^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1783, in <lambda>
+    return lambda item: modfunc(func(transfunc(item)))
+                                ~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1778, in func
+    return context.environment.call_test(name, item, args, kwargs, context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 594, in call_test
+    return self._filter_test_common(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, value, args, kwargs, context, eval_ctx, False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 526, in _filter_test_common
+    raise TemplateRuntimeError(msg)
+jinja2.exceptions.TemplateRuntimeError: No test named 'contains'.
+2025-10-26 20:10:19,668 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:19] "[35m[1mGET /monitoring/users HTTP/1.1[0m" 500 -
+2025-10-26 20:10:19,683 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:10:19,684 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:19] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:10:44,249 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:44] "GET /monitoring/tools HTTP/1.1" 200 -
+2025-10-26 20:10:44,269 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:10:44,274 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:10:49,792 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:49] "GET /admin/tools HTTP/1.1" 200 -
+2025-10-26 20:10:49,814 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:49] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:10:49,816 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:49] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:10:51,539 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:51] "GET /admin/users HTTP/1.1" 200 -
+2025-10-26 20:10:51,555 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:51] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:10:51,559 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:51] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:10:56,021 - web.app - ERROR - Exception on /monitoring/users [GET]
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 87, in decorated_function
+    return f(*args, **kwargs)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 245, in monitoring_users
+    return render_template('monitoring_users.html',
+                         user=user_session,
+                         users=users)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/base.html", line 95, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 35, in block 'content'
+    <p class="display-4">{{ users|selectattr('roles', 'contains', 'admin')|list|length }}</p>
+    ^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/async_utils.py", line 48, in wrapper
+    return normal_func(*args, **kwargs)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1365, in sync_do_list
+    return list(value)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1798, in select_or_reject
+    if func(item):
+       ~~~~^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1783, in <lambda>
+    return lambda item: modfunc(func(transfunc(item)))
+                                ~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1778, in func
+    return context.environment.call_test(name, item, args, kwargs, context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 594, in call_test
+    return self._filter_test_common(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, value, args, kwargs, context, eval_ctx, False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 526, in _filter_test_common
+    raise TemplateRuntimeError(msg)
+jinja2.exceptions.TemplateRuntimeError: No test named 'contains'.
+2025-10-26 20:10:56,026 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:56] "[35m[1mGET /monitoring/users HTTP/1.1[0m" 500 -
+2025-10-26 20:10:56,047 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:10:56,048 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:56] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:10:58,076 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:58] "GET /tools HTTP/1.1" 200 -
+2025-10-26 20:10:58,098 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:10:58,100 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:58] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:10:59,682 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:59] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 20:10:59,700 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:59] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:10:59,701 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:10:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:11:13,459 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:11:13] "GET /admin/tools HTTP/1.1" 200 -
+2025-10-26 20:11:13,480 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:11:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:11:13,481 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:11:13] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:11:17,480 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:11:17] "[33mGET /api/admin/tools/metrics/export HTTP/1.1[0m" 404 -
+2025-10-26 20:11:17,502 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:11:17] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:11:17,502 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:11:17] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:13:52,432 - tools.tools_registry - INFO - New tool configuration detected: duckdb_olap_tools.json
+2025-10-26 20:13:52,433 - tools.tools_registry - ERROR - Error loading custom tool duckdb_olap_tools: No module named 'tools.impl.duckdb_olap_tools'
+2025-10-26 20:15:25,751 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:15:25] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 20:15:25,769 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:15:25] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:15:25,769 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:15:25] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:15:35,550 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:15:35] "[33mPOST /api/admin/tools/duckdb_olap_tools/reload HTTP/1.1[0m" 404 -
+2025-10-26 20:16:27,448 - tools.tools_registry - INFO - Tool configuration changed: duckdb_olap_tools.json
+2025-10-26 20:16:27,501 - DuckDbOlapToolsTool - INFO - DuckDB initialized successfully
+2025-10-26 20:16:27,505 - DuckDbOlapToolsTool - INFO - Registered view: sample_inventory_data from sample_inventory_data.csv
+2025-10-26 20:16:27,508 - DuckDbOlapToolsTool - INFO - Registered view: sample_sales_data from sample_sales_data.csv
+2025-10-26 20:16:27,510 - DuckDbOlapToolsTool - INFO - Registered view: sample_customer_data from sample_customer_data.csv
+2025-10-26 20:16:27,510 - DuckDbOlapToolsTool - INFO - Registered 3 files as views
+2025-10-26 20:16:27,510 - tools.tools_registry - INFO - Tool registered: duckdb_olap_tools
+2025-10-26 20:16:27,510 - tools.tools_registry - INFO - Loaded custom tool: duckdb_olap_tools
+2025-10-26 20:16:29,436 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:16:29] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 20:16:29,457 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:16:29] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:16:29,458 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:16:29] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:17:08,706 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:17:08] "GET /tools/execute/duckdb_olap_tools HTTP/1.1" 200 -
+2025-10-26 20:17:08,717 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:17:08] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:17:08,718 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:17:08] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:17:08,747 - root - INFO - WebSocket client connected: L5w4qtxUGMUh-7sEAAAB
+2025-10-26 20:17:14,755 - DuckDbOlapToolsTool - INFO - Registered 3 files as views
+2025-10-26 20:17:14,778 - DuckDbOlapToolsTool - INFO - Tool executed successfully: duckdb_olap_tools (0.02s)
+2025-10-26 20:17:14,779 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:17:14] "POST /api/tools/execute HTTP/1.1" 200 -
+2025-10-26 20:31:08,288 - root - INFO - WebSocket client disconnected: L5w4qtxUGMUh-7sEAAAB
+2025-10-26 20:31:08,297 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:31:08] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 20:31:08,299 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:31:08] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2025-10-26 20:31:08,311 - werkzeug - ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 336, in execute
+    write(b"")
+    ~~~~~^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 261, in write
+    assert status_set is not None, "write() before start_response"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: write() before start_response
+2025-10-26 20:31:08,317 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:31:08] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:31:08,319 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:31:08] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:31:13,095 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:31:13] "GET /tools/execute/bank_of_canada HTTP/1.1" 200 -
+2025-10-26 20:31:13,118 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:31:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:31:13,118 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:31:13] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:31:13,151 - root - INFO - WebSocket client connected: DH8auN0EngLiOR0SAAAD
+2025-10-26 20:31:21,803 - BankOfCanadaTool - ERROR - Tool execution failed: bank_of_canada - Series not found: POLICY_RATE
+Traceback (most recent call last):
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/bank_of_canada_tool.py", line 251, in _get_series
+    with urllib.request.urlopen(req) as response:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 493, in open
+    response = meth(req, response)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 602, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 531, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 611, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/base_mcp_tool.py", line 132, in execute_with_tracking
+    result = self.execute(arguments)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/bank_of_canada_tool.py", line 175, in execute
+    return self._get_series(series_name, recent_periods=recent_periods)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/bank_of_canada_tool.py", line 278, in _get_series
+    raise ValueError(f"Series not found: {series_name}")
+ValueError: Series not found: POLICY_RATE
+2025-10-26 20:31:21,808 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:31:21] "[35m[1mPOST /api/tools/execute HTTP/1.1[0m" 500 -
+2025-10-26 20:31:38,391 - BankOfCanadaTool - WARNING - Failed to get policy_rate: Series not found: POLICY_RATE
+2025-10-26 20:31:39,345 - BankOfCanadaTool - INFO - Tool executed successfully: bank_of_canada (1.55s)
+2025-10-26 20:31:39,347 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:31:39] "POST /api/tools/execute HTTP/1.1" 200 -
+2025-10-26 20:31:52,455 - root - INFO - WebSocket client disconnected: DH8auN0EngLiOR0SAAAD
+2025-10-26 20:31:52,464 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:31:52] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 20:31:52,466 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:31:52] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2025-10-26 20:31:52,478 - werkzeug - ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 336, in execute
+    write(b"")
+    ~~~~~^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 261, in write
+    assert status_set is not None, "write() before start_response"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: write() before start_response
+2025-10-26 20:31:52,485 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:31:52] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:31:52,486 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:31:52] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:31:55,515 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:31:55] "GET /tools/execute/fed_reserve HTTP/1.1" 200 -
+2025-10-26 20:31:55,542 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:31:55] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:31:55,543 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:31:55] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:31:55,577 - root - INFO - WebSocket client connected: vpS3ursosETcZQF0AAAF
+2025-10-26 20:32:02,265 - FedReserveTool - INFO - Tool executed successfully: fed_reserve (0.00s)
+2025-10-26 20:32:02,266 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:32:02] "POST /api/tools/execute HTTP/1.1" 200 -
+2025-10-26 20:33:47,610 - tools.tools_registry - INFO - New tool configuration detected: european_central_bank.json
+2025-10-26 20:33:47,616 - tools.tools_registry - INFO - Tool registered: european_central_bank
+2025-10-26 20:33:47,616 - tools.tools_registry - INFO - Loaded custom tool: european_central_bank
+2025-10-26 20:33:53,295 - root - INFO - WebSocket client disconnected: vpS3ursosETcZQF0AAAF
+2025-10-26 20:33:53,303 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:33:53] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 20:33:53,306 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:33:53] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2025-10-26 20:33:53,317 - werkzeug - ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 336, in execute
+    write(b"")
+    ~~~~~^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 261, in write
+    assert status_set is not None, "write() before start_response"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: write() before start_response
+2025-10-26 20:33:53,322 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:33:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:33:53,322 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:33:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:41:02,663 - tools.tools_registry - INFO - New tool configuration detected: fbi.json
+2025-10-26 20:41:02,671 - tools.tools_registry - INFO - Tool registered: fbi
+2025-10-26 20:41:02,671 - tools.tools_registry - INFO - Loaded custom tool: fbi
+2025-10-26 20:41:07,095 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:41:07] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 20:41:07,106 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:41:07] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:41:07,108 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:41:07] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:41:11,924 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:41:11] "GET /tools/execute/fbi HTTP/1.1" 200 -
+2025-10-26 20:41:11,946 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:41:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:41:11,947 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:41:11] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:41:11,974 - root - INFO - WebSocket client connected: sFWdjjqyc_PxXBgFAAAH
+2025-10-26 20:41:19,435 - FBITool - ERROR - FBI API error: HTTP Error 403: Forbidden
+2025-10-26 20:41:19,435 - FBITool - ERROR - Tool execution failed: fbi - Failed to fetch data: HTTP 403
+Traceback (most recent call last):
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/fbi_tool.py", line 238, in _make_request
+    with urllib.request.urlopen(req, timeout=30) as response:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 493, in open
+    response = meth(req, response)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 602, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 531, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 611, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 403: Forbidden
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/base_mcp_tool.py", line 132, in execute_with_tracking
+    result = self.execute(arguments)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/fbi_tool.py", line 144, in execute
+    return self._get_national_statistics(year, offense_type, per_capita)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/fbi_tool.py", line 271, in _get_national_statistics
+    data = self._make_request(endpoint)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/fbi_tool.py", line 246, in _make_request
+    raise ValueError(f"Failed to fetch data: HTTP {e.code}")
+ValueError: Failed to fetch data: HTTP 403
+2025-10-26 20:41:19,440 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:41:19] "[35m[1mPOST /api/tools/execute HTTP/1.1[0m" 500 -
+2025-10-26 20:41:40,386 - FBITool - ERROR - FBI API error: HTTP Error 403: Forbidden
+2025-10-26 20:41:40,386 - FBITool - ERROR - Tool execution failed: fbi - Failed to fetch data: HTTP 403
+Traceback (most recent call last):
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/fbi_tool.py", line 238, in _make_request
+    with urllib.request.urlopen(req, timeout=30) as response:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 493, in open
+    response = meth(req, response)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 602, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 531, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/home/ashutosh/ide/python/python3.14.0/lib/python3.14/urllib/request.py", line 611, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 403: Forbidden
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/base_mcp_tool.py", line 132, in execute_with_tracking
+    result = self.execute(arguments)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/fbi_tool.py", line 155, in execute
+    return self._get_state_statistics(state, year, offense_type, per_capita)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/fbi_tool.py", line 309, in _get_state_statistics
+    data = self._make_request(endpoint)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/impl/fbi_tool.py", line 246, in _make_request
+    raise ValueError(f"Failed to fetch data: HTTP {e.code}")
+ValueError: Failed to fetch data: HTTP 403
+2025-10-26 20:41:40,389 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:41:40] "[35m[1mPOST /api/tools/execute HTTP/1.1[0m" 500 -
+2025-10-26 20:46:17,818 - root - INFO - WebSocket client disconnected: sFWdjjqyc_PxXBgFAAAH
+2025-10-26 20:46:17,825 - web.app - ERROR - Exception on /monitoring/users [GET]
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 87, in decorated_function
+    return f(*args, **kwargs)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 245, in monitoring_users
+    return render_template('monitoring_users.html',
+                         user=user_session,
+                         users=users)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/base.html", line 95, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 35, in block 'content'
+    <p class="display-4">{{ users|selectattr('roles', 'contains', 'admin')|list|length }}</p>
+    ^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/async_utils.py", line 48, in wrapper
+    return normal_func(*args, **kwargs)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1365, in sync_do_list
+    return list(value)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1798, in select_or_reject
+    if func(item):
+       ~~~~^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1783, in <lambda>
+    return lambda item: modfunc(func(transfunc(item)))
+                                ~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1778, in func
+    return context.environment.call_test(name, item, args, kwargs, context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 594, in call_test
+    return self._filter_test_common(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, value, args, kwargs, context, eval_ctx, False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 526, in _filter_test_common
+    raise TemplateRuntimeError(msg)
+jinja2.exceptions.TemplateRuntimeError: No test named 'contains'.
+2025-10-26 20:46:17,829 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:46:17] "[35m[1mGET /monitoring/users HTTP/1.1[0m" 500 -
+2025-10-26 20:46:17,829 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:46:17] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2025-10-26 20:46:17,841 - werkzeug - ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 336, in execute
+    write(b"")
+    ~~~~~^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/werkzeug/serving.py", line 261, in write
+    assert status_set is not None, "write() before start_response"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: write() before start_response
+2025-10-26 20:46:17,851 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:46:17] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:46:17,856 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:46:17] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:46:21,554 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:46:21] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 20:46:21,574 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:46:21] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:46:21,574 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:46:21] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:47:28,436 - web.app - ERROR - Exception on /monitoring/users [GET]
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 87, in decorated_function
+    return f(*args, **kwargs)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 245, in monitoring_users
+    return render_template('monitoring_users.html',
+                         user=user_session,
+                         users=users)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/base.html", line 95, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 35, in block 'content'
+    <p class="display-4">{{ users|selectattr('roles', 'contains', 'admin')|list|length }}</p>
+    ^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/async_utils.py", line 48, in wrapper
+    return normal_func(*args, **kwargs)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1365, in sync_do_list
+    return list(value)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1798, in select_or_reject
+    if func(item):
+       ~~~~^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1783, in <lambda>
+    return lambda item: modfunc(func(transfunc(item)))
+                                ~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1778, in func
+    return context.environment.call_test(name, item, args, kwargs, context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 594, in call_test
+    return self._filter_test_common(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, value, args, kwargs, context, eval_ctx, False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 526, in _filter_test_common
+    raise TemplateRuntimeError(msg)
+jinja2.exceptions.TemplateRuntimeError: No test named 'contains'.
+2025-10-26 20:47:28,440 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:47:28] "[35m[1mGET /monitoring/users HTTP/1.1[0m" 500 -
+2025-10-26 20:47:28,465 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:47:28] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:47:28,468 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:47:28] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:47:34,310 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:47:34] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 20:47:34,329 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:47:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:47:34,329 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:47:34] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:50:47,742 - tools.tools_registry - INFO - New tool configuration detected: webcrawler.json
+2025-10-26 20:50:47,761 - tools.tools_registry - INFO - Tool registered: webcrawler
+2025-10-26 20:50:47,761 - tools.tools_registry - INFO - Loaded custom tool: webcrawler
+2025-10-26 20:50:53,531 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:50:53] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 20:50:53,550 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:50:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:50:53,551 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:50:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:50:57,404 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:50:57] "GET /tools/execute/webcrawler HTTP/1.1" 200 -
+2025-10-26 20:50:57,423 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:50:57] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:50:57,425 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:50:57] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:50:57,452 - root - INFO - WebSocket client connected: mIN3mYF-WwrudPJmAAAJ
+2025-10-26 20:51:51,693 - WebCrawlerTool - INFO - Tool executed successfully: webcrawler (0.60s)
+2025-10-26 20:51:51,694 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:51:51] "POST /api/tools/execute HTTP/1.1" 200 -
+2025-10-26 20:52:10,465 - WebCrawlerTool - INFO - Tool executed successfully: webcrawler (0.87s)
+2025-10-26 20:52:10,465 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:52:10] "POST /api/tools/execute HTTP/1.1" 200 -
+2025-10-26 20:52:24,082 - WebCrawlerTool - INFO - Tool executed successfully: webcrawler (0.60s)
+2025-10-26 20:52:24,083 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:52:24] "POST /api/tools/execute HTTP/1.1" 200 -

@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+<!--
+Copyright All rights Reserved 2025-2030, Ashutosh Sinha, Email: ajsinha@gmail.com
+-->
+{% block title %}Monitoring - Tools - SAJHA MCP Server{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h3 mb-4">
+        <i class="bi bi-graph-up"></i> Tools Monitoring
+    </h1>
+    
+    <!-- Real-time Metrics -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5>Total Tools</h5>
+                    <p class="display-4">{{ metrics|length }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5>Total Executions</h5>
+                    <p class="display-4">{{ metrics|sum(attribute='execution_count') }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5>Active Tools</h5>
+                    <p class="display-4">{{ metrics|selectattr('enabled')|list|length }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5>Avg Response Time</h5>
+                    <p class="display-4">{{ "%.2f"|format(metrics|map(attribute='average_execution_time')|sum / (metrics|length or 1)) }}s</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Performance Chart -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="bi bi-bar-chart"></i> Performance Overview (Last 30 Minutes)</h5>
+        </div>
+        <div class="card-body">
+            <canvas id="performanceChart" height="100"></canvas>
+        </div>
+    </div>
+    
+    <!-- Tool Metrics Table -->
+    <div class="card">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0"><i class="bi bi-table"></i> Tool Metrics</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped" id="metricsTable">
+                    <thead>
+                        <tr>
+                            <th>Tool</th>
+                            <th>Status</th>
+                            <th>Executions</th>
+                            <th>Success Rate</th>
+                            <th>Avg Time</th>
+                            <th>Min Time</th>
+                            <th>Max Time</th>
+                            <th>Last Executed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for metric in metrics %}
+                        <tr>
+                            <td><strong>{{ metric.name }}</strong></td>
+                            <td>
+                                {% if metric.enabled %}
+                                <span class="badge bg-success">Active</span>
+                                {% else %}
+                                <span class="badge bg-secondary">Inactive</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ metric.execution_count }}</td>
+                            <td>
+                                <div class="progress" style="width: 100px;">
+                                    <div class="progress-bar bg-success" style="width: 95%;">95%</div>
+                                </div>
+                            </td>
+                            <td>{{ "%.3f"|format(metric.average_execution_time) }}s</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>
+                                {% if metric.last_execution %}
+                                <small>{{ metric.last_execution }}</small>
+                                {% else %}
+                                <span class="text-muted">Never</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Initialize performance chart
+const ctx = document.getElementById('performanceChart').getContext('2d');
+const performanceChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: generateTimeLabels(),
+        datasets: [{
+            label: 'Requests per Minute',
+            data: generateDemoData(30),
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }, {
+            label: 'Average Response Time (ms)',
+            data: generateDemoData(30, 50, 200),
+            borderColor: 'rgb(255, 99, 132)',
+            tension: 0.1,
+            yAxisID: 'y1'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+            mode: 'index',
+            intersect: false,
+        },
+        scales: {
+            y: {
+                type: 'linear',
+                display: true,
+                position: 'left',
+                title: {
+                    display: true,
+                    text: 'Requests/min'
+                }
+            },
+            y1: {
+                type: 'linear',
+                display: true,
+                position: 'right',
+                title: {
+                    display: true,
+                    text: 'Response Time (ms)'
+                },
+                grid: {
+                    drawOnChartArea: false,
+                }
+            }
+        }
+    }
+});
+
+// Generate time labels for last 30 minutes
+function generateTimeLabels() {
+    const labels = [];
+    const now = new Date();
+    for (let i = 29; i >= 0; i--) {
+        const time = new Date(now - i * 60000);
+        labels.push(time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }));
+    }
+    return labels;
+}
+
+// Generate demo data
+function generateDemoData(points, min = 10, max = 100) {
+    const data = [];
+    for (let i = 0; i < points; i++) {
+        data.push(Math.floor(Math.random() * (max - min + 1)) + min);
+    }
+    return data;
+}
+
+// Update chart every minute
+setInterval(function() {
+    // Add new data point
+    performanceChart.data.labels.shift();
+    performanceChart.data.labels.push(new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }));
+    
+    performanceChart.data.datasets.forEach((dataset) => {
+        dataset.data.shift();
+        dataset.data.push(Math.floor(Math.random() * 100) + 10);
+    });
+    
+    performanceChart.update();
+}, 60000);
+
+// Initialize DataTable
+$(document).ready(function() {
+    $('#metricsTable').DataTable({
+        "pageLength": 25,
+        "order": [[2, "desc"]]
+    });
+});
+</script>
+{% endblock %}
