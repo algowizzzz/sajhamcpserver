@@ -1476,3 +1476,68 @@ jinja2.exceptions.TemplateRuntimeError: No test named 'contains'.
 2025-10-26 21:04:27,975 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:04:27] "[33mGET /api/admin/tools/metrics/export HTTP/1.1[0m" 404 -
 2025-10-26 21:04:28,000 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:04:28] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
 2025-10-26 21:04:28,001 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:04:28] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:07:32,076 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:07:32] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 21:07:32,092 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:07:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:07:32,096 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:07:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:07:35,728 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:07:35] "GET /monitoring/tools HTTP/1.1" 200 -
+2025-10-26 21:07:35,742 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:07:35] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:07:35,743 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:07:35] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:07:47,102 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:07:47] "GET /monitoring/users HTTP/1.1" 200 -
+2025-10-26 21:07:47,118 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:07:47] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:07:47,119 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:07:47] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:07:49,581 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:07:49] "GET /monitoring/tools HTTP/1.1" 200 -
+2025-10-26 21:07:49,599 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:07:49] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:07:49,604 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:07:49] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:09:05,271 - __main__ - INFO - Starting SAJHA MCP Server on 0.0.0.0:5000
+2025-10-26 21:09:05,286 - core.auth_manager - INFO - Loaded 1 users from configuration
+2025-10-26 21:09:05,286 - tools.tools_registry - INFO - Loading tools from config/tools
+2025-10-26 21:09:05,287 - tools.tools_registry - INFO - Tool registered: wikipedia
+2025-10-26 21:09:05,287 - tools.tools_registry - INFO - Loaded built-in tool: wikipedia (wikipedia)
+2025-10-26 21:09:05,287 - tools.tools_registry - INFO - Tool registered: yahoo_finance
+2025-10-26 21:09:05,287 - tools.tools_registry - INFO - Loaded built-in tool: yahoo_finance (yahoo_finance)
+2025-10-26 21:09:05,287 - tools.tools_registry - INFO - Tool registered: tavily
+2025-10-26 21:09:05,287 - tools.tools_registry - INFO - Loaded built-in tool: tavily (tavily)
+2025-10-26 21:09:05,288 - tools.tools_registry - INFO - Tool registered: msdoc_tools
+2025-10-26 21:09:05,288 - tools.tools_registry - INFO - Loaded custom tool: msdoc_tools
+2025-10-26 21:09:05,288 - tools.tools_registry - INFO - Tool registered: fed_reserve
+2025-10-26 21:09:05,288 - tools.tools_registry - INFO - Loaded built-in tool: fed_reserve (fed_reserve)
+2025-10-26 21:09:05,288 - tools.tools_registry - INFO - Tool registered: european_central_bank
+2025-10-26 21:09:05,288 - tools.tools_registry - INFO - Loaded custom tool: european_central_bank
+2025-10-26 21:09:05,288 - tools.tools_registry - INFO - Tool registered: bank_of_canada
+2025-10-26 21:09:05,288 - tools.tools_registry - INFO - Loaded custom tool: bank_of_canada
+2025-10-26 21:09:05,315 - DuckDbOlapToolsTool - INFO - DuckDB initialized successfully
+2025-10-26 21:09:05,320 - DuckDbOlapToolsTool - INFO - Registered view: sample_customer_data from sample_customer_data.csv
+2025-10-26 21:09:05,322 - DuckDbOlapToolsTool - INFO - Registered view: sample_inventory_data from sample_inventory_data.csv
+2025-10-26 21:09:05,324 - DuckDbOlapToolsTool - INFO - Registered view: sample_sales_data from sample_sales_data.csv
+2025-10-26 21:09:05,324 - DuckDbOlapToolsTool - INFO - Registered 3 files as views
+2025-10-26 21:09:05,324 - tools.tools_registry - INFO - Tool registered: duckdb_olap_tools
+2025-10-26 21:09:05,324 - tools.tools_registry - INFO - Loaded custom tool: duckdb_olap_tools
+2025-10-26 21:09:05,325 - tools.tools_registry - INFO - Tool registered: google_search
+2025-10-26 21:09:05,325 - tools.tools_registry - INFO - Loaded built-in tool: google_search (google_search)
+2025-10-26 21:09:05,325 - tools.tools_registry - INFO - Tool registered: fbi
+2025-10-26 21:09:05,325 - tools.tools_registry - INFO - Loaded custom tool: fbi
+2025-10-26 21:09:05,326 - tools.tools_registry - INFO - Tool registered: webcrawler
+2025-10-26 21:09:05,326 - tools.tools_registry - INFO - Loaded custom tool: webcrawler
+2025-10-26 21:09:05,326 - tools.tools_registry - INFO - Started file monitoring for tool configurations
+2025-10-26 21:09:05,330 - werkzeug - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+2025-10-26 21:09:05,332 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.54:5000
+2025-10-26 21:09:05,332 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-26 21:09:11,198 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:11] "[32mGET /monitoring/tools HTTP/1.1[0m" 302 -
+2025-10-26 21:09:11,215 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:11] "GET /login?next=http://127.0.0.1:5000/monitoring/tools HTTP/1.1" 200 -
+2025-10-26 21:09:11,239 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:09:11,240 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:11] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:09:17,410 - core.auth_manager - INFO - User authenticated successfully: admin
+2025-10-26 21:09:17,412 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:17] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-10-26 21:09:17,428 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:17] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 21:09:17,447 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:17] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:09:17,450 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:17] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:09:27,169 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:27] "GET /monitoring/tools HTTP/1.1" 200 -
+2025-10-26 21:09:27,192 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:27] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:09:27,192 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:27] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:09:32,135 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:32] "GET /admin/tools HTTP/1.1" 200 -
+2025-10-26 21:09:32,156 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:09:32,157 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:09:34,172 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:34] "GET /api/admin/tools/metrics/export HTTP/1.1" 200 -
