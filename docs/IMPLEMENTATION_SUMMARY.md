@@ -2,7 +2,7 @@
 
 ## Project Successfully Created! ✅
 
-The complete SAJHA MCP Server implementation has been created according to your specifications. All components are fully implemented with the copyright notice as requested.
+
 
 **Copyright All rights Reserved 2025-2030, Ashutosh Sinha, Email: ajsinha@gmail.com**
 
