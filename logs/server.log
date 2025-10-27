@@ -1236,3 +1236,243 @@ jinja2.exceptions.TemplateRuntimeError: No test named 'contains'.
 2025-10-26 20:52:10,465 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:52:10] "POST /api/tools/execute HTTP/1.1" 200 -
 2025-10-26 20:52:24,082 - WebCrawlerTool - INFO - Tool executed successfully: webcrawler (0.60s)
 2025-10-26 20:52:24,083 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:52:24] "POST /api/tools/execute HTTP/1.1" 200 -
+2025-10-26 20:56:49,109 - __main__ - INFO - Starting SAJHA MCP Server on 0.0.0.0:5000
+2025-10-26 20:56:49,123 - core.auth_manager - INFO - Loaded 1 users from configuration
+2025-10-26 20:56:49,123 - tools.tools_registry - INFO - Loading tools from config/tools
+2025-10-26 20:56:49,130 - tools.tools_registry - INFO - Tool registered: wikipedia
+2025-10-26 20:56:49,130 - tools.tools_registry - INFO - Loaded built-in tool: wikipedia (wikipedia)
+2025-10-26 20:56:49,131 - tools.tools_registry - INFO - Tool registered: yahoo_finance
+2025-10-26 20:56:49,131 - tools.tools_registry - INFO - Loaded built-in tool: yahoo_finance (yahoo_finance)
+2025-10-26 20:56:49,132 - tools.tools_registry - INFO - Tool registered: tavily
+2025-10-26 20:56:49,132 - tools.tools_registry - INFO - Loaded built-in tool: tavily (tavily)
+2025-10-26 20:56:49,136 - tools.tools_registry - INFO - Tool registered: msdoc_tools
+2025-10-26 20:56:49,136 - tools.tools_registry - INFO - Loaded custom tool: msdoc_tools
+2025-10-26 20:56:49,136 - tools.tools_registry - INFO - Tool registered: fed_reserve
+2025-10-26 20:56:49,136 - tools.tools_registry - INFO - Loaded built-in tool: fed_reserve (fed_reserve)
+2025-10-26 20:56:49,139 - tools.tools_registry - INFO - Tool registered: european_central_bank
+2025-10-26 20:56:49,139 - tools.tools_registry - INFO - Loaded custom tool: european_central_bank
+2025-10-26 20:56:49,141 - tools.tools_registry - INFO - Tool registered: bank_of_canada
+2025-10-26 20:56:49,141 - tools.tools_registry - INFO - Loaded custom tool: bank_of_canada
+2025-10-26 20:56:49,171 - DuckDbOlapToolsTool - INFO - DuckDB initialized successfully
+2025-10-26 20:56:49,175 - DuckDbOlapToolsTool - INFO - Registered view: sample_inventory_data from sample_inventory_data.csv
+2025-10-26 20:56:49,177 - DuckDbOlapToolsTool - INFO - Registered view: sample_customer_data from sample_customer_data.csv
+2025-10-26 20:56:49,179 - DuckDbOlapToolsTool - INFO - Registered view: sample_sales_data from sample_sales_data.csv
+2025-10-26 20:56:49,179 - DuckDbOlapToolsTool - INFO - Registered 3 files as views
+2025-10-26 20:56:49,179 - tools.tools_registry - INFO - Tool registered: duckdb_olap_tools
+2025-10-26 20:56:49,179 - tools.tools_registry - INFO - Loaded custom tool: duckdb_olap_tools
+2025-10-26 20:56:49,180 - tools.tools_registry - INFO - Tool registered: google_search
+2025-10-26 20:56:49,180 - tools.tools_registry - INFO - Loaded built-in tool: google_search (google_search)
+2025-10-26 20:56:49,183 - tools.tools_registry - INFO - Tool registered: fbi
+2025-10-26 20:56:49,183 - tools.tools_registry - INFO - Loaded custom tool: fbi
+2025-10-26 20:56:49,186 - tools.tools_registry - INFO - Tool registered: webcrawler
+2025-10-26 20:56:49,186 - tools.tools_registry - INFO - Loaded custom tool: webcrawler
+2025-10-26 20:56:49,187 - tools.tools_registry - INFO - Started file monitoring for tool configurations
+2025-10-26 20:56:49,190 - werkzeug - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+2025-10-26 20:56:49,192 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.54:5000
+2025-10-26 20:56:49,192 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-26 20:57:03,639 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:57:03] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-10-26 20:57:03,658 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:57:03] "GET /login?next=http://127.0.0.1:5000/dashboard HTTP/1.1" 200 -
+2025-10-26 20:57:03,695 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:57:03] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-10-26 20:57:03,696 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:57:03] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-10-26 20:57:03,747 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:57:03] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-26 20:57:10,018 - core.auth_manager - INFO - User authenticated successfully: admin
+2025-10-26 20:57:10,019 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:57:10] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-10-26 20:57:10,034 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:57:10] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 20:57:10,058 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:57:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:57:10,059 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:57:10] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:57:30,216 - web.app - ERROR - Exception on /monitoring/users [GET]
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 87, in decorated_function
+    return f(*args, **kwargs)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 245, in monitoring_users
+    return render_template('monitoring_users.html',
+                         user=user_session,
+                         users=users)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/base.html", line 95, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 35, in block 'content'
+    <p class="display-4">{{ users|selectattr('roles', 'contains', 'admin')|list|length }}</p>
+    ^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/async_utils.py", line 48, in wrapper
+    return normal_func(*args, **kwargs)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1365, in sync_do_list
+    return list(value)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1798, in select_or_reject
+    if func(item):
+       ~~~~^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1783, in <lambda>
+    return lambda item: modfunc(func(transfunc(item)))
+                                ~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1778, in func
+    return context.environment.call_test(name, item, args, kwargs, context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 594, in call_test
+    return self._filter_test_common(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, value, args, kwargs, context, eval_ctx, False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 526, in _filter_test_common
+    raise TemplateRuntimeError(msg)
+jinja2.exceptions.TemplateRuntimeError: No test named 'contains'.
+2025-10-26 20:57:30,222 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:57:30] "[35m[1mGET /monitoring/users HTTP/1.1[0m" 500 -
+2025-10-26 20:57:30,241 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:57:30] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:57:30,243 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:57:30] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:58:41,513 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:58:41] "GET /monitoring/tools HTTP/1.1" 200 -
+2025-10-26 20:58:41,532 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:58:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:58:41,533 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:58:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 20:58:49,940 - web.app - ERROR - Exception on /monitoring/users [GET]
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 87, in decorated_function
+    return f(*args, **kwargs)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 245, in monitoring_users
+    return render_template('monitoring_users.html',
+                         user=user_session,
+                         users=users)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/base.html", line 95, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/templates/monitoring_users.html", line 35, in block 'content'
+    <p class="display-4">{{ users|selectattr('roles', 'contains', 'admin')|list|length }}</p>
+    ^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/async_utils.py", line 48, in wrapper
+    return normal_func(*args, **kwargs)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1365, in sync_do_list
+    return list(value)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1798, in select_or_reject
+    if func(item):
+       ~~~~^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1783, in <lambda>
+    return lambda item: modfunc(func(transfunc(item)))
+                                ~~~~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/filters.py", line 1778, in func
+    return context.environment.call_test(name, item, args, kwargs, context)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 594, in call_test
+    return self._filter_test_common(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        name, value, args, kwargs, context, eval_ctx, False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/jinja2/environment.py", line 526, in _filter_test_common
+    raise TemplateRuntimeError(msg)
+jinja2.exceptions.TemplateRuntimeError: No test named 'contains'.
+2025-10-26 20:58:49,944 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:58:49] "[35m[1mGET /monitoring/users HTTP/1.1[0m" 500 -
+2025-10-26 20:58:49,966 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:58:49] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 20:58:49,969 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 20:58:49] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:02:47,247 - __main__ - INFO - Starting SAJHA MCP Server on 0.0.0.0:5000
+2025-10-26 21:02:47,262 - core.auth_manager - INFO - Loaded 1 users from configuration
+2025-10-26 21:02:47,262 - tools.tools_registry - INFO - Loading tools from config/tools
+2025-10-26 21:02:47,263 - tools.tools_registry - INFO - Tool registered: wikipedia
+2025-10-26 21:02:47,263 - tools.tools_registry - INFO - Loaded built-in tool: wikipedia (wikipedia)
+2025-10-26 21:02:47,264 - tools.tools_registry - INFO - Tool registered: yahoo_finance
+2025-10-26 21:02:47,264 - tools.tools_registry - INFO - Loaded built-in tool: yahoo_finance (yahoo_finance)
+2025-10-26 21:02:47,264 - tools.tools_registry - INFO - Tool registered: tavily
+2025-10-26 21:02:47,264 - tools.tools_registry - INFO - Loaded built-in tool: tavily (tavily)
+2025-10-26 21:02:47,264 - tools.tools_registry - INFO - Tool registered: msdoc_tools
+2025-10-26 21:02:47,264 - tools.tools_registry - INFO - Loaded custom tool: msdoc_tools
+2025-10-26 21:02:47,264 - tools.tools_registry - INFO - Tool registered: fed_reserve
+2025-10-26 21:02:47,264 - tools.tools_registry - INFO - Loaded built-in tool: fed_reserve (fed_reserve)
+2025-10-26 21:02:47,265 - tools.tools_registry - INFO - Tool registered: european_central_bank
+2025-10-26 21:02:47,265 - tools.tools_registry - INFO - Loaded custom tool: european_central_bank
+2025-10-26 21:02:47,265 - tools.tools_registry - INFO - Tool registered: bank_of_canada
+2025-10-26 21:02:47,265 - tools.tools_registry - INFO - Loaded custom tool: bank_of_canada
+2025-10-26 21:02:47,292 - DuckDbOlapToolsTool - INFO - DuckDB initialized successfully
+2025-10-26 21:02:47,297 - DuckDbOlapToolsTool - INFO - Registered view: sample_inventory_data from sample_inventory_data.csv
+2025-10-26 21:02:47,299 - DuckDbOlapToolsTool - INFO - Registered view: sample_sales_data from sample_sales_data.csv
+2025-10-26 21:02:47,301 - DuckDbOlapToolsTool - INFO - Registered view: sample_customer_data from sample_customer_data.csv
+2025-10-26 21:02:47,301 - DuckDbOlapToolsTool - INFO - Registered 3 files as views
+2025-10-26 21:02:47,301 - tools.tools_registry - INFO - Tool registered: duckdb_olap_tools
+2025-10-26 21:02:47,301 - tools.tools_registry - INFO - Loaded custom tool: duckdb_olap_tools
+2025-10-26 21:02:47,301 - tools.tools_registry - INFO - Tool registered: google_search
+2025-10-26 21:02:47,301 - tools.tools_registry - INFO - Loaded built-in tool: google_search (google_search)
+2025-10-26 21:02:47,302 - tools.tools_registry - INFO - Tool registered: fbi
+2025-10-26 21:02:47,302 - tools.tools_registry - INFO - Loaded custom tool: fbi
+2025-10-26 21:02:47,303 - tools.tools_registry - INFO - Tool registered: webcrawler
+2025-10-26 21:02:47,303 - tools.tools_registry - INFO - Loaded custom tool: webcrawler
+2025-10-26 21:02:47,303 - tools.tools_registry - INFO - Started file monitoring for tool configurations
+2025-10-26 21:02:47,307 - werkzeug - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+2025-10-26 21:02:47,309 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.54:5000
+2025-10-26 21:02:47,309 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-26 21:02:52,538 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:02:52] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-10-26 21:02:52,561 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:02:52] "GET /login?next=http://127.0.0.1:5000/dashboard HTTP/1.1" 200 -
+2025-10-26 21:02:52,587 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:02:52] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:02:52,589 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:02:52] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:02:58,680 - core.auth_manager - INFO - User authenticated successfully: admin
+2025-10-26 21:02:58,681 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:02:58] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-10-26 21:02:58,698 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:02:58] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 21:02:58,720 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:02:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:02:58,721 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:02:58] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:03:03,118 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:03:03] "GET /monitoring/users HTTP/1.1" 200 -
+2025-10-26 21:03:03,136 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:03:03] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:03:03,141 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:03:03] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:03:07,944 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:03:07] "GET /monitoring/tools HTTP/1.1" 200 -
+2025-10-26 21:03:07,966 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:03:07] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:03:07,969 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:03:07] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:03:14,594 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:03:14] "GET /admin/users HTTP/1.1" 200 -
+2025-10-26 21:03:14,613 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:03:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:03:14,615 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:03:14] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:03:16,898 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:03:16] "GET /admin/tools HTTP/1.1" 200 -
+2025-10-26 21:03:16,924 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:03:16] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:03:16,927 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:03:16] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:03:20,282 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:03:20] "[33mGET /api/admin/tools/metrics/export HTTP/1.1[0m" 404 -
+2025-10-26 21:03:20,301 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:03:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:03:20,302 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:03:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:04:27,975 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:04:27] "[33mGET /api/admin/tools/metrics/export HTTP/1.1[0m" 404 -
+2025-10-26 21:04:28,000 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:04:28] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:04:28,001 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:04:28] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -

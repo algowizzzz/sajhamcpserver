@@ -32,7 +32,13 @@ Copyright All rights Reserved 2025-2030, Ashutosh Sinha, Email: ajsinha@gmail.co
             <div class="card text-center">
                 <div class="card-body">
                     <h5>Admin Users</h5>
-                    <p class="display-4">{{ users|selectattr('roles', 'contains', 'admin')|list|length }}</p>
+                    {% set admin_count = namespace(value=0) %}
+                    {% for user in users %}
+                        {% if user.roles and 'admin' in user.roles %}
+                            {% set admin_count.value = admin_count.value + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                    <p class="display-4">{{ admin_count.value }}</p>
                 </div>
             </div>
         </div>
@@ -45,7 +51,7 @@ Copyright All rights Reserved 2025-2030, Ashutosh Sinha, Email: ajsinha@gmail.co
             </div>
         </div>
     </div>
-    
+
     <!-- User Activity Chart -->
     <div class="card mb-4">
         <div class="card-header bg-primary text-white">
@@ -55,7 +61,7 @@ Copyright All rights Reserved 2025-2030, Ashutosh Sinha, Email: ajsinha@gmail.co
             <canvas id="activityChart" height="100"></canvas>
         </div>
     </div>
-    
+
     <!-- User Activity Table -->
     <div class="card">
         <div class="card-header bg-info text-white">
@@ -178,12 +184,12 @@ setInterval(function() {
     // Add new data point
     activityChart.data.labels.shift();
     activityChart.data.labels.push(new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }));
-    
+
     activityChart.data.datasets.forEach((dataset) => {
         dataset.data.shift();
         dataset.data.push(Math.floor(Math.random() * 10));
     });
-    
+
     activityChart.update();
 }, 60000);
 
