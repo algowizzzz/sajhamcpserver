@@ -1541,3 +1541,511 @@ jinja2.exceptions.TemplateRuntimeError: No test named 'contains'.
 2025-10-26 21:09:32,156 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
 2025-10-26 21:09:32,157 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
 2025-10-26 21:09:34,172 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:09:34] "GET /api/admin/tools/metrics/export HTTP/1.1" 200 -
+2025-10-26 21:10:36,452 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:10:36] "GET /tools HTTP/1.1" 200 -
+2025-10-26 21:10:36,471 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:10:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:10:36,474 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:10:36] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:10:41,014 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:10:41] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 21:10:41,029 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:10:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:10:41,031 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:10:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:10:45,088 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:10:45] "GET /tools HTTP/1.1" 200 -
+2025-10-26 21:10:45,108 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:10:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:10:45,112 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:10:45] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:10:56,931 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:10:56] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 21:10:56,950 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:10:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:10:56,951 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:10:56] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:14:34,485 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:14:34] "GET /tools HTTP/1.1" 200 -
+2025-10-26 21:14:34,506 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:14:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:14:34,510 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:14:34] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:14:41,722 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:14:41] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 21:14:41,732 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:14:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:14:41,734 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:14:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:14:45,347 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:14:45] "GET /tools HTTP/1.1" 200 -
+2025-10-26 21:14:45,364 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:14:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:14:45,367 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:14:45] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:14:50,355 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:14:50] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 21:14:50,369 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:14:50] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:14:50,371 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:14:50] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:14:53,182 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:14:53] "GET /tools HTTP/1.1" 200 -
+2025-10-26 21:14:53,203 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:14:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:14:53,205 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:14:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:15:06,960 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:15:06] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 21:15:06,980 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:15:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:15:06,982 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:15:06] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:21:01,332 - __main__ - INFO - Starting SAJHA MCP Server on 0.0.0.0:5000
+2025-10-26 21:21:01,347 - core.auth_manager - INFO - Loaded 1 users from configuration
+2025-10-26 21:21:01,347 - tools.tools_registry - INFO - Loading tools from config/tools
+2025-10-26 21:21:01,348 - tools.tools_registry - INFO - Tool registered: wikipedia
+2025-10-26 21:21:01,348 - tools.tools_registry - INFO - Loaded built-in tool: wikipedia (wikipedia)
+2025-10-26 21:21:01,348 - tools.tools_registry - INFO - Tool registered: yahoo_finance
+2025-10-26 21:21:01,348 - tools.tools_registry - INFO - Loaded built-in tool: yahoo_finance (yahoo_finance)
+2025-10-26 21:21:01,349 - tools.tools_registry - INFO - Tool registered: tavily
+2025-10-26 21:21:01,349 - tools.tools_registry - INFO - Loaded built-in tool: tavily (tavily)
+2025-10-26 21:21:01,349 - tools.tools_registry - INFO - Tool registered: msdoc_tools
+2025-10-26 21:21:01,349 - tools.tools_registry - INFO - Loaded custom tool: msdoc_tools
+2025-10-26 21:21:01,349 - tools.tools_registry - INFO - Tool registered: fed_reserve
+2025-10-26 21:21:01,349 - tools.tools_registry - INFO - Loaded built-in tool: fed_reserve (fed_reserve)
+2025-10-26 21:21:01,349 - tools.tools_registry - INFO - Tool registered: european_central_bank
+2025-10-26 21:21:01,349 - tools.tools_registry - INFO - Loaded custom tool: european_central_bank
+2025-10-26 21:21:01,350 - tools.tools_registry - INFO - Tool registered: bank_of_canada
+2025-10-26 21:21:01,350 - tools.tools_registry - INFO - Loaded custom tool: bank_of_canada
+2025-10-26 21:21:01,381 - DuckDbOlapToolsTool - INFO - DuckDB initialized successfully
+2025-10-26 21:21:01,386 - DuckDbOlapToolsTool - INFO - Registered view: sample_inventory_data from sample_inventory_data.csv
+2025-10-26 21:21:01,388 - DuckDbOlapToolsTool - INFO - Registered view: sample_customer_data from sample_customer_data.csv
+2025-10-26 21:21:01,390 - DuckDbOlapToolsTool - INFO - Registered view: sample_sales_data from sample_sales_data.csv
+2025-10-26 21:21:01,390 - DuckDbOlapToolsTool - INFO - Registered 3 files as views
+2025-10-26 21:21:01,390 - tools.tools_registry - INFO - Tool registered: duckdb_olap_tools
+2025-10-26 21:21:01,390 - tools.tools_registry - INFO - Loaded custom tool: duckdb_olap_tools
+2025-10-26 21:21:01,390 - tools.tools_registry - INFO - Tool registered: google_search
+2025-10-26 21:21:01,390 - tools.tools_registry - INFO - Loaded built-in tool: google_search (google_search)
+2025-10-26 21:21:01,391 - tools.tools_registry - INFO - Tool registered: fbi
+2025-10-26 21:21:01,391 - tools.tools_registry - INFO - Loaded custom tool: fbi
+2025-10-26 21:21:01,392 - tools.tools_registry - INFO - Tool registered: webcrawler
+2025-10-26 21:21:01,392 - tools.tools_registry - INFO - Loaded custom tool: webcrawler
+2025-10-26 21:21:01,392 - tools.tools_registry - INFO - Started file monitoring for tool configurations
+2025-10-26 21:21:01,396 - werkzeug - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+2025-10-26 21:21:01,398 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.54:5000
+2025-10-26 21:21:01,398 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-26 21:21:06,160 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:21:06] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-10-26 21:21:06,177 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:21:06] "GET /login?next=http://127.0.0.1:5000/dashboard HTTP/1.1" 200 -
+2025-10-26 21:21:06,202 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:21:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:21:06,203 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:21:06] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:21:12,591 - core.auth_manager - INFO - User authenticated successfully: admin
+2025-10-26 21:21:12,592 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:21:12] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-10-26 21:21:12,610 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:21:12] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 21:21:12,632 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:21:12] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:21:12,637 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:21:12] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:21:32,518 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:21:32] "GET /tools HTTP/1.1" 200 -
+2025-10-26 21:21:32,546 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:21:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:21:32,552 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:21:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:22:35,962 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:22:35] "GET /monitoring/tools HTTP/1.1" 200 -
+2025-10-26 21:22:35,981 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:22:35] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:22:35,984 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:22:35] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:22:40,223 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:22:40] "GET /monitoring/users HTTP/1.1" 200 -
+2025-10-26 21:22:40,248 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:22:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:22:40,252 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:22:40] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:22:42,372 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:22:42] "GET /tools HTTP/1.1" 200 -
+2025-10-26 21:22:42,387 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:22:42] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:22:42,391 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:22:42] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:24:25,844 - __main__ - INFO - Starting SAJHA MCP Server on 0.0.0.0:5000
+2025-10-26 21:24:25,869 - core.auth_manager - INFO - Loaded 1 users from configuration
+2025-10-26 21:24:25,869 - tools.tools_registry - INFO - Loading tools from config/tools
+2025-10-26 21:24:25,870 - tools.tools_registry - INFO - Tool registered: wikipedia
+2025-10-26 21:24:25,870 - tools.tools_registry - INFO - Loaded built-in tool: wikipedia (wikipedia)
+2025-10-26 21:24:25,870 - tools.tools_registry - INFO - Tool registered: yahoo_finance
+2025-10-26 21:24:25,870 - tools.tools_registry - INFO - Loaded built-in tool: yahoo_finance (yahoo_finance)
+2025-10-26 21:24:25,870 - tools.tools_registry - INFO - Tool registered: tavily
+2025-10-26 21:24:25,870 - tools.tools_registry - INFO - Loaded built-in tool: tavily (tavily)
+2025-10-26 21:24:25,871 - tools.tools_registry - INFO - Tool registered: msdoc_tools
+2025-10-26 21:24:25,871 - tools.tools_registry - INFO - Loaded custom tool: msdoc_tools
+2025-10-26 21:24:25,871 - tools.tools_registry - INFO - Tool registered: fed_reserve
+2025-10-26 21:24:25,871 - tools.tools_registry - INFO - Loaded built-in tool: fed_reserve (fed_reserve)
+2025-10-26 21:24:25,871 - tools.tools_registry - INFO - Tool registered: european_central_bank
+2025-10-26 21:24:25,871 - tools.tools_registry - INFO - Loaded custom tool: european_central_bank
+2025-10-26 21:24:25,871 - tools.tools_registry - INFO - Tool registered: bank_of_canada
+2025-10-26 21:24:25,872 - tools.tools_registry - INFO - Loaded custom tool: bank_of_canada
+2025-10-26 21:24:25,902 - DuckDbOlapToolsTool - INFO - DuckDB initialized successfully
+2025-10-26 21:24:25,907 - DuckDbOlapToolsTool - INFO - Registered view: sample_inventory_data from sample_inventory_data.csv
+2025-10-26 21:24:25,909 - DuckDbOlapToolsTool - INFO - Registered view: sample_customer_data from sample_customer_data.csv
+2025-10-26 21:24:25,912 - DuckDbOlapToolsTool - INFO - Registered view: sample_sales_data from sample_sales_data.csv
+2025-10-26 21:24:25,912 - DuckDbOlapToolsTool - INFO - Registered 3 files as views
+2025-10-26 21:24:25,912 - tools.tools_registry - INFO - Tool registered: duckdb_olap_tools
+2025-10-26 21:24:25,912 - tools.tools_registry - INFO - Loaded custom tool: duckdb_olap_tools
+2025-10-26 21:24:25,912 - tools.tools_registry - INFO - Tool registered: google_search
+2025-10-26 21:24:25,912 - tools.tools_registry - INFO - Loaded built-in tool: google_search (google_search)
+2025-10-26 21:24:25,912 - tools.tools_registry - INFO - Tool registered: fbi
+2025-10-26 21:24:25,912 - tools.tools_registry - INFO - Loaded custom tool: fbi
+2025-10-26 21:24:25,913 - tools.tools_registry - INFO - Tool registered: webcrawler
+2025-10-26 21:24:25,913 - tools.tools_registry - INFO - Loaded custom tool: webcrawler
+2025-10-26 21:24:25,914 - tools.tools_registry - INFO - Started file monitoring for tool configurations
+2025-10-26 21:24:25,917 - werkzeug - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+2025-10-26 21:24:25,920 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.54:5000
+2025-10-26 21:24:25,920 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-26 21:24:31,004 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:24:31] "[32mGET /tools HTTP/1.1[0m" 302 -
+2025-10-26 21:24:31,024 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:24:31] "GET /login?next=http://127.0.0.1:5000/tools HTTP/1.1" 200 -
+2025-10-26 21:24:31,048 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:24:31] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:24:31,049 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:24:31] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:24:37,543 - core.auth_manager - INFO - User authenticated successfully: admin
+2025-10-26 21:24:37,543 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:24:37] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-10-26 21:24:37,552 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:24:37] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 21:24:37,567 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:24:37] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:24:37,570 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:24:37] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:24:40,127 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:24:40] "GET /tools HTTP/1.1" 200 -
+2025-10-26 21:24:40,145 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:24:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:24:40,150 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:24:40] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:34:25,987 - tools.tools_registry - INFO - New tool configuration detected: sqlselect.json
+2025-10-26 21:34:26,002 - tools.tools_registry - ERROR - Error loading custom tool sqlselect: 'SqlSelectTool' object has no attribute 'name'
+2025-10-26 21:34:46,017 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:34:46] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 21:34:46,039 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:34:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:34:46,041 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:34:46] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:38:59,843 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:38:59] "[33mPOST /api/admin/tools/sqlselect/reload HTTP/1.1[0m" 404 -
+2025-10-26 21:39:08,704 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:39:08] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 21:39:08,724 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:39:08] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:39:08,727 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:39:08] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:40:27,983 - __main__ - INFO - Starting SAJHA MCP Server on 0.0.0.0:5000
+2025-10-26 21:40:27,999 - core.auth_manager - INFO - Loaded 1 users from configuration
+2025-10-26 21:40:27,999 - tools.tools_registry - INFO - Loading tools from config/tools
+2025-10-26 21:40:28,000 - tools.tools_registry - INFO - Tool registered: wikipedia
+2025-10-26 21:40:28,000 - tools.tools_registry - INFO - Loaded built-in tool: wikipedia (wikipedia)
+2025-10-26 21:40:28,000 - tools.tools_registry - INFO - Tool registered: yahoo_finance
+2025-10-26 21:40:28,000 - tools.tools_registry - INFO - Loaded built-in tool: yahoo_finance (yahoo_finance)
+2025-10-26 21:40:28,000 - tools.tools_registry - INFO - Tool registered: tavily
+2025-10-26 21:40:28,000 - tools.tools_registry - INFO - Loaded built-in tool: tavily (tavily)
+2025-10-26 21:40:28,000 - tools.tools_registry - INFO - Tool registered: msdoc_tools
+2025-10-26 21:40:28,000 - tools.tools_registry - INFO - Loaded custom tool: msdoc_tools
+2025-10-26 21:40:28,001 - tools.tools_registry - INFO - Tool registered: fed_reserve
+2025-10-26 21:40:28,001 - tools.tools_registry - INFO - Loaded built-in tool: fed_reserve (fed_reserve)
+2025-10-26 21:40:28,001 - tools.tools_registry - INFO - Tool registered: european_central_bank
+2025-10-26 21:40:28,001 - tools.tools_registry - INFO - Loaded custom tool: european_central_bank
+2025-10-26 21:40:28,001 - tools.tools_registry - INFO - Tool registered: bank_of_canada
+2025-10-26 21:40:28,001 - tools.tools_registry - INFO - Loaded custom tool: bank_of_canada
+2025-10-26 21:40:28,031 - DuckDbOlapToolsTool - INFO - DuckDB initialized successfully
+2025-10-26 21:40:28,036 - DuckDbOlapToolsTool - INFO - Registered view: sample_inventory_data from sample_inventory_data.csv
+2025-10-26 21:40:28,038 - DuckDbOlapToolsTool - INFO - Registered view: sample_customer_data from sample_customer_data.csv
+2025-10-26 21:40:28,040 - DuckDbOlapToolsTool - INFO - Registered view: sample_sales_data from sample_sales_data.csv
+2025-10-26 21:40:28,040 - DuckDbOlapToolsTool - INFO - Registered 3 files as views
+2025-10-26 21:40:28,040 - tools.tools_registry - INFO - Tool registered: duckdb_olap_tools
+2025-10-26 21:40:28,040 - tools.tools_registry - INFO - Loaded custom tool: duckdb_olap_tools
+2025-10-26 21:40:28,040 - tools.tools_registry - INFO - Tool registered: google_search
+2025-10-26 21:40:28,040 - tools.tools_registry - INFO - Loaded built-in tool: google_search (google_search)
+2025-10-26 21:40:28,049 - tools.tools_registry - INFO - Tool registered: sqlselect
+2025-10-26 21:40:28,049 - tools.tools_registry - INFO - Loaded custom tool: sqlselect
+2025-10-26 21:40:28,049 - tools.tools_registry - INFO - Tool registered: fbi
+2025-10-26 21:40:28,050 - tools.tools_registry - INFO - Loaded custom tool: fbi
+2025-10-26 21:40:28,050 - tools.tools_registry - INFO - Tool registered: webcrawler
+2025-10-26 21:40:28,050 - tools.tools_registry - INFO - Loaded custom tool: webcrawler
+2025-10-26 21:40:28,050 - tools.tools_registry - INFO - Started file monitoring for tool configurations
+2025-10-26 21:40:28,054 - werkzeug - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+2025-10-26 21:40:28,057 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.54:5000
+2025-10-26 21:40:28,057 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-26 21:40:32,759 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:32] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-10-26 21:40:32,778 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:32] "GET /login?next=http://127.0.0.1:5000/dashboard HTTP/1.1" 200 -
+2025-10-26 21:40:32,797 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:40:32,801 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:40:38,622 - core.auth_manager - INFO - User authenticated successfully: admin
+2025-10-26 21:40:38,623 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:38] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-10-26 21:40:38,627 - web.app - ERROR - Exception on /dashboard [GET]
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 72, in decorated_function
+    return f(*args, **kwargs)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 137, in dashboard
+    tools = tools_registry.get_all_tools()
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/tools_registry.py", line 210, in get_all_tools
+    return [tool.to_mcp_format() for tool in self.tools.values() if tool.enabled]
+                                                                    ^^^^^^^^^^^^
+AttributeError: 'SqlSelectTool' object has no attribute 'enabled'
+2025-10-26 21:40:38,633 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:38] "[35m[1mGET /dashboard HTTP/1.1[0m" 500 -
+2025-10-26 21:40:38,649 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:40:38,650 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:40:40,504 - web.app - ERROR - Exception on /dashboard [GET]
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 72, in decorated_function
+    return f(*args, **kwargs)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 137, in dashboard
+    tools = tools_registry.get_all_tools()
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/tools_registry.py", line 210, in get_all_tools
+    return [tool.to_mcp_format() for tool in self.tools.values() if tool.enabled]
+                                                                    ^^^^^^^^^^^^
+AttributeError: 'SqlSelectTool' object has no attribute 'enabled'
+2025-10-26 21:40:40,506 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:40] "[35m[1mGET /dashboard HTTP/1.1[0m" 500 -
+2025-10-26 21:40:40,527 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:40:40,529 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:40] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:40:41,518 - web.app - ERROR - Exception on /dashboard [GET]
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 72, in decorated_function
+    return f(*args, **kwargs)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 137, in dashboard
+    tools = tools_registry.get_all_tools()
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/tools_registry.py", line 210, in get_all_tools
+    return [tool.to_mcp_format() for tool in self.tools.values() if tool.enabled]
+                                                                    ^^^^^^^^^^^^
+AttributeError: 'SqlSelectTool' object has no attribute 'enabled'
+2025-10-26 21:40:41,520 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:41] "[35m[1mGET /dashboard HTTP/1.1[0m" 500 -
+2025-10-26 21:40:41,534 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:40:41,535 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:40:42,673 - web.app - ERROR - Exception on /dashboard [GET]
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 72, in decorated_function
+    return f(*args, **kwargs)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 137, in dashboard
+    tools = tools_registry.get_all_tools()
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/tools_registry.py", line 210, in get_all_tools
+    return [tool.to_mcp_format() for tool in self.tools.values() if tool.enabled]
+                                                                    ^^^^^^^^^^^^
+AttributeError: 'SqlSelectTool' object has no attribute 'enabled'
+2025-10-26 21:40:42,676 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:42] "[35m[1mGET /dashboard HTTP/1.1[0m" 500 -
+2025-10-26 21:40:42,691 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:42] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:40:42,693 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:40:42] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:41:07,021 - __main__ - INFO - Starting SAJHA MCP Server on 0.0.0.0:5000
+2025-10-26 21:41:07,079 - core.auth_manager - INFO - Loaded 1 users from configuration
+2025-10-26 21:41:07,079 - tools.tools_registry - INFO - Loading tools from config/tools
+2025-10-26 21:41:07,087 - tools.tools_registry - INFO - Tool registered: wikipedia
+2025-10-26 21:41:07,088 - tools.tools_registry - INFO - Loaded built-in tool: wikipedia (wikipedia)
+2025-10-26 21:41:07,088 - tools.tools_registry - INFO - Tool registered: yahoo_finance
+2025-10-26 21:41:07,088 - tools.tools_registry - INFO - Loaded built-in tool: yahoo_finance (yahoo_finance)
+2025-10-26 21:41:07,090 - tools.tools_registry - INFO - Tool registered: tavily
+2025-10-26 21:41:07,090 - tools.tools_registry - INFO - Loaded built-in tool: tavily (tavily)
+2025-10-26 21:41:07,094 - tools.tools_registry - INFO - Tool registered: msdoc_tools
+2025-10-26 21:41:07,094 - tools.tools_registry - INFO - Loaded custom tool: msdoc_tools
+2025-10-26 21:41:07,094 - tools.tools_registry - INFO - Tool registered: fed_reserve
+2025-10-26 21:41:07,094 - tools.tools_registry - INFO - Loaded built-in tool: fed_reserve (fed_reserve)
+2025-10-26 21:41:07,097 - tools.tools_registry - INFO - Tool registered: european_central_bank
+2025-10-26 21:41:07,097 - tools.tools_registry - INFO - Loaded custom tool: european_central_bank
+2025-10-26 21:41:07,099 - tools.tools_registry - INFO - Tool registered: bank_of_canada
+2025-10-26 21:41:07,099 - tools.tools_registry - INFO - Loaded custom tool: bank_of_canada
+2025-10-26 21:41:07,139 - DuckDbOlapToolsTool - INFO - DuckDB initialized successfully
+2025-10-26 21:41:07,145 - DuckDbOlapToolsTool - INFO - Registered view: sample_sales_data from sample_sales_data.csv
+2025-10-26 21:41:07,147 - DuckDbOlapToolsTool - INFO - Registered view: sample_inventory_data from sample_inventory_data.csv
+2025-10-26 21:41:07,149 - DuckDbOlapToolsTool - INFO - Registered view: sample_customer_data from sample_customer_data.csv
+2025-10-26 21:41:07,149 - DuckDbOlapToolsTool - INFO - Registered 3 files as views
+2025-10-26 21:41:07,149 - tools.tools_registry - INFO - Tool registered: duckdb_olap_tools
+2025-10-26 21:41:07,149 - tools.tools_registry - INFO - Loaded custom tool: duckdb_olap_tools
+2025-10-26 21:41:07,149 - tools.tools_registry - INFO - Tool registered: google_search
+2025-10-26 21:41:07,149 - tools.tools_registry - INFO - Loaded built-in tool: google_search (google_search)
+2025-10-26 21:41:44,747 - tools.tools_registry - INFO - Tool registered: sqlselect
+2025-10-26 21:41:46,727 - tools.tools_registry - INFO - Loaded custom tool: sqlselect
+2025-10-26 21:41:52,858 - tools.tools_registry - INFO - Tool registered: fbi
+2025-10-26 21:41:52,859 - tools.tools_registry - INFO - Loaded custom tool: fbi
+2025-10-26 21:41:54,694 - tools.tools_registry - INFO - Tool registered: webcrawler
+2025-10-26 21:41:54,696 - tools.tools_registry - INFO - Loaded custom tool: webcrawler
+2025-10-26 21:41:59,045 - tools.tools_registry - INFO - Started file monitoring for tool configurations
+2025-10-26 21:42:06,820 - werkzeug - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+2025-10-26 21:42:06,883 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.54:5000
+2025-10-26 21:42:06,884 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-26 21:42:13,526 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:42:13] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-10-26 21:42:13,595 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:42:13] "GET /login?next=http://127.0.0.1:5000/dashboard HTTP/1.1" 200 -
+2025-10-26 21:42:13,641 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:42:13] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:42:13,643 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:42:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:42:21,732 - core.auth_manager - INFO - User authenticated successfully: admin
+2025-10-26 21:42:21,737 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:42:21] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-10-26 21:42:21,748 - web.app - ERROR - Exception on /dashboard [GET]
+Traceback (most recent call last):
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ashutosh/.local/lib/python3.14/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 72, in decorated_function
+    return f(*args, **kwargs)
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/web/app.py", line 137, in dashboard
+    tools = tools_registry.get_all_tools()
+  File "/home/ashutosh/PycharmProjects/sajhamcpserver/tools/tools_registry.py", line 210, in get_all_tools
+    return [tool.to_mcp_format() for tool in self.tools.values() if tool.enabled]
+                                                                    ^^^^^^^^^^^^
+AttributeError: 'SqlSelectTool' object has no attribute 'enabled'
+2025-10-26 21:42:21,761 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:42:21] "[35m[1mGET /dashboard HTTP/1.1[0m" 500 -
+2025-10-26 21:42:21,788 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:42:21] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:42:21,798 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:42:21] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:44:08,862 - __main__ - INFO - Starting SAJHA MCP Server on 0.0.0.0:5000
+2025-10-26 21:44:08,900 - core.auth_manager - INFO - Loaded 1 users from configuration
+2025-10-26 21:44:08,900 - tools.tools_registry - INFO - Loading tools from config/tools
+2025-10-26 21:44:08,903 - tools.tools_registry - INFO - Tool registered: wikipedia
+2025-10-26 21:44:08,903 - tools.tools_registry - INFO - Loaded built-in tool: wikipedia (wikipedia)
+2025-10-26 21:44:08,903 - tools.tools_registry - INFO - Tool registered: yahoo_finance
+2025-10-26 21:44:08,903 - tools.tools_registry - INFO - Loaded built-in tool: yahoo_finance (yahoo_finance)
+2025-10-26 21:44:08,904 - tools.tools_registry - INFO - Tool registered: tavily
+2025-10-26 21:44:08,904 - tools.tools_registry - INFO - Loaded built-in tool: tavily (tavily)
+2025-10-26 21:44:08,904 - tools.tools_registry - INFO - Tool registered: msdoc_tools
+2025-10-26 21:44:08,904 - tools.tools_registry - INFO - Loaded custom tool: msdoc_tools
+2025-10-26 21:44:08,905 - tools.tools_registry - INFO - Tool registered: fed_reserve
+2025-10-26 21:44:08,905 - tools.tools_registry - INFO - Loaded built-in tool: fed_reserve (fed_reserve)
+2025-10-26 21:44:08,905 - tools.tools_registry - INFO - Tool registered: european_central_bank
+2025-10-26 21:44:08,905 - tools.tools_registry - INFO - Loaded custom tool: european_central_bank
+2025-10-26 21:44:08,906 - tools.tools_registry - INFO - Tool registered: bank_of_canada
+2025-10-26 21:44:08,906 - tools.tools_registry - INFO - Loaded custom tool: bank_of_canada
+2025-10-26 21:44:08,939 - DuckDbOlapToolsTool - INFO - DuckDB initialized successfully
+2025-10-26 21:44:08,944 - DuckDbOlapToolsTool - INFO - Registered view: sample_customer_data from sample_customer_data.csv
+2025-10-26 21:44:08,947 - DuckDbOlapToolsTool - INFO - Registered view: sample_sales_data from sample_sales_data.csv
+2025-10-26 21:44:08,949 - DuckDbOlapToolsTool - INFO - Registered view: sample_inventory_data from sample_inventory_data.csv
+2025-10-26 21:44:08,949 - DuckDbOlapToolsTool - INFO - Registered 3 files as views
+2025-10-26 21:44:08,949 - tools.tools_registry - INFO - Tool registered: duckdb_olap_tools
+2025-10-26 21:44:08,949 - tools.tools_registry - INFO - Loaded custom tool: duckdb_olap_tools
+2025-10-26 21:44:08,949 - tools.tools_registry - INFO - Tool registered: google_search
+2025-10-26 21:44:08,949 - tools.tools_registry - INFO - Loaded built-in tool: google_search (google_search)
+2025-10-26 21:44:08,952 - tools.tools_registry - ERROR - Error loading custom tool sqlselect: Can't instantiate abstract class SqlSelectTool without an implementation for abstract method 'get_input_schema'
+2025-10-26 21:44:08,952 - tools.tools_registry - INFO - Tool registered: fbi
+2025-10-26 21:44:08,952 - tools.tools_registry - INFO - Loaded custom tool: fbi
+2025-10-26 21:44:08,953 - tools.tools_registry - INFO - Tool registered: webcrawler
+2025-10-26 21:44:08,954 - tools.tools_registry - INFO - Loaded custom tool: webcrawler
+2025-10-26 21:44:08,954 - tools.tools_registry - INFO - Started file monitoring for tool configurations
+2025-10-26 21:44:08,964 - werkzeug - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+2025-10-26 21:44:08,971 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.54:5000
+2025-10-26 21:44:08,971 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-26 21:44:17,622 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:44:17] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-10-26 21:44:17,675 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:44:17] "GET /login?next=http://127.0.0.1:5000/dashboard HTTP/1.1" 200 -
+2025-10-26 21:44:17,701 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:44:17] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:44:17,704 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:44:17] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:44:24,175 - core.auth_manager - INFO - User authenticated successfully: admin
+2025-10-26 21:44:24,178 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:44:24] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-10-26 21:44:24,216 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:44:24] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 21:44:24,235 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:44:24] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:44:24,240 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:44:24] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:51:10,348 - __main__ - INFO - Starting SAJHA MCP Server on 0.0.0.0:5000
+2025-10-26 21:51:10,363 - core.auth_manager - INFO - Loaded 1 users from configuration
+2025-10-26 21:51:10,364 - tools.tools_registry - INFO - Loading tools from config/tools
+2025-10-26 21:51:10,365 - tools.tools_registry - INFO - Tool registered: wikipedia
+2025-10-26 21:51:10,365 - tools.tools_registry - INFO - Loaded built-in tool: wikipedia (wikipedia)
+2025-10-26 21:51:10,365 - tools.tools_registry - INFO - Tool registered: yahoo_finance
+2025-10-26 21:51:10,365 - tools.tools_registry - INFO - Loaded built-in tool: yahoo_finance (yahoo_finance)
+2025-10-26 21:51:10,365 - tools.tools_registry - INFO - Tool registered: tavily
+2025-10-26 21:51:10,365 - tools.tools_registry - INFO - Loaded built-in tool: tavily (tavily)
+2025-10-26 21:51:10,365 - tools.tools_registry - INFO - Tool registered: msdoc_tools
+2025-10-26 21:51:10,365 - tools.tools_registry - INFO - Loaded custom tool: msdoc_tools
+2025-10-26 21:51:10,365 - tools.tools_registry - INFO - Tool registered: fed_reserve
+2025-10-26 21:51:10,365 - tools.tools_registry - INFO - Loaded built-in tool: fed_reserve (fed_reserve)
+2025-10-26 21:51:10,366 - tools.tools_registry - INFO - Tool registered: european_central_bank
+2025-10-26 21:51:10,366 - tools.tools_registry - INFO - Loaded custom tool: european_central_bank
+2025-10-26 21:51:10,366 - tools.tools_registry - INFO - Tool registered: bank_of_canada
+2025-10-26 21:51:10,366 - tools.tools_registry - INFO - Loaded custom tool: bank_of_canada
+2025-10-26 21:51:10,394 - DuckDbOlapToolsTool - INFO - DuckDB initialized successfully
+2025-10-26 21:51:10,399 - DuckDbOlapToolsTool - INFO - Registered view: sample_inventory_data from sample_inventory_data.csv
+2025-10-26 21:51:10,402 - DuckDbOlapToolsTool - INFO - Registered view: sample_sales_data from sample_sales_data.csv
+2025-10-26 21:51:10,404 - DuckDbOlapToolsTool - INFO - Registered view: sample_customer_data from sample_customer_data.csv
+2025-10-26 21:51:10,404 - DuckDbOlapToolsTool - INFO - Registered 3 files as views
+2025-10-26 21:51:10,404 - tools.tools_registry - INFO - Tool registered: duckdb_olap_tools
+2025-10-26 21:51:10,404 - tools.tools_registry - INFO - Loaded custom tool: duckdb_olap_tools
+2025-10-26 21:51:10,404 - tools.tools_registry - INFO - Tool registered: google_search
+2025-10-26 21:51:10,404 - tools.tools_registry - INFO - Loaded built-in tool: google_search (google_search)
+2025-10-26 21:51:10,407 - tools.tools_registry - ERROR - Error loading custom tool sqlselect: No module named 'base_mcp_tool'
+2025-10-26 21:51:10,407 - tools.tools_registry - INFO - Tool registered: fbi
+2025-10-26 21:51:10,407 - tools.tools_registry - INFO - Loaded custom tool: fbi
+2025-10-26 21:51:10,408 - tools.tools_registry - INFO - Tool registered: webcrawler
+2025-10-26 21:51:10,408 - tools.tools_registry - INFO - Loaded custom tool: webcrawler
+2025-10-26 21:51:10,408 - tools.tools_registry - INFO - Started file monitoring for tool configurations
+2025-10-26 21:51:10,412 - werkzeug - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+2025-10-26 21:51:10,414 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.54:5000
+2025-10-26 21:51:10,414 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-26 21:51:10,760 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:51:10] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-10-26 21:51:10,779 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:51:10] "GET /login?next=http://127.0.0.1:5000/dashboard HTTP/1.1" 200 -
+2025-10-26 21:51:10,798 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:51:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:51:10,800 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:51:10] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:51:18,559 - core.auth_manager - INFO - User authenticated successfully: admin
+2025-10-26 21:51:18,560 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:51:18] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-10-26 21:51:18,575 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:51:18] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 21:51:18,598 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:51:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:51:18,599 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:51:18] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:51:44,170 - __main__ - INFO - Starting SAJHA MCP Server on 0.0.0.0:5000
+2025-10-26 21:51:44,186 - core.auth_manager - INFO - Loaded 1 users from configuration
+2025-10-26 21:51:44,186 - tools.tools_registry - INFO - Loading tools from config/tools
+2025-10-26 21:51:44,187 - tools.tools_registry - INFO - Tool registered: wikipedia
+2025-10-26 21:51:44,187 - tools.tools_registry - INFO - Loaded built-in tool: wikipedia (wikipedia)
+2025-10-26 21:51:44,187 - tools.tools_registry - INFO - Tool registered: yahoo_finance
+2025-10-26 21:51:44,187 - tools.tools_registry - INFO - Loaded built-in tool: yahoo_finance (yahoo_finance)
+2025-10-26 21:51:44,188 - tools.tools_registry - INFO - Tool registered: tavily
+2025-10-26 21:51:44,188 - tools.tools_registry - INFO - Loaded built-in tool: tavily (tavily)
+2025-10-26 21:51:44,188 - tools.tools_registry - INFO - Tool registered: msdoc_tools
+2025-10-26 21:51:44,188 - tools.tools_registry - INFO - Loaded custom tool: msdoc_tools
+2025-10-26 21:51:44,188 - tools.tools_registry - INFO - Tool registered: fed_reserve
+2025-10-26 21:51:44,188 - tools.tools_registry - INFO - Loaded built-in tool: fed_reserve (fed_reserve)
+2025-10-26 21:51:44,188 - tools.tools_registry - INFO - Tool registered: european_central_bank
+2025-10-26 21:51:44,188 - tools.tools_registry - INFO - Loaded custom tool: european_central_bank
+2025-10-26 21:51:44,189 - tools.tools_registry - INFO - Tool registered: bank_of_canada
+2025-10-26 21:51:44,189 - tools.tools_registry - INFO - Loaded custom tool: bank_of_canada
+2025-10-26 21:51:44,216 - DuckDbOlapToolsTool - INFO - DuckDB initialized successfully
+2025-10-26 21:51:44,221 - DuckDbOlapToolsTool - INFO - Registered view: sample_inventory_data from sample_inventory_data.csv
+2025-10-26 21:51:44,223 - DuckDbOlapToolsTool - INFO - Registered view: sample_customer_data from sample_customer_data.csv
+2025-10-26 21:51:44,225 - DuckDbOlapToolsTool - INFO - Registered view: sample_sales_data from sample_sales_data.csv
+2025-10-26 21:51:44,225 - DuckDbOlapToolsTool - INFO - Registered 3 files as views
+2025-10-26 21:51:44,225 - tools.tools_registry - INFO - Tool registered: duckdb_olap_tools
+2025-10-26 21:51:44,225 - tools.tools_registry - INFO - Loaded custom tool: duckdb_olap_tools
+2025-10-26 21:51:44,225 - tools.tools_registry - INFO - Tool registered: google_search
+2025-10-26 21:51:44,225 - tools.tools_registry - INFO - Loaded built-in tool: google_search (google_search)
+2025-10-26 21:51:44,234 - SqlSelectTool - WARNING - Data file not found: data/sqlselect/customers.csv
+2025-10-26 21:51:44,234 - SqlSelectTool - WARNING - Data file not found: data/sqlselect/orders.csv
+2025-10-26 21:51:44,234 - SqlSelectTool - WARNING - Data file not found: data/sqlselect/products.csv
+2025-10-26 21:51:44,234 - SqlSelectTool - WARNING - Data file not found: data/sqlselect/sales.csv
+2025-10-26 21:51:44,234 - SqlSelectTool - INFO - DuckDB connection initialized for sqlselect
+2025-10-26 21:51:44,234 - tools.tools_registry - INFO - Tool registered: sqlselect
+2025-10-26 21:51:44,234 - tools.tools_registry - INFO - Loaded custom tool: sqlselect
+2025-10-26 21:51:44,235 - tools.tools_registry - INFO - Tool registered: fbi
+2025-10-26 21:51:44,235 - tools.tools_registry - INFO - Loaded custom tool: fbi
+2025-10-26 21:51:44,235 - tools.tools_registry - INFO - Tool registered: webcrawler
+2025-10-26 21:51:44,235 - tools.tools_registry - INFO - Loaded custom tool: webcrawler
+2025-10-26 21:51:44,235 - tools.tools_registry - INFO - Started file monitoring for tool configurations
+2025-10-26 21:51:44,239 - werkzeug - WARNING - Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+2025-10-26 21:51:44,241 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.54:5000
+2025-10-26 21:51:44,241 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-10-26 21:51:49,990 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:51:49] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-10-26 21:51:50,001 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:51:50] "GET /login?next=http://127.0.0.1:5000/dashboard HTTP/1.1" 200 -
+2025-10-26 21:51:50,017 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:51:50] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:51:50,021 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:51:50] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-10-26 21:51:55,721 - core.auth_manager - INFO - User authenticated successfully: admin
+2025-10-26 21:51:55,722 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:51:55] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-10-26 21:51:55,737 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:51:55] "GET /dashboard HTTP/1.1" 200 -
+2025-10-26 21:51:55,753 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:51:55] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-10-26 21:51:55,759 - werkzeug - INFO - 127.0.0.1 - - [26/Oct/2025 21:51:55] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
