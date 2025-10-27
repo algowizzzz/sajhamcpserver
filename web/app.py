@@ -7,6 +7,8 @@ import json
 import logging
 import csv
 import io
+import os
+from pathlib import Path
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session, make_response
 from flask_socketio import SocketIO, emit, disconnect
 from flask_cors import CORS
@@ -209,6 +211,24 @@ def register_routes(app):
                              tools_metrics=tools_metrics,
                              tool_errors=tool_errors)
 
+    @app.route('/admin/tools/<tool_name>/config')
+    @admin_required
+    def tool_config_page(tool_name):
+        """Tool configuration editor page"""
+        user_session = request.user_session
+
+        # Verify tool exists
+        tool = tools_registry.get_tool(tool_name)
+        if not tool and tool_name not in tools_registry.tool_configs:
+            return render_template('error.html',
+                                 user=user_session,
+                                 error="Tool Not Found",
+                                 message=f"Tool '{tool_name}' does not exist"), 404
+
+        return render_template('tool_config.html',
+                             user=user_session,
+                             tool_name=tool_name)
+
     @app.route('/admin/users')
     @admin_required
     def admin_users():
@@ -407,6 +427,111 @@ def register_routes(app):
             logging.error(f"Error exporting metrics: {e}")
             return jsonify({'error': 'Failed to export metrics'}), 500
 
+    @app.route('/api/admin/tools/<tool_name>/config', methods=['GET'])
+    @admin_required
+    def api_get_tool_config(tool_name):
+        """Get tool configuration"""
+        try:
+            # First try to get from tool_configs
+            if tool_name in tools_registry.tool_configs:
+                return jsonify(tools_registry.tool_configs[tool_name])
+
+            # Otherwise get from tool instance
+            tool = tools_registry.get_tool(tool_name)
+            if tool:
+                return jsonify(tool.config)
+
+            return jsonify({'error': 'Tool not found'}), 404
+
+        except Exception as e:
+            logging.error(f"Error getting tool config: {e}")
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/admin/tools/<tool_name>/config', methods=['POST'])
+    @admin_required
+    def api_save_tool_config(tool_name):
+        """Save tool configuration"""
+        try:
+            config = request.get_json()
+
+            if not config:
+                return jsonify({'error': 'No configuration provided'}), 400
+
+            # Validate required fields
+            required_fields = ['name', 'description', 'version', 'enabled', 'inputSchema']
+            for field in required_fields:
+                if field not in config:
+                    return jsonify({'error': f'Missing required field: {field}'}), 400
+
+            # Ensure name matches
+            if config['name'] != tool_name:
+                return jsonify({'error': 'Tool name in configuration does not match'}), 400
+
+            # Update the tool configuration
+            tools_registry.tool_configs[tool_name] = config
+
+            # Save to file
+            tools_registry._save_tool_config(tool_name)
+
+            # If tool is already loaded, unregister and reload it
+            if tool_name in tools_registry.tools:
+                tools_registry.unregister_tool(tool_name)
+
+            # Reload the tool with new config
+            config_file = Path(tools_registry.tools_config_dir) / f"{tool_name}.json"
+            if config_file.exists():
+                tools_registry.load_tool_from_config(config_file)
+
+            return jsonify({
+                'success': True,
+                'message': 'Configuration saved successfully'
+            })
+
+        except Exception as e:
+            logging.error(f"Error saving tool config: {e}")
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/admin/tools/<tool_name>/delete', methods=['DELETE'])
+    @admin_required
+    def api_delete_tool(tool_name):
+        """Delete a tool configuration"""
+        try:
+            # Unregister tool if loaded
+            if tool_name in tools_registry.tools:
+                tools_registry.unregister_tool(tool_name)
+
+            # Remove from configs
+            if tool_name in tools_registry.tool_configs:
+                del tools_registry.tool_configs[tool_name]
+
+            # Delete configuration file
+            config_file = Path(tools_registry.tools_config_dir) / f"{tool_name}.json"
+            if config_file.exists():
+                os.remove(config_file)
+
+            return jsonify({
+                'success': True,
+                'message': f'Tool {tool_name} deleted successfully'
+            })
+
+        except Exception as e:
+            logging.error(f"Error deleting tool: {e}")
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/admin/tools/reload', methods=['POST'])
+    @admin_required
+    def api_reload_tools():
+        """Reload all tools from configuration"""
+        try:
+            tools_registry.reload_all_tools()
+            return jsonify({
+                'success': True,
+                'message': 'Tools reloaded successfully'
+            })
+        except Exception as e:
+            logging.error(f"Error reloading tools: {e}")
+            return jsonify({'error': str(e)}), 500
+
     @app.route('/health')
     def health():
         """Health check endpoint"""
@@ -521,3 +646,7 @@ def register_socketio_handlers(socketio):
                 'success': False,
                 'error': str(e)
             })
+
+if __name__ == '__main__':
+    app, socketio = create_app()
+    socketio.run(app, host='0.0.0.0', port=5000, debug=True)

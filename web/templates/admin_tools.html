@@ -496,7 +496,7 @@ function disableAllTools() {
 }
 
 function viewConfig(toolName) {
-    window.open(`/api/tools/${toolName}/config`, '_blank');
+    window.location.href = `/admin/tools/${toolName}/config`;
 }
 
 function exportMetrics() {
