@@ -532,6 +532,233 @@ def register_routes(app):
             logging.error(f"Error reloading tools: {e}")
             return jsonify({'error': str(e)}), 500
 
+    # User Management Routes
+    @app.route('/admin/users/<user_id>/config')
+    @admin_required
+    def user_config_page(user_id):
+        """User configuration editor page"""
+        user_session = request.user_session
+
+        # Verify user exists
+        user_data = auth_manager.get_user(user_id)
+        if not user_data:
+            return render_template('error.html',
+                                 user=user_session,
+                                 error="User Not Found",
+                                 message=f"User '{user_id}' does not exist"), 404
+
+        return render_template('user_config.html',
+                             user=user_session,
+                             user_id=user_id)
+
+    @app.route('/api/admin/users/<user_id>/config', methods=['GET'])
+    @admin_required
+    def api_get_user_config(user_id):
+        """Get user configuration"""
+        try:
+            user_data = auth_manager.get_user(user_id)
+            if not user_data:
+                return jsonify({'error': 'User not found'}), 404
+
+            return jsonify(user_data)
+
+        except Exception as e:
+            logging.error(f"Error getting user config: {e}")
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/admin/users/<user_id>/config', methods=['POST'])
+    @admin_required
+    def api_save_user_config(user_id):
+        """Save user configuration"""
+        try:
+            config = request.get_json()
+
+            if not config:
+                return jsonify({'error': 'No configuration provided'}), 400
+
+            # Validate required fields
+            required_fields = ['user_id', 'user_name', 'enabled']
+            for field in required_fields:
+                if field not in config:
+                    return jsonify({'error': f'Missing required field: {field}'}), 400
+
+            # Ensure user_id matches
+            if config['user_id'] != user_id:
+                return jsonify({'error': 'User ID in configuration does not match'}), 400
+
+            # Update user
+            success = auth_manager.update_user(user_id, config)
+
+            if success:
+                return jsonify({
+                    'success': True,
+                    'message': 'User configuration saved successfully'
+                })
+            else:
+                return jsonify({'error': 'Failed to update user'}), 500
+
+        except Exception as e:
+            logging.error(f"Error saving user config: {e}")
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/admin/users/<user_id>/enable', methods=['POST'])
+    @admin_required
+    def api_enable_user(user_id):
+        """Enable a user"""
+        try:
+            success = auth_manager.enable_user(user_id)
+            if success:
+                return jsonify({'success': True})
+            else:
+                return jsonify({'error': 'User not found'}), 404
+        except Exception as e:
+            logging.error(f"Error enabling user: {e}")
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/admin/users/<user_id>/disable', methods=['POST'])
+    @admin_required
+    def api_disable_user(user_id):
+        """Disable a user"""
+        try:
+            if user_id == 'admin':
+                return jsonify({'error': 'Cannot disable admin user'}), 400
+
+            success = auth_manager.disable_user(user_id)
+            if success:
+                return jsonify({'success': True})
+            else:
+                return jsonify({'error': 'User not found'}), 404
+        except Exception as e:
+            logging.error(f"Error disabling user: {e}")
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/admin/users/<user_id>/delete', methods=['DELETE'])
+    @admin_required
+    def api_delete_user(user_id):
+        """Delete a user"""
+        try:
+            if user_id == 'admin':
+                return jsonify({'error': 'Cannot delete admin user'}), 400
+
+            success = auth_manager.delete_user(user_id)
+
+            if success:
+                return jsonify({
+                    'success': True,
+                    'message': f'User {user_id} deleted successfully'
+                })
+            else:
+                return jsonify({'error': 'User not found'}), 404
+
+        except Exception as e:
+            logging.error(f"Error deleting user: {e}")
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/admin/users/create', methods=['POST'])
+    @admin_required
+    def api_create_user():
+        """Create a new user"""
+        try:
+            user_data = request.get_json()
+
+            if not user_data:
+                return jsonify({'error': 'No user data provided'}), 400
+
+            # Validate required fields
+            required_fields = ['user_id', 'user_name', 'password']
+            for field in required_fields:
+                if field not in user_data:
+                    return jsonify({'error': f'Missing required field: {field}'}), 400
+
+            # Check if user already exists
+            if auth_manager.get_user(user_data['user_id']):
+                return jsonify({'error': 'User already exists'}), 409
+
+            # Set defaults
+            if 'enabled' not in user_data:
+                user_data['enabled'] = True
+            if 'roles' not in user_data:
+                user_data['roles'] = ['user']
+            if 'tools' not in user_data:
+                user_data['tools'] = ['*']
+            if 'created_at' not in user_data:
+                user_data['created_at'] = datetime.now().isoformat() + 'Z'
+
+            # Create user
+            success = auth_manager.create_user(user_data)
+
+            if success:
+                return jsonify({
+                    'success': True,
+                    'message': 'User created successfully',
+                    'user_id': user_data['user_id']
+                })
+            else:
+                return jsonify({'error': 'Failed to create user'}), 500
+
+        except Exception as e:
+            logging.error(f"Error creating user: {e}")
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/admin/users/export')
+    @admin_required
+    def api_export_users():
+        """Export all users as CSV"""
+        try:
+            users = auth_manager.get_all_users()
+
+            # Create CSV in memory
+            output = io.StringIO()
+            writer = csv.writer(output)
+
+            # Write header
+            writer.writerow([
+                'User ID',
+                'Name',
+                'Email',
+                'Roles',
+                'Status',
+                'Tools Access',
+                'Created At',
+                'Last Login'
+            ])
+
+            # Write data
+            for user_data in users:
+                writer.writerow([
+                    user_data.get('user_id', ''),
+                    user_data.get('user_name', ''),
+                    user_data.get('email', ''),
+                    ','.join(user_data.get('roles', [])),
+                    'Enabled' if user_data.get('enabled', False) else 'Disabled',
+                    ','.join(user_data.get('tools', [])),
+                    user_data.get('created_at', ''),
+                    user_data.get('last_login', 'Never')
+                ])
+
+            # Prepare response
+            output.seek(0)
+            response = make_response(output.getvalue())
+            response.headers['Content-Type'] = 'text/csv'
+            response.headers['Content-Disposition'] = f'attachment; filename=users_{datetime.now().strftime("%Y%m%d_%H%M%S")}.csv'
+
+            return response
+
+        except Exception as e:
+            logging.error(f"Error exporting users: {e}")
+            return jsonify({'error': 'Failed to export users'}), 500
+
+    @app.route('/api/tools/list', methods=['GET'])
+    @login_required
+    def api_tools_list():
+        """Get list of all tools (for user configuration page)"""
+        try:
+            tools = tools_registry.get_all_tools()
+            return jsonify({'tools': tools})
+        except Exception as e:
+            logging.error(f"Error getting tools list: {e}")
+            return jsonify({'error': str(e)}), 500
+
     @app.route('/health')
     def health():
         """Health check endpoint"""
