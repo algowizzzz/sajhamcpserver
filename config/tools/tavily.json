@@ -4,7 +4,7 @@
   "description": "AI-powered web search using Tavily API",
   "version": "1.0.0",
   "enabled": true,
-  "api_key": "",
+  "api_key": "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",
   "inputSchema": {
     "type": "object",
     "properties": {

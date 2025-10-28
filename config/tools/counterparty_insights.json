@@ -1,0 +1,210 @@
+{
+  "name": "counterparty_insights",
+  "implementation": "tools.impl.counterparty_insights_tool.CounterpartyInsightsTool",
+  "description": "Aggregate insights about any counterparty (bank, company, entity) from configurable sources using domain-filtered searches",
+  "version": "1.0.0",
+  "enabled": true,
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "counterparty_name": {
+        "type": "string",
+        "description": "Full name of the counterparty/entity (e.g., 'Royal Bank of Canada', 'TD Bank', 'JPMorgan Chase')"
+      },
+      "counterparty_short_name": {
+        "type": "string",
+        "description": "Short name or ticker (e.g., 'RBC', 'TD', 'JPM')"
+      },
+      "categories": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["tier1", "ratings", "regulators", "filings", "all"]
+        },
+        "description": "Categories to search: tier1 (mainstream), ratings (credit agencies), regulators, filings, or all",
+        "default": ["all"]
+      },
+      "max_results_per_source": {
+        "type": "integer",
+        "description": "Maximum number of results to fetch per source",
+        "default": 3,
+        "minimum": 1,
+        "maximum": 10
+      },
+      "search_depth": {
+        "type": "string",
+        "description": "Search depth - 'basic' for quick results, 'advanced' for comprehensive search",
+        "enum": ["basic", "advanced"],
+        "default": "advanced"
+      },
+      "include_summary": {
+        "type": "boolean",
+        "description": "Include AI-generated summary for each source",
+        "default": true
+      },
+      "include_full_content": {
+        "type": "boolean",
+        "description": "Fetch full article content (raw HTML/text) - WARNING: Significantly increases response size and API usage",
+        "default": false
+      }
+    },
+    "required": ["counterparty_name", "counterparty_short_name"]
+  },
+  "sources": {
+    "tier1": {
+      "description": "Tier-1 wires and mainstream news outlets",
+      "sources": {
+        "reuters": {
+          "domain": "reuters.com",
+          "topic": "finance",
+          "description": "Reuters - Global wire service",
+          "query_template": "(\"{SHORT_NAME}\" OR \"{FULL_NAME}\") (earnings OR guidance OR outlook OR M&A OR deal OR acquisition OR divestiture OR litigation OR lawsuit OR fine OR penalty OR probe OR investigation OR cyber OR breach OR outage OR dividend OR buyback OR capital OR liquidity)"
+        },
+        "globe_and_mail": {
+          "domain": "theglobeandmail.com",
+          "topic": "finance",
+          "description": "Globe and Mail - Canadian business news",
+          "query_template": "(\"{SHORT_NAME}\" OR \"{FULL_NAME}\") (strategy OR restructuring OR job cuts OR expansion OR mortgage OR housing OR credit OR delinquency OR impairment OR provisions)"
+        },
+        "financial_post": {
+          "domain": "financialpost.com",
+          "topic": "finance",
+          "description": "Financial Post - Canadian finance",
+          "query_template": "(\"{SHORT_NAME}\" OR \"{FULL_NAME}\") (macro OR recession OR rate cuts OR inflation OR housing market OR consumer credit OR defaults)"
+        },
+        "bnn_bloomberg": {
+          "domain": "bnnbloomberg.ca",
+          "topic": "finance",
+          "description": "BNN Bloomberg - Executive commentary",
+          "query_template": "(\"{SHORT_NAME}\" OR \"{FULL_NAME}\") (CEO OR CFO OR executive OR management OR commentary OR interview OR outlook)"
+        },
+        "bloomberg": {
+          "domain": "bloomberg.com",
+          "topic": "finance",
+          "description": "Bloomberg - Global financial news",
+          "query_template": "(\"{SHORT_NAME}\" OR \"{FULL_NAME}\") (earnings OR revenue OR profit OR stock OR market OR analyst OR rating)"
+        },
+        "ft": {
+          "domain": "ft.com",
+          "topic": "finance",
+          "description": "Financial Times - Global finance",
+          "query_template": "(\"{SHORT_NAME}\" OR \"{FULL_NAME}\") (results OR performance OR strategy OR regulation OR competition)"
+        },
+        "newswire": {
+          "domain": "newswire.ca",
+          "topic": "general",
+          "description": "Canada Newswire - Press releases",
+          "query_template": "(\"{SHORT_NAME}\" OR \"{FULL_NAME}\") (press release OR announces OR partnership OR acquisition OR financing OR issuance OR ESG OR sustainability)"
+        }
+      }
+    },
+    "ratings": {
+      "description": "Credit rating agencies",
+      "sources": {
+        "sp_global": {
+          "domain": "spglobal.com",
+          "topic": "finance",
+          "description": "S&P Global - Credit ratings",
+          "query_template": "(\"{SHORT_NAME}\" OR \"{FULL_NAME}\") (rating OR ratings OR credit rating OR outlook OR watch positive OR watch negative OR upgrade OR downgrade OR affirmation)"
+        },
+        "fitch": {
+          "domain": "fitchratings.com",
+          "topic": "finance",
+          "description": "Fitch Ratings - Credit ratings",
+          "query_template": "(\"{SHORT_NAME}\" OR \"{FULL_NAME}\") (rating OR outlook OR upgrade OR downgrade OR affirmation OR criteria)"
+        },
+        "moodys": {
+          "domain": "moodys.com",
+          "topic": "finance",
+          "description": "Moody's - Credit ratings",
+          "query_template": "(\"{SHORT_NAME}\" OR \"{FULL_NAME}\") (rating OR outlook OR upgrade OR downgrade OR affirmation OR methodology OR adjustment)"
+        }
+      }
+    },
+    "regulators": {
+      "description": "Regulatory bodies and central banks",
+      "sources": {
+        "osfi": {
+          "domain": "osfi-bsif.gc.ca",
+          "topic": "general",
+          "description": "OSFI - Canadian banking regulator",
+          "query_template": "(\"{SHORT_NAME}\" OR \"{FULL_NAME}\") (capital buffer OR liquidity coverage ratio OR LCR OR NSFR OR leverage ratio OR stress test OR guideline)"
+        },
+        "bank_of_canada": {
+          "domain": "bankofcanada.ca",
+          "topic": "general",
+          "description": "Bank of Canada - Central bank",
+          "query_template": "(\"{SHORT_NAME}\" OR \"{FULL_NAME}\" OR \"major banks\" OR \"financial stability\") (credit OR delinquency OR household debt OR mortgage OR housing)"
+        },
+        "sec": {
+          "domain": "sec.gov",
+          "topic": "general",
+          "description": "SEC - US securities regulator",
+          "query_template": "(\"{SHORT_NAME}\" OR \"{FULL_NAME}\") (filing OR 10-K OR 10-Q OR 8-K OR enforcement OR investigation)"
+        }
+      }
+    },
+    "filings": {
+      "description": "Official filings and investor relations",
+      "sources": {
+        "sedar": {
+          "domain": "sedarplus.ca",
+          "topic": "general",
+          "description": "SEDAR+ - Canadian filings",
+          "query_template": "(\"{FULL_NAME}\" OR \"{SHORT_NAME}\") (annual information form OR management discussion OR MD&A OR prospectus OR supplement OR material change)"
+        },
+        "tsx": {
+          "domain": "tsx.com",
+          "topic": "general",
+          "description": "TSX - Toronto Stock Exchange",
+          "query_template": "(\"{FULL_NAME}\" OR \"{SHORT_NAME}\") (halt OR listing notice OR corporate action OR share buyback OR issuance)"
+        },
+        "nyse": {
+          "domain": "nyse.com",
+          "topic": "general",
+          "description": "NYSE - New York Stock Exchange",
+          "query_template": "(\"{FULL_NAME}\" OR \"{SHORT_NAME}\") (listing OR halt OR delisting OR corporate action)"
+        }
+      }
+    }
+  },
+  "metadata": {
+    "author": "Saad",
+    "category": "Financial Intelligence",
+    "tags": ["counterparty", "insights", "news", "aggregator", "finance", "composite"],
+    "rateLimit": 50,
+    "cacheTTL": 1800,
+    "dependencies": ["tavily"],
+    "note": "This tool requires Tavily API key to be configured. It can be used for any counterparty by providing the name as input. Sources are fully configurable in this config file."
+  },
+  "usage_examples": [
+    {
+      "description": "Get RBC insights from all sources",
+      "input": {
+        "counterparty_name": "Royal Bank of Canada",
+        "counterparty_short_name": "RBC",
+        "categories": ["all"],
+        "max_results_per_source": 3
+      }
+    },
+    {
+      "description": "Get TD Bank news from mainstream sources only",
+      "input": {
+        "counterparty_name": "Toronto-Dominion Bank",
+        "counterparty_short_name": "TD",
+        "categories": ["tier1"],
+        "max_results_per_source": 5
+      }
+    },
+    {
+      "description": "Get JPMorgan rating updates",
+      "input": {
+        "counterparty_name": "JPMorgan Chase",
+        "counterparty_short_name": "JPM",
+        "categories": ["ratings"],
+        "max_results_per_source": 2
+      }
+    }
+  ]
+}
+

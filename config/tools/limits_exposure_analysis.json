@@ -1,0 +1,167 @@
+{
+  "name": "limits_exposure_analysis",
+  "implementation": "tools.impl.limits_exposure_analysis_tool.LimitsExposureAnalysisTool",
+  "description": "Comprehensive counterparty limits and exposure analysis tool that combines trade data with credit limits for risk assessment",
+  "version": "1.0.0",
+  "enabled": true,
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "counterparty_identifier": {
+        "type": "string",
+        "description": "Customer name or Adaptiv code to analyze (e.g., 'AC001' or 'Northbridge Capital')"
+      },
+      "include_sections": {
+        "type": "array",
+        "description": "Specific sections to include (optional, defaults to all sections)",
+        "items": {
+          "type": "string",
+          "enum": [
+            "overview",
+            "limit_status",
+            "trade_summary",
+            "mtm_pnl",
+            "asset_class_breakdown",
+            "product_breakdown",
+            "collateral_status",
+            "desk_distribution",
+            "maturity_profile",
+            "risk_greeks",
+            "failed_trades",
+            "recent_activity",
+            "currency_exposure",
+            "risk_factors",
+            "combined_view",
+            "historical_limits"
+          ]
+        }
+      }
+    },
+    "required": ["counterparty_identifier"]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "counterparty_identifier": {
+        "type": "string",
+        "description": "The identifier used for analysis"
+      },
+      "analysis_timestamp": {
+        "type": "string",
+        "description": "ISO timestamp of when analysis was performed"
+      },
+      "sections": {
+        "type": "object",
+        "description": "Detailed analysis sections",
+        "properties": {
+          "overview": {
+            "type": "object",
+            "description": "Counterparty overview (name, code, rating, sector, country, etc.)"
+          },
+          "limit_status": {
+            "type": "object",
+            "description": "Current limit status including utilization and breach status"
+          },
+          "trade_summary": {
+            "type": "object",
+            "description": "Trade count and notional summary statistics"
+          },
+          "mtm_pnl": {
+            "type": "object",
+            "description": "Mark-to-market and profit/loss analysis"
+          },
+          "asset_class_breakdown": {
+            "type": "object",
+            "description": "Breakdown by asset class (FX, Rates, Commodities, etc.)"
+          },
+          "product_breakdown": {
+            "type": "object",
+            "description": "Breakdown by product type"
+          },
+          "collateral_status": {
+            "type": "object",
+            "description": "Collateral and netting set analysis"
+          },
+          "desk_distribution": {
+            "type": "object",
+            "description": "Distribution across trading desks and books"
+          },
+          "maturity_profile": {
+            "type": "object",
+            "description": "Maturity profile analysis"
+          },
+          "risk_greeks": {
+            "type": "object",
+            "description": "Risk Greeks (delta, gamma, vega) analysis"
+          },
+          "failed_trades": {
+            "type": "object",
+            "description": "List of failed or problematic trades"
+          },
+          "recent_activity": {
+            "type": "object",
+            "description": "Most recent trading activity"
+          },
+          "currency_exposure": {
+            "type": "object",
+            "description": "Currency exposure breakdown"
+          },
+          "risk_factors": {
+            "type": "object",
+            "description": "Top risk factors by exposure"
+          },
+          "combined_view": {
+            "type": "object",
+            "description": "Combined view comparing trades vs limits"
+          },
+          "historical_limits": {
+            "type": "object",
+            "description": "Historical limit utilization trend"
+          }
+        }
+      },
+      "summary": {
+        "type": "object",
+        "description": "Executive summary with key metrics"
+      }
+    }
+  },
+  "metadata": {
+    "author": "Ashutosh Sinha",
+    "category": "Risk Management",
+    "tags": ["risk", "limits", "exposure", "counterparty", "credit", "analysis"],
+    "rateLimit": 30,
+    "cacheTTL": 60,
+    "dependencies": ["duckdb_olap_tools"],
+    "data_sources": ["trades.parquet", "ccr_limits.parquet"],
+    "use_cases": [
+      "Counterparty credit risk assessment",
+      "Limit breach identification",
+      "Trade exposure analysis",
+      "Risk reporting and monitoring",
+      "Credit line utilization tracking"
+    ],
+    "examples": [
+      {
+        "description": "Full analysis of Northbridge Capital",
+        "input": {
+          "counterparty_identifier": "Northbridge Capital"
+        }
+      },
+      {
+        "description": "Analyze using Adaptiv code",
+        "input": {
+          "counterparty_identifier": "AC001"
+        }
+      },
+      {
+        "description": "Get only limit status and trade summary",
+        "input": {
+          "counterparty_identifier": "Aurora Metals",
+          "include_sections": ["limit_status", "trade_summary", "asset_class_breakdown"]
+        }
+      }
+    ]
+  }
+}
+

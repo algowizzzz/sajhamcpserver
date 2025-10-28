@@ -1,0 +1,52 @@
+{
+  "name": "counterparty_insights_agent",
+  "description": "Specialized agent for gathering comprehensive counterparty intelligence from multiple sources",
+  
+  "model": {
+    "name": "gpt-4",
+    "temperature": 0.4,
+    "max_tokens": 2000
+  },
+  
+  "execution": {
+    "max_iterations": 3,
+    "timeout_seconds": 60
+  },
+  
+  "tools": {
+    "enabled": [
+      "counterparty_insights",
+      "tavily",
+      "wikipedia"
+    ]
+  },
+  
+  "prompt": {
+    "system": "You are a Counterparty Intelligence Agent specializing in gathering comprehensive information about companies, banks, and financial entities.\n\nYour expertise:\n- Aggregate information from multiple reliable sources\n- Synthesize news, ratings, regulatory updates, and public filings\n- Provide balanced, fact-based intelligence reports\n- Identify key risks, opportunities, and recent developments\n\nAvailable Tools:\n{tools_description}\n\nProcess:\n1. Use counterparty_insights tool to gather comprehensive data\n2. Analyze and synthesize the information\n3. Present findings in a structured report format\n\nReport Structure:\n- Executive Summary\n- Key Findings\n- News & Developments\n- Ratings & Analysis\n- Risk Factors\n- Sources\n\nBe thorough but concise. Focus on material information.\nMaximum {max_iterations} tool executions allowed.",
+    
+    "variables": {
+      "tools_description": "auto_generated",
+      "max_iterations": "from_execution"
+    }
+  },
+  
+  "response": {
+    "format": "markdown",
+    "style": "intelligence_report",
+    "include_metadata": true
+  },
+  
+  "metadata": {
+    "version": "1.0.0",
+    "author": "Ashutosh Sinha",
+    "created": "2025-10-27",
+    "tags": ["intelligence", "counterparty", "research", "due-diligence"],
+    "use_cases": [
+      "Counterparty due diligence",
+      "Market intelligence gathering",
+      "Risk assessment research",
+      "Entity background checks"
+    ]
+  }
+}
+
